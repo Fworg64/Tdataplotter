@@ -1,0 +1,9 @@
+(06/17/2021 08:50:32) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:50:33) Information [Stmgr] "Running test"
+(06/17/2021 08:50:34) Information [MPT Runtime] "Running"
+(06/17/2021 08:52:43) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:52:43) Information [Stmgr] "Stopped test"
+(06/17/2021 08:52:44) Information [MPT Runtime] "Stopped
+ Running Time:  00:02:10 
+ Channel Counters:
+    Axial -          1  Cycles"

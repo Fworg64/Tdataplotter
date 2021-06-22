@@ -1,0 +1,13 @@
+(06/17/2021 08:59:40) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(06/17/2021 08:59:41) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(06/17/2021 09:01:13) Information [Stmgr] "Manual command enabled: Axial Force"
+(06/17/2021 09:01:19) Information [Stmgr] "Manual command disabled: Axial Force"
+(06/17/2021 09:01:50) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 09:01:50) Information [MPT Runtime] "Running"
+(06/17/2021 09:01:50) Information [Stmgr] "Running test"
+(06/17/2021 09:05:40) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 09:05:40) Information [Stmgr] "Stopped test"
+(06/17/2021 09:05:40) Information [MPT Runtime] "Stopped
+ Running Time:  00:03:49 
+ Channel Counters:
+    Axial -          1  Cycles"
