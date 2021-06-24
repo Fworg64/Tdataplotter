@@ -1,8 +1,12 @@
 import loaders
+import conversions
 
 import matplotlib.pyplot as plt
 import time
 import pdb
+
+from scipy import signal
+import numpy as np
 
 # load data
 trials = [1,2,3,4,5]
@@ -72,28 +76,62 @@ for rate in rates:
   cap_data[rate] = cap_sample_data
 that_time = time.time()
 print("Data loaded in {0} sec".format(that_time - this_time))
+
+print("Filtering Data...")
 # generate timebase for cap data
+cap_dt = 1.0/700.0
+
+for trial in trials:
+  for rate in rates:
+    cap_time = 0
+    for point in cap_data[rate][trial]:
+      point["Sec"] = cap_time
+      cap_time += cap_dt
+
+# filter cap data
+#b, a = signal.butter(5, .9010)
+filtered_cap_data = {}
+for trial in trials:
+  filtered_sample = {}
+  for rate in rates:
+    #zi = signal.lfilter_zi(b,a)
+    chan_data = [cap["chan_c"] for cap in cap_data[rate][trial]]
+    #filtered_sample[rate], _ = signal.lfilter(b,a,chan_data, zi=zi*chan_data[0])
+    filtered_sample[rate] = signal.medfilt(chan_data, 75)
+  filtered_cap_data[trial]= filtered_sample
+
+# convert filtered cap encoder data to freq/cap value
+freq_meas = {}
+cap_meas  = {}
+for trial in trials:
+  freq_sample = {}
+  cap_sample  = {}
+  for rate in rates:
+    freq_sample[rate], cap_sample[rate] = \
+      conversions.calculate_freq_and_cap(filtered_cap_data[trial][rate], 18.0e-6, 33.0e-12)
+  freq_meas[trial] = freq_sample
+  cap_meas[trial]  = cap_sample
 
 #pdb.set_trace()
 # plot cap v time and force v time
 print("Plotting Data...")
 this_time = time.time()
-for trial in trials:
-  plt.figure()
-  for rate in rates:
+for rate in rates:
+  plt.figure(0)
+  for trial in trials:
     forces = [point["kN"] for point in force_data[rate][trial]]
     plt.plot(forces[::100])
   plt.figure()
-  for rate in rates:
-    caps = [point["chan_c"] for point in cap_data[rate][trial]]
-    plt.plot(caps[::100])
-  plt.ylim([2800,3000])
+  for trial in trials:
+    pf_cap = [c/1.0e-12 for c in cap_meas[trial][rate][15:-15:100]] 
+    plt.plot(pf_cap)
+  #plt.ylim([2800,3000])
 
 
 that_time = time.time()
 print("Data plotted in {0} sec".format(that_time - this_time))
-
-plt.show()
+plt.show(block=False)
+input("Press Enter to close.")
 # plot force v cap
 
 # plot force c strain
