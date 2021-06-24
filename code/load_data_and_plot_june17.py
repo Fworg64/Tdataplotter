@@ -163,6 +163,19 @@ plt.xlabel('Capacitance (pF)')
 plt.ylabel("Force (kN)")
 plt.title("Force vs Capacitance")
 
+# plot device strain
+fig3 = plt.figure()
+for sample in samples:
+  for rate in rates:
+    dists = [point["mm"] for point in force_data[sample][rate]]
+    dist_times = [point["Sec"] for point in force_data[sample][rate]]
+    plt.plot(dist_times, dists, color=rate_colors[rate])
+plt.legend(["{0} kN/s".format(rate) for rate in rates])
+plt.xlabel('Time (s)')
+plt.ylabel("Displacement (mm)")
+plt.title("Load Head Displacement vs Time")
+
+
 that_time = time.time()
 print("Data plotted in {0} sec".format(that_time - this_time))
 plt.show(block=False)
