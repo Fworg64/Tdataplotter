@@ -8,6 +8,13 @@ import pdb
 from scipy import signal
 import numpy as np
 
+# Set figures
+fontsize = 18
+plt.rc('font', size=fontsize, family='serif')
+plt.rc('axes', titlesize=fontsize)
+plt.rc('axes', labelsize=fontsize)
+plt.rc('legend', fontsize=fontsize)
+
 # load data
 trials = [1,2,3,4,5]
 rates = [2,4,6,8,10]
@@ -95,7 +102,7 @@ for trial in trials:
   filtered_sample = {}
   for rate in rates:
     #zi = signal.lfilter_zi(b,a)
-    chan_data = [cap["chan_c"] for cap in cap_data[rate][trial]]
+    chan_data = [cap["chan_a"] for cap in cap_data[rate][trial]]
     #filtered_sample[rate], _ = signal.lfilter(b,a,chan_data, zi=zi*chan_data[0])
     filtered_sample[rate] = signal.medfilt(chan_data, 75)
   filtered_cap_data[trial]= filtered_sample
@@ -113,9 +120,50 @@ for trial in trials:
   cap_meas[trial]  = cap_sample
 
 #pdb.set_trace()
-# plot cap v time and force v time
+
+# Generate plots
+
+# plot cap v time and force v time on same plot
 print("Plotting Data...")
 this_time = time.time()
+rate_colors = {2: (0.2, 0.3, 0.8), 4: (0.4, 0.7, 0.6),
+               6: (0.6, 0.3, 0.4), 8: (0.8, 0.7, 0.2), 10: (1.0, 0.3, 0.0)}
+
+fig, (ax1, ax2) = plt.subplots(2,1,sharex=True)
+for trial in trials:
+  for rate in rates:
+    forces = [-point["kN"] for point in force_data[rate][trial]]
+    times  = [point["Sec"] for point in force_data[rate][trial]]
+    ax1.plot(times[::100], forces[::100], color=rate_colors[rate])
+  ax1.legend(["{0} kN/s".format(rate) for rate in rates])
+  ax1.set_ylabel("Force (kN)")
+  ax1.set_title("Applied Force vs Time")
+
+  rate_plot_handle_list = []
+  for rate in rates:
+    pf_cap = [c/1.0e-12 for c in cap_meas[trial][rate][15:-15:100]]
+    times  = [point["Sec"] for point in cap_data[rate][trial][15:-15:100]]
+    rate_plot_handle, = ax2.plot(times, pf_cap,
+                                 label="{0} kN/s".format(rate), color=rate_colors[rate])
+    rate_plot_handle_list.append(rate_plot_handle)
+
+  # Single Legend
+  first_legend = ax2.legend(handles=rate_plot_handle_list, loc='upper right')
+  ax2.set_ylabel("Capacitance (pF)")
+  ax2.set_xlabel("Time (s)")
+  ax2.set_title("Measured Cap. vs Time")
+
+'''
+  # Split legend
+  first_legend = ax2.legend(handles=rate_plot_handle_list[:2], loc='lower center')
+  # Add the legend manually to the current Axes.
+  plt.gca().add_artist(first_legend)
+  # Create another legend for the second set
+  ax2.legend(handles=rate_plot_handle_list[2:], loc='lower right')
+'''
+
+
+'''
 for rate in rates:
   plt.figure(0)
   for trial in trials:
@@ -126,7 +174,7 @@ for rate in rates:
     pf_cap = [c/1.0e-12 for c in cap_meas[trial][rate][15:-15:100]] 
     plt.plot(pf_cap)
   #plt.ylim([2800,3000])
-
+'''
 
 that_time = time.time()
 print("Data plotted in {0} sec".format(that_time - this_time))
