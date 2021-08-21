@@ -27,3 +27,13 @@ def load_frame_file(input_file):
         packet = {"kN": float(row[0]), "mm": float(row[1]), "Sec": float(row[2])}
         packet_list.append(packet)
   return packet_list
+
+def load_lcm_file(input_file):
+  packet_list = []
+  with open(input_file, "r") as infile:
+    reader = csv.reader(infile, delimiter="	")
+    for row in reader:
+      packet = {"Sec": float(row[0]), "disp": float(row[1]), "v1": float(row[2]),
+                "v2": float(row[3]), "v3": float(row[4]), "v4": float(row[5])}
+      packet_list.append(packet)
+  return packet_list

@@ -6,3 +6,7 @@ def calculate_freq_and_cap(meas, L, Cfilt):
   return freqs, caps
 
 
+def calculate_drag_force(v1, v2, v3, v4):
+  X = -v1 -v2 +v3 +v4
+  drag = 15695275 * X + 9088
+  return drag

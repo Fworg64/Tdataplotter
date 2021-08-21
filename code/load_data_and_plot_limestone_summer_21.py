@@ -58,51 +58,52 @@ cap_data_files = {"New": {"0.1 in.": { 0: base_path + "cap_data/cap_rec_20210727
                                         17: base_path + "cap_data/cap_rec_20210803-102828.txt"}}} 
 
 
-lcm_data_files = {"New": {"0.1 in.": { 0: base_path + "lcm_data/New 0.1 inch/line_0.lvm",
-                                       1: base_path + "lcm_data/New 0.1 inch/line_1.lvm",
-                                       2: base_path + "lcm_data/New 0.1 inch/line_2.lvm",
-                                       3: base_path + "lcm_data/New 0.1 inch/line_3.lvm",
-                                       4: base_path + "lcm_data/New 0.1 inch/line_4.lvm",
-                                       5: base_path + "lcm_data/New 0.1 inch/line_5.lvm",
-                                       6: base_path + "lcm_data/New 0.1 inch/line_6.lvm",
-                                       7: base_path + "lcm_data/New 0.1 inch/line_7.lvm",
-                                       8: base_path + "lcm_data/New 0.1 inch/line_8.lvm",
-                                       9: base_path + "lcm_data/New 0.1 inch/line_9.lvm",
-                                      10: base_path + "lcm_data/New 0.1 inch/line_10.lvm",
-                                      11: base_path + "lcm_data/New 0.1 inch/line_11.lvm",
-                                      12: base_path + "lcm_data/New 0.1 inch/line_12.lvm",
-                                      13: base_path + "lcm_data/New 0.1 inch/line_13.lvm",
-                                      14: base_path + "lcm_data/New 0.1 inch/line_14.lvm",
-                                      15: base_path + "lcm_data/New 0.1 inch/line_15.lvm",
-                                      16: base_path + "lcm_data/New 0.1 inch/line_16.lvm",
-                                      17: base_path + "lcm_data/New 0.1 inch/line_17 (edge).lvm"}},
-                "Mod.": {"0.1 in.": {  0: base_path + "lcm_data/MOD 0.1 inch/line_0 (edge).lvm",
-                                       1: base_path + "lcm_data/New 0.1 inch/line_1.lvm",
-                                       2: base_path + "lcm_data/New 0.1 inch/line_2.lvm",
-                                       3: base_path + "lcm_data/New 0.1 inch/line_3.lvm",
-                                       4: base_path + "lcm_data/New 0.1 inch/line_4.lvm",
-                                       5: base_path + "lcm_data/New 0.1 inch/line_5.lvm",
-                                       6: base_path + "lcm_data/New 0.1 inch/line_6.lvm",
-                                       7: base_path + "lcm_data/New 0.1 inch/line_7.lvm",
-                                       8: base_path + "lcm_data/New 0.1 inch/line_8.lvm",
-                                       9: base_path + "lcm_data/New 0.1 inch/line_9.lvm",
-                                       10: base_path + "lcm_data/New 0.1 inch/line_10.lvm",
-                                       11: base_path + "lcm_data/New 0.1 inch/line_11.lvm",
-                                       12: base_path + "lcm_data/New 0.1 inch/line_12.lvm",
-                                       13: base_path + "lcm_data/New 0.1 inch/line_13.lvm",
-                                       14: base_path + "lcm_data/New 0.1 inch/line_14.lvm",
-                                       15: base_path + "lcm_data/New 0.1 inch/line_15.lvm",
-                                       16: base_path + "lcm_data/New 0.1 inch/line_16.lvm",
-                                       17: base_path + "lcm_data/New 0.1 inch/line_17 (edge).lvm"}}}
+lcm_data_files = {"New": {"0.1 in.": { 0: base_path + "lcm_data/New 0.1inch/line_0.lvm",
+                                       1: base_path + "lcm_data/New 0.1inch/line_1.lvm",
+                                       2: base_path + "lcm_data/New 0.1inch/line_2.lvm",
+                                       3: base_path + "lcm_data/New 0.1inch/line_3.lvm",
+                                       4: base_path + "lcm_data/New 0.1inch/line_4.lvm",
+                                       5: base_path + "lcm_data/New 0.1inch/line_5.lvm",
+                                       6: base_path + "lcm_data/New 0.1inch/line_6.lvm",
+                                       7: base_path + "lcm_data/New 0.1inch/line_7.lvm",
+                                       8: base_path + "lcm_data/New 0.1inch/line_8.lvm",
+                                       9: base_path + "lcm_data/New 0.1inch/line_9.lvm",
+                                      10: base_path + "lcm_data/New 0.1inch/line_10.lvm",
+                                      11: base_path + "lcm_data/New 0.1inch/line_11.lvm",
+                                      12: base_path + "lcm_data/New 0.1inch/line_12.lvm",
+                                      13: base_path + "lcm_data/New 0.1inch/line_13.lvm",
+                                      14: base_path + "lcm_data/New 0.1inch/line_14.lvm",
+                                      15: base_path + "lcm_data/New 0.1inch/line_15.lvm",
+                                      16: base_path + "lcm_data/New 0.1inch/line_16.lvm",
+                                      17: base_path + "lcm_data/New 0.1inch/line_17 (edge).lvm"}},
+                "Mod.": {"0.1 in.": {  0: base_path + "lcm_data/MOD 0.1inch/line_0 (edge).lvm",
+                                       1: base_path + "lcm_data/New 0.1inch/line_1.lvm",
+                                       2: base_path + "lcm_data/New 0.1inch/line_2.lvm",
+                                       3: base_path + "lcm_data/New 0.1inch/line_3.lvm",
+                                       4: base_path + "lcm_data/New 0.1inch/line_4.lvm",
+                                       5: base_path + "lcm_data/New 0.1inch/line_5.lvm",
+                                       6: base_path + "lcm_data/New 0.1inch/line_6.lvm",
+                                       7: base_path + "lcm_data/New 0.1inch/line_7.lvm",
+                                       8: base_path + "lcm_data/New 0.1inch/line_8.lvm",
+                                       9: base_path + "lcm_data/New 0.1inch/line_9.lvm",
+                                       10: base_path + "lcm_data/New 0.1inch/line_10.lvm",
+                                       11: base_path + "lcm_data/New 0.1inch/line_11.lvm",
+                                       12: base_path + "lcm_data/New 0.1inch/line_12.lvm",
+                                       13: base_path + "lcm_data/New 0.1inch/line_13.lvm",
+                                       14: base_path + "lcm_data/New 0.1inch/line_14.lvm",
+                                       15: base_path + "lcm_data/New 0.1inch/line_15.lvm",
+                                       16: base_path + "lcm_data/New 0.1inch/line_16.lvm",
+                                       17: base_path + "lcm_data/New 0.1inch/line_17 (edge).lvm"}}}
 #pdb.set_trace()
 print("Loading Data...")
 this_time = time.time()
 cap_data = {}
 lcm_data = {}
-cap_dt = 1.0/700.0
+cap_dt = 1.0/750.0
 
 for wear in wear_levels:
   cap_data[wear] = {}
+  lcm_data[wear] = {}
   for pen in penetrations:
     cap_data[wear][pen] = {}
     for line in cap_data_files[wear][pen].keys():
@@ -114,6 +115,10 @@ for wear in wear_levels:
         cap_time+= cap_dt
       
       # load lcm data here
+    lcm_data[wear][pen] = {}
+    for line in lcm_data_files[wear][pen].keys():
+      lcm_data[wear][pen][line] = loaders.load_lcm_file(lcm_data_files[wear][pen][line])
+
 that_time = time.time()
 print("Data loaded in {0} sec".format(that_time - this_time))
 
@@ -122,13 +127,18 @@ print("Data loaded in {0} sec".format(that_time - this_time))
 #pdb.set_trace()
 print("Plotting Data...")
 this_time = time.time()
-fig, (ax1, ax2) = plt.subplots(2,1,sharex=True)
+fig, (ax1, ax2) = plt.subplots(2,1,sharex=False)
 
+force_values = [conversions.calculate_drag_force(point["v1"], point["v2"], point["v3"], point["v4"])
+                for point in lcm_data["Mod."]["0.1 in."][3]]
+force_times  = [point["Sec"] for point in lcm_data["Mod."]["0.1 in."][3]]
 cap_values = [point["chan_c"] for point in cap_data["Mod."]["0.1 in."][3]]
-cap_times  = [point["Sec"] for point in cap_data["Mod."]["0.1 in."][13]]
+cap_times  = [point["Sec"] for point in cap_data["Mod."]["0.1 in."][3]]
 
-ax2.plot(cap_times[2000:4000], cap_values[2000:4000])
+ax2.plot(cap_times[2350:3200], cap_values[2350:3200])
 ax2.set_ylim([500, 600])
+
+ax1.plot(force_times[1000:1600], force_values[1000:1600])
 
 
 that_time = time.time()
