@@ -133,6 +133,7 @@ print("Plotting Data...")
 # Plot all wear levels in same plot for one representative sample
 this_time = time.time()
 fig, (ax1, ax2) = plt.subplots(2,1,sharex=True)
+fig2, my_axes = plt.subplots(2,2,sharex=True)
 
 rep_pen = penetrations[0]
 rep_line = 1
@@ -149,7 +150,7 @@ def first_index_greater_than(input_iterable, item):
     res = len(input_iterable)
   return res
 
-for wear in wear_levels:
+for idx,wear in enumerate(wear_levels):
   force_values = [conversions.calculate_drag_force(
                     point["v1"], point["v2"], point["v3"], point["v4"])
                   for point in lcm_data[wear][rep_pen][rep_line]]
@@ -159,12 +160,16 @@ for wear in wear_levels:
   plot_end   = first_index_greater_than(force_times, plot_duration)
   ax1.plot(force_times[plot_start:plot_end], force_values[plot_start:plot_end],
            color=wear_colors[wear])
+  ff, ft, fSxx = signal.spectrogram(np.array(force_values[plot_start:plot_end]), 537.63)
+  my_axes[idx][0].pcolormesh(ft, ff, fSxx, shading='gouraud')
+  my_axes[idx][0].set_title("Force spec. {0}".format(wear))
+
 ax1.legend(["{0}".format(wear) for wear in wear_levels])
 ax1.set_ylabel("Force (lbf)")
 #ax1.set_xlabel("Time (s)")
 ax1.set_title("Applied Force vs Time; 0.1 in. pen.")
 
-for wear in wear_levels:
+for idx,wear in enumerate(wear_levels):
   cap_values  = [point["chan_b"] 
                   for point in cap_data[wear][rep_pen][rep_line]]
   cap_times   = [point["Sec"]-cap_time_offsets[wear] 
@@ -173,28 +178,18 @@ for wear in wear_levels:
   plot_end   = first_index_greater_than(cap_times, plot_duration)
   ax2.plot(cap_times[plot_start:plot_end], cap_values[plot_start:plot_end],
            color=wear_colors[wear])
+  cf, ct, cSxx = signal.spectrogram(np.array(cap_values[plot_start:plot_end]), 400.00)
+  my_axes[idx][1].pcolormesh(ct, cf, cSxx, shading='gouraud')
+  my_axes[idx][1].set_title("Cap. spec. {0}".format(wear))
+
 ax2.legend(["{0}".format(wear) for wear in wear_levels])
 ax2.set_ylabel("Capacitance (pF)")
 ax2.set_xlabel("Time (s)")
 ax2.set_title("Measured Cap. vs Time")
 ax2.set_ylim([520, 580])
-#force_values = [conversions.calculate_drag_force(point["v1"], point["v2"], point["v3"], point["v4"])
-#                for point in lcm_data["Mod."]["0.1 in."][3]]
-#force_times  = [point["Sec"] for point in lcm_data["Mod."]["0.1 in."][3]]
-#cap_values = [point["chan_b"] for point in cap_data["Mod."]["0.1 in."][3]]
-#cap_times  = [point["Sec"] for point in cap_data["Mod."]["0.1 in."][3]]
 
-#ax2.plot(cap_times[2350:2800], cap_values[2350:2800], marker='d')
-#ax2.set_ylim([500, 800])
-#ax2.set_ylabel("Capacitance (pF)")
-#ax2.set_xlabel("Time (s)")
-#ax2.set_title("Measured Cap. vs Time")
-
-#ax1.plot(force_times[1000:1300], force_values[1000:1300], marker='d')
-#ax1.set_ylabel("Force (lbf)")
-#plt.xlabel("Time (s)")
-#ax1.set_title("Applied Force vs Time")
-
+#ax3.set_ylabel('Frequency (Hz)')
+#ax3.set_xlabel('Time (s)')
 
 that_time = time.time()
 print("Data plotted in {0} sec".format(that_time - this_time))
