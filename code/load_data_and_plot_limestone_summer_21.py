@@ -99,7 +99,8 @@ print("Loading Data...")
 this_time = time.time()
 cap_data = {}
 lcm_data = {}
-cap_dt = 1.0/750.0
+cap_dt = 1.0/500.0
+cap_t_off = 2.0
 
 for wear in wear_levels:
   cap_data[wear] = {}
@@ -126,19 +127,54 @@ print("Data loaded in {0} sec".format(that_time - this_time))
 
 #pdb.set_trace()
 print("Plotting Data...")
+# Plot all wear levels in same plot for one representative sample
 this_time = time.time()
 fig, (ax1, ax2) = plt.subplots(2,1,sharex=False)
 
-force_values = [conversions.calculate_drag_force(point["v1"], point["v2"], point["v3"], point["v4"])
-                for point in lcm_data["Mod."]["0.1 in."][3]]
-force_times  = [point["Sec"] for point in lcm_data["Mod."]["0.1 in."][3]]
-cap_values = [point["chan_c"] for point in cap_data["Mod."]["0.1 in."][3]]
-cap_times  = [point["Sec"] for point in cap_data["Mod."]["0.1 in."][3]]
+rep_pen = penetrations[0]
+rep_line = 1
 
-ax2.plot(cap_times[2350:3200], cap_values[2350:3200])
-ax2.set_ylim([500, 600])
+wear_colors = {wear_levels[0]: (0.2, 0.3, 0.8), 
+               wear_levels[1]: (0.6, 0.3, 0.4),
+               #wear_levels[2]: (1.0, 0.3, 0.0)
+               }
 
-ax1.plot(force_times[1000:1600], force_values[1000:1600])
+for wear in wear_levels:
+  force_values = [conversions.calculate_drag_force(
+                    point["v1"], point["v2"], point["v3"], point["v4"])
+                  for point in lcm_data[wear][rep_pen][rep_line]]
+  force_times = [point["Sec"] for point in lcm_data[wear][rep_pen][rep_line]]
+  ax1.plot(force_times, force_values, color=wear_colors[wear])
+ax1.legend(["{0}".format(wear) for wear in wear_levels])
+ax1.set_ylabel("Force (lbf)")
+ax1.set_xlabel("Time (s)")
+ax1.set_title("Applied Force vs Time")
+
+for wear in wear_levels:
+  cap_values  = [point["chan_b"] for point in cap_data[wear][rep_pen][rep_line]]
+  cap_times   = [point["Sec"] for point in cap_data[wear][rep_pen][rep_line]]
+  ax2.plot(cap_times, cap_values, color=wear_colors[wear])
+ax2.legend(["{0}".format(wear) for wear in wear_levels])
+ax2.set_ylabel("Capacitance (pF)")
+ax2.set_xlabel("Time (s)")
+ax2.set_title("Measured Cap. vs Time")
+ax2.set_ylim([500, 800])
+#force_values = [conversions.calculate_drag_force(point["v1"], point["v2"], point["v3"], point["v4"])
+#                for point in lcm_data["Mod."]["0.1 in."][3]]
+#force_times  = [point["Sec"] for point in lcm_data["Mod."]["0.1 in."][3]]
+#cap_values = [point["chan_b"] for point in cap_data["Mod."]["0.1 in."][3]]
+#cap_times  = [point["Sec"] for point in cap_data["Mod."]["0.1 in."][3]]
+
+#ax2.plot(cap_times[2350:2800], cap_values[2350:2800], marker='d')
+#ax2.set_ylim([500, 800])
+#ax2.set_ylabel("Capacitance (pF)")
+#ax2.set_xlabel("Time (s)")
+#ax2.set_title("Measured Cap. vs Time")
+
+#ax1.plot(force_times[1000:1300], force_values[1000:1300], marker='d')
+#ax1.set_ylabel("Force (lbf)")
+#plt.xlabel("Time (s)")
+#ax1.set_title("Applied Force vs Time")
 
 
 that_time = time.time()
