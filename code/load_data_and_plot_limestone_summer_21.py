@@ -18,7 +18,7 @@ plt.rc('axes', labelsize=fontsize)
 plt.rc('legend', fontsize=fontsize)
 
 # Load Data
-wear_levels  = ["New", "Mod."]
+wear_levels  = ["New", "Mod.", "Worn"]
 penetrations = ["0.1 in."]
 lines        = list(range(0,18))
 
@@ -27,7 +27,7 @@ base_path = "/home/austinlocal/phd/Tdataplotter/data/limestone/"
 cap_data_files = {"New": {"0.1 in.": { 0: base_path + "cap_data/cap_rec_20210727-104758.txt", 
                                        1: base_path + "cap_data/cap_rec_20210727-105453.txt", 
                                        2: base_path + "cap_data/cap_rec_20210727-105732.txt", 
-                                       3: base_path + "cap_data/cap_rec_20210727-105900.txt", # lost 4-7 
+                                       #3: base_path + "cap_data/cap_rec_20210727-105900.txt", # lost 3-7 
                                        8: base_path + "cap_data/cap_rec_20210727-110634.txt", 
                                        9: base_path + "cap_data/cap_rec_20210727-110756.txt", 
                                        10: base_path + "cap_data/cap_rec_20210727-110920.txt", 
@@ -55,7 +55,25 @@ cap_data_files = {"New": {"0.1 in.": { 0: base_path + "cap_data/cap_rec_20210727
                                         14: base_path + "cap_data/cap_rec_20210803-100359.txt", 
                                         15: base_path + "cap_data/cap_rec_20210803-100529.txt", 
                                         16: base_path + "cap_data/cap_rec_20210803-100651.txt", 
-                                        17: base_path + "cap_data/cap_rec_20210803-102828.txt"}}} 
+                                        17: base_path + "cap_data/cap_rec_20210803-102828.txt"}},
+                   "Worn": {"0.1 in.": { 0: base_path + "cap_data/cap_rec_20210823-091048.txt",
+                                         1: base_path + "cap_data/cap_rec_20210823-092928.txt", 
+                                         2: base_path + "cap_data/cap_rec_20210823-093138.txt", 
+                                         3: base_path + "cap_data/cap_rec_20210823-093256.txt", 
+                                         4: base_path + "cap_data/cap_rec_20210823-093427.txt", 
+                                         5: base_path + "cap_data/cap_rec_20210823-093553.txt", 
+                                         6: base_path + "cap_data/cap_rec_20210823-093735.txt", 
+                                         7: base_path + "cap_data/cap_rec_20210823-093854.txt", 
+                                         8: base_path + "cap_data/cap_rec_20210823-094016.txt", 
+                                         9: base_path + "cap_data/cap_rec_20210823-094202.txt", 
+                                         10: base_path + "cap_data/cap_rec_20210823-094333.txt",
+                                         11: base_path + "cap_data/cap_rec_20210823-094511.txt",
+                                         12: base_path + "cap_data/cap_rec_20210823-094641.txt",
+                                         13: base_path + "cap_data/cap_rec_20210823-094810.txt",
+                                         14: base_path + "cap_data/cap_rec_20210823-094926.txt",
+                                         15: base_path + "cap_data/cap_rec_20210823-095058.txt",
+                                         16: base_path + "cap_data/cap_rec_20210823-095222.txt",
+                                         17: base_path + "cap_data/cap_rec_20210823-101802.txt"}}} 
 
 
 lcm_data_files = {"New": {"0.1 in.": { 0: base_path + "lcm_data/New 0.1inch/line_0.lvm",
@@ -93,7 +111,25 @@ lcm_data_files = {"New": {"0.1 in.": { 0: base_path + "lcm_data/New 0.1inch/line
                                        14: base_path + "lcm_data/MOD 0.1inch/line_14.lvm",
                                        15: base_path + "lcm_data/MOD 0.1inch/line_15.lvm",
                                        16: base_path + "lcm_data/MOD 0.1inch/line_16.lvm",
-                                       17: base_path + "lcm_data/MOD 0.1inch/line_17 (edge).lvm"}}}
+                                       17: base_path + "lcm_data/MOD 0.1inch/line_17 (edge).lvm"}},
+                 "Worn": {"0.1 in.": {  0: base_path + "lcm_data/Worn 0.1inch/line_0 (edge).lvm",
+                                        1: base_path + "lcm_data/Worn 0.1inch/line_1.lvm",
+                                        2: base_path + "lcm_data/Worn 0.1inch/line_2.lvm",
+                                        3: base_path + "lcm_data/Worn 0.1inch/line_3.lvm",
+                                        4: base_path + "lcm_data/Worn 0.1inch/line_4.lvm",
+                                        5: base_path + "lcm_data/Worn 0.1inch/line_5.lvm",
+                                        6: base_path + "lcm_data/Worn 0.1inch/line_6.lvm",
+                                        7: base_path + "lcm_data/Worn 0.1inch/line_7.lvm",
+                                        8: base_path + "lcm_data/Worn 0.1inch/line_8.lvm",
+                                        9: base_path + "lcm_data/Worn 0.1inch/line_9.lvm",
+                                       10: base_path + "lcm_data/Worn 0.1inch/line_10.lvm",
+                                       11: base_path + "lcm_data/Worn 0.1inch/line_11.lvm",
+                                       12: base_path + "lcm_data/Worn 0.1inch/line_12.lvm",
+                                       13: base_path + "lcm_data/Worn 0.1inch/line_13.lvm",
+                                       14: base_path + "lcm_data/Worn 0.1inch/line_14.lvm",
+                                       15: base_path + "lcm_data/Worn 0.1inch/line_15.lvm",
+                                       16: base_path + "lcm_data/Worn 0.1inch/line_16.lvm",
+                                       17: base_path + "lcm_data/Worn 0.1inch/line_17 (edge).lvm"}}}
 #pdb.set_trace()
 print("Loading Data...")
 this_time = time.time()
@@ -101,8 +137,8 @@ cap_data = {}
 lcm_data = {}
 cap_dt = 0.0025
 
-force_time_offsets = {wear_levels[0]: 1.34, wear_levels[1]: 1.3}
-cap_time_offsets =  {wear_levels[0]: 4.65, wear_levels[1]: 7.43}
+force_time_offsets = {wear_levels[0]: 3.4, wear_levels[1]: 1.12, wear_levels[2]: 1.52}
+cap_time_offsets =  {wear_levels[0]: 7.18, wear_levels[1]: 5.31, wear_levels[2]: 6.1}
 plot_duration = 5.5 # seconds
 
 for wear in wear_levels:
@@ -133,14 +169,14 @@ print("Plotting Data...")
 # Plot all wear levels in same plot for one representative sample
 this_time = time.time()
 fig, (ax1, ax2) = plt.subplots(2,1,sharex=True)
-fig2, my_axes = plt.subplots(2,2,sharex=True)
+fig2, my_axes = plt.subplots(3,2,sharex=True)
 
 rep_pen = penetrations[0]
-rep_line = 1
+rep_line = 12
 
 wear_colors = {wear_levels[0]: (0.2, 0.3, 0.8), 
                wear_levels[1]: (0.6, 0.3, 0.4),
-               #wear_levels[2]: (1.0, 0.3, 0.0)
+               wear_levels[2]: (1.0, 0.3, 0.0)
                }
 
 def first_index_greater_than(input_iterable, item):
