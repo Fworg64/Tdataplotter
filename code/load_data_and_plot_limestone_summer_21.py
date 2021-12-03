@@ -8,6 +8,8 @@ import pdb
 from scipy import signal
 import numpy as np
 
+import sys
+
 from scipy.interpolate import interp1d
 
 # Set figures
@@ -167,16 +169,20 @@ print("Data loaded in {0} sec".format(that_time - this_time))
 #pdb.set_trace()
 print("Plotting Data...")
 # Plot all wear levels in same plot for one representative sample
+# Plot spectrograms if arguments
+plot_spec = len(sys.argv)
+
 this_time = time.time()
 fig, (ax1, ax2) = plt.subplots(2,1,sharex=True)
-fig2, my_axes = plt.subplots(3,2,sharex=True)
+if plot_spec > 1 :
+  fig2, my_axes = plt.subplots(3,2,sharex=True)
 
 rep_pen = penetrations[0]
 rep_line = 12
 
 wear_colors = {wear_levels[0]: (0.2, 0.3, 0.8), 
-               wear_levels[1]: (0.6, 0.3, 0.4),
-               wear_levels[2]: (1.0, 0.3, 0.0)
+               wear_levels[1]: 'springgreen',
+               wear_levels[2]: 'darkred'
                }
 
 def first_index_greater_than(input_iterable, item):
@@ -186,6 +192,8 @@ def first_index_greater_than(input_iterable, item):
     res = len(input_iterable)
   return res
 
+# Force data
+force_plot_handles = []
 for idx,wear in enumerate(wear_levels):
   force_values = [conversions.calculate_drag_force(
                     point["v1"], point["v2"], point["v3"], point["v4"])
@@ -194,17 +202,34 @@ for idx,wear in enumerate(wear_levels):
                   for point in lcm_data[wear][rep_pen][rep_line]]
   plot_start = first_index_greater_than(force_times, 0.0)
   plot_end   = first_index_greater_than(force_times, plot_duration)
-  ax1.plot(force_times[plot_start:plot_end], force_values[plot_start:plot_end],
-           color=wear_colors[wear])
-  ff, ft, fSxx = signal.spectrogram(np.array(force_values[plot_start:plot_end]), 537.63)
-  my_axes[idx][0].pcolormesh(ft, ff, fSxx, shading='gouraud')
-  my_axes[idx][0].set_title("Force spec. {0}".format(wear))
+  force_plot_handles.append(ax1.plot(force_times[plot_start:plot_end],
+                            force_values[plot_start:plot_end],
+                            color=wear_colors[wear], label="{0}".format(wear))[0])
+  if plot_spec > 1:
+    ff, ft, fSxx = signal.spectrogram(np.array(force_values[plot_start:plot_end]), 537.63)#, scaling='density', mode='magnitude')
+    my_axes[idx][0].pcolormesh(ft, ff,np.log10(fSxx), shading='gouraud')
+    my_axes[idx][0].set_title("Force spec. {0}".format(wear))
 
-ax1.legend(["{0}".format(wear) for wear in wear_levels])
+wear_legend1 = ax1.legend(handles=force_plot_handles, loc="upper right")
 ax1.set_ylabel("Force (lbf)")
 #ax1.set_xlabel("Time (s)")
 ax1.set_title("Applied Force vs Time; 0.1 in. pen.")
 
+# Force data bg fill
+material_plot_handles = []
+colors_materials = [("white", "Air"), ("slategrey", "Concrete"), ("darkgoldenrod", "Limestone")]
+domains = {colors_materials[0] : np.arange(0.0, 0.6, 0.01), 
+           colors_materials[1] : np.arange(0.5, 1.1, 0.01),
+           colors_materials[2] : np.arange(1.0, 6.0, 0.01)};
+for color_material in colors_materials:
+  material_plot_handles.append(ax1.fill_between(domains[color_material], -2000, 10000,
+                               color=color_material[0], label=color_material[1]))
+ax1.set_ylim([-600, 8000])
+ax1.legend(handles=material_plot_handles, loc="upper center")
+ax1.add_artist(wear_legend1) # Bring back old legend, display both
+
+# Cap data
+cap_plot_handles = []
 for idx,wear in enumerate(wear_levels):
   cap_values  = [point["chan_b"] 
                   for point in cap_data[wear][rep_pen][rep_line]]
@@ -212,20 +237,40 @@ for idx,wear in enumerate(wear_levels):
                   for point in cap_data[wear][rep_pen][rep_line]]
   plot_start = first_index_greater_than(cap_times, 0.0)
   plot_end   = first_index_greater_than(cap_times, plot_duration)
-  ax2.plot(cap_times[plot_start:plot_end], cap_values[plot_start:plot_end],
-           color=wear_colors[wear])
-  cf, ct, cSxx = signal.spectrogram(np.array(cap_values[plot_start:plot_end]), 400.00)
-  my_axes[idx][1].pcolormesh(ct, cf, cSxx, shading='gouraud')
-  my_axes[idx][1].set_title("Cap. spec. {0}".format(wear))
+  cap_plot_handles.append(ax2.plot(cap_times[plot_start:plot_end],
+                                   cap_values[plot_start:plot_end],
+                                   color=wear_colors[wear], label=wear)[0])
+  # Plot Spectrograms
+  if plot_spec > 1 :
+    cf, ct, cSxx = signal.spectrogram(np.array(cap_values[plot_start:plot_end]), 400.00)#, scaling='density', mode='magnitude')
+    my_axes[idx][1].pcolormesh(ct, cf, np.log10(cSxx), shading='gouraud')
+    my_axes[idx][1].set_title("Cap. spec. {0}".format(wear))
 
-ax2.legend(["{0}".format(wear) for wear in wear_levels])
+#ax3.set_ylabel('Frequency (Hz)')
+#ax3.set_xlabel('Time (s)')
+
+cap_material_plot_handles = []
+for color_material in colors_materials:
+  cap_material_plot_handles.append(ax1.fill_between(domains[color_material], 0, 2000,
+                               color=color_material[0], label=color_material[1]))
+
+wear_legend2 = ax2.legend(handles=cap_plot_handles, loc="lower right")
 ax2.set_ylabel("Capacitance (pF)")
 ax2.set_xlabel("Time (s)")
 ax2.set_title("Measured Cap. vs Time")
 ax2.set_ylim([520, 580])
+ax2.legend(handles=cap_material_plot_handles, loc="lower center")
+ax2.add_artist(wear_legend2) # Bring back old legend, display both
 
-#ax3.set_ylabel('Frequency (Hz)')
-#ax3.set_xlabel('Time (s)')
+ax2.fill_between(np.arange(0.0, 0.6, 0.01), 0, 2000, color="white") # air
+ax2.fill_between(np.arange(0.5, 1.1, 0.01), 0, 2000, color="slategrey")
+ax2.fill_between(np.arange(1.0, 6.0, 0.01), 0, 2000, color="darkgoldenrod")
+
+for color_material in colors_materials:
+  material_plot_handles.append(ax1.fill_between(domains[color_material], -2000, 10000,
+                               color=color_material[0], label=color_material[1]))
+# Set shared x axis
+ax2.set_xlim([0, 5.3])
 
 that_time = time.time()
 print("Data plotted in {0} sec".format(that_time - this_time))
