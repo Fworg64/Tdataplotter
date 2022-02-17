@@ -13,8 +13,8 @@ import sys
 from scipy.interpolate import interp1d
 
 # Set figures
-fontsize = 18
-plt.rc('font', size=fontsize, family='serif')
+fontsize = 22
+plt.rc('font', size=fontsize, family='sans') 
 plt.rc('axes', titlesize=fontsize)
 plt.rc('axes', labelsize=fontsize)
 plt.rc('legend', fontsize=fontsize)
@@ -204,13 +204,14 @@ for idx,wear in enumerate(wear_levels):
   plot_end   = first_index_greater_than(force_times, plot_duration)
   force_plot_handles.append(ax1.plot(force_times[plot_start:plot_end],
                             force_values[plot_start:plot_end],
-                            color=wear_colors[wear], label="{0}".format(wear))[0])
+                            color=wear_colors[wear], alpha=0.5, 
+                            label="{0}".format(wear))[0])
   if plot_spec > 1:
     ff, ft, fSxx = signal.spectrogram(np.array(force_values[plot_start:plot_end]), 537.63)#, scaling='density', mode='magnitude')
     my_axes[idx][0].pcolormesh(ft, ff,np.log10(fSxx), shading='gouraud')
     my_axes[idx][0].set_title("Force spec. {0}".format(wear))
 
-wear_legend1 = ax1.legend(handles=force_plot_handles, loc="upper right")
+wear_legend1 = ax1.legend(handles=force_plot_handles, loc="upper center")
 ax1.set_ylabel("Force (lbf)")
 #ax1.set_xlabel("Time (s)")
 ax1.set_title("Applied Force vs Time; 0.1 in. pen.")
@@ -225,7 +226,10 @@ for color_material in colors_materials:
   material_plot_handles.append(ax1.fill_between(domains[color_material], -2000, 10000,
                                color=color_material[0], label=color_material[1]))
 ax1.set_ylim([-600, 8000])
-ax1.legend(handles=material_plot_handles, loc="upper center")
+#ax1.legend(handles=material_plot_handles, loc="upper center") # replace material legend with text
+ax1.text(0.15, 6500, "Air")
+ax1.text(0.51, 6500, "Concrete")
+ax1.text(1.15,  6500, "Limestone")
 ax1.add_artist(wear_legend1) # Bring back old legend, display both
 
 # Cap data
@@ -239,10 +243,12 @@ for idx,wear in enumerate(wear_levels):
   plot_end   = first_index_greater_than(cap_times, plot_duration)
   cap_plot_handles.append(ax2.plot(cap_times[plot_start:plot_end],
                                    cap_values[plot_start:plot_end],
-                                   color=wear_colors[wear], label=wear)[0])
+                                   color=wear_colors[wear], alpha=0.5,
+                                   label=wear)[0])
   # Plot Spectrograms
   if plot_spec > 1 :
-    cf, ct, cSxx = signal.spectrogram(np.array(cap_values[plot_start:plot_end]), 400.00)#, scaling='density', mode='magnitude')
+    cf, ct, cSxx = signal.spectrogram(np.array(
+                   cap_values[plot_start:plot_end]), 400.00)#, scaling='density', mode='magnitude')
     my_axes[idx][1].pcolormesh(ct, cf, np.log10(cSxx), shading='gouraud')
     my_axes[idx][1].set_title("Cap. spec. {0}".format(wear))
 
@@ -254,12 +260,15 @@ for color_material in colors_materials:
   cap_material_plot_handles.append(ax1.fill_between(domains[color_material], 0, 2000,
                                color=color_material[0], label=color_material[1]))
 
-wear_legend2 = ax2.legend(handles=cap_plot_handles, loc="lower right")
+wear_legend2 = ax2.legend(handles=cap_plot_handles, loc="lower center")
 ax2.set_ylabel("Capacitance (pF)")
 ax2.set_xlabel("Time (s)")
 ax2.set_title("Measured Cap. vs Time")
 ax2.set_ylim([520, 580])
-ax2.legend(handles=cap_material_plot_handles, loc="lower center")
+#ax2.legend(handles=cap_material_plot_handles, loc="lower center") # replace with text
+ax2.text(0.15, 530, "Air")
+ax2.text(0.51, 530, "Concrete")
+ax2.text(1.15, 530, "Limestone")
 ax2.add_artist(wear_legend2) # Bring back old legend, display both
 
 ax2.fill_between(np.arange(0.0, 0.6, 0.01), 0, 2000, color="white") # air
@@ -274,10 +283,6 @@ ax2.set_xlim([0, 5.3])
 
 that_time = time.time()
 print("Data plotted in {0} sec".format(that_time - this_time))
-plt.show(block=False)
-input("Press Enter to close.")
 
-
-
-
+plt.show(block=True)
 
