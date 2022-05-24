@@ -11,8 +11,8 @@ import numpy as np
 from scipy.interpolate import interp1d
 
 # Set figures
-fontsize = 18
-plt.rc('font', size=fontsize, family='serif')
+fontsize = 22
+plt.rc('font', size=fontsize, family='sans')
 plt.rc('axes', titlesize=fontsize)
 plt.rc('axes', labelsize=fontsize)
 plt.rc('legend', fontsize=fontsize)
@@ -84,8 +84,7 @@ for sample in samples:
   filtered_sample = {}
   for rate in rates:
     #zi = signal.lfilter_zi(b,a)
-    chan_data = [cap["chan_c"] for cap in cap_data[sample][rate]]
-    #filtered_sample[rate], _ = signal.lfilter(b,a,chan_data, zi=zi*chan_data[0])
+    chan_data = [cap["chan_b"] for cap in cap_data[sample][rate]]
     filtered_sample[rate] = signal.medfilt(chan_data, 75)
   filtered_cap_data[sample]= filtered_sample
 
@@ -144,6 +143,7 @@ for sample in samples:
   ax2.set_ylabel("Capacitance (pF)")
   ax2.set_xlabel("Time (s)")
   ax2.set_title("Measured Cap. vs Time")
+  ax2.set_ylim([515, 580])
 #  plt.ylim([2500,2700])
 
 # plot force v cap
@@ -167,13 +167,15 @@ plt.title("Force vs Capacitance")
 fig3 = plt.figure()
 for sample in samples:
   for rate in rates:
-    dists = [point["mm"] for point in force_data[sample][rate]]
+    dists = [-(point["mm"]+25.45) for point in force_data[sample][rate]] # subtract offset and flip
+    dists = np.multiply(dists,3.0/5.0) # load frame is roughly 1.5 times stiffer than sensor
+    strains = np.multiply(dists,1.0/1.8288) # divide by height for strain
     dist_times = [point["Sec"] for point in force_data[sample][rate]]
-    plt.plot(dist_times, dists, color=rate_colors[rate])
+    plt.plot(dist_times, strains, color=rate_colors[rate])
 plt.legend(["{0} kN/s".format(rate) for rate in rates])
 plt.xlabel('Time (s)')
-plt.ylabel("Displacement (mm)")
-plt.title("Load Head Displacement vs Time")
+plt.ylabel(r'Strain $(\Delta \ell / \ell_0)$')
+plt.title("Device Strain vs Time")
 
 
 that_time = time.time()

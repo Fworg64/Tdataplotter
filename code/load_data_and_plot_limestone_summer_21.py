@@ -196,7 +196,7 @@ def first_index_greater_than(input_iterable, item):
 force_plot_handles = []
 for idx,wear in enumerate(wear_levels):
   force_values = [conversions.calculate_drag_force(
-                    point["v1"], point["v2"], point["v3"], point["v4"])
+                    point["v1"], point["v2"], point["v3"], point["v4"])/1000.0
                   for point in lcm_data[wear][rep_pen][rep_line]]
   force_times = [point["Sec"]-force_time_offsets[wear] 
                   for point in lcm_data[wear][rep_pen][rep_line]]
@@ -211,8 +211,8 @@ for idx,wear in enumerate(wear_levels):
     my_axes[idx][0].pcolormesh(ft, ff,np.log10(fSxx), shading='gouraud')
     my_axes[idx][0].set_title("Force spec. {0}".format(wear))
 
-wear_legend1 = ax1.legend(handles=force_plot_handles, loc="upper center")
-ax1.set_ylabel("Force (lbf)")
+wear_legend1 = ax1.legend(handles=force_plot_handles, loc="upper right", framealpha=0.5)
+ax1.set_ylabel("Force (kN)")
 #ax1.set_xlabel("Time (s)")
 ax1.set_title("Applied Force vs Time; 0.1 in. pen.")
 
@@ -223,20 +223,22 @@ domains = {colors_materials[0] : np.arange(0.0, 0.6, 0.01),
            colors_materials[1] : np.arange(0.5, 1.1, 0.01),
            colors_materials[2] : np.arange(1.0, 6.0, 0.01)};
 for color_material in colors_materials:
-  material_plot_handles.append(ax1.fill_between(domains[color_material], -2000, 10000,
+  material_plot_handles.append(ax1.fill_between(domains[color_material], -2000, 50000,
                                color=color_material[0], label=color_material[1]))
-ax1.set_ylim([-600, 8000])
-#ax1.legend(handles=material_plot_handles, loc="upper center") # replace material legend with text
-ax1.text(0.15, 6500, "Air")
-ax1.text(0.51, 6500, "Concrete")
-ax1.text(1.15,  6500, "Limestone")
+ax1.set_ylim([-2, 27])
+ax1.text(0.15, 21, "Air")
+ax1.text(0.51, 21, "Concrete")
+ax1.text(2.5, 21, "Limestone")
 ax1.add_artist(wear_legend1) # Bring back old legend, display both
 
 # Cap data
 cap_plot_handles = []
 for idx,wear in enumerate(wear_levels):
-  cap_values  = [point["chan_b"] 
-                  for point in cap_data[wear][rep_pen][rep_line]]
+  raw_cap_values  = [point["chan_b"] 
+                  for point in cap_data[wear][rep_pen][rep_line]] # these are the encoder values
+  cap_freqs, cap_values = conversions.calculate_freq_and_cap(raw_cap_values, 18.0e-6, 33.0e-12,2)
+  cap_values = np.multiply(cap_values,1.0e12) # convert to pF
+  #pdb.set_trace()
   cap_times   = [point["Sec"]-cap_time_offsets[wear] 
                   for point in cap_data[wear][rep_pen][rep_line]]
   plot_start = first_index_greater_than(cap_times, 0.0)
@@ -260,15 +262,15 @@ for color_material in colors_materials:
   cap_material_plot_handles.append(ax1.fill_between(domains[color_material], 0, 2000,
                                color=color_material[0], label=color_material[1]))
 
-wear_legend2 = ax2.legend(handles=cap_plot_handles, loc="lower center")
+wear_legend2 = ax2.legend(handles=cap_plot_handles, loc="upper right", framealpha=0.5)
 ax2.set_ylabel("Capacitance (pF)")
 ax2.set_xlabel("Time (s)")
 ax2.set_title("Measured Cap. vs Time")
-ax2.set_ylim([520, 580])
+ax2.set_ylim([680, 780])
 #ax2.legend(handles=cap_material_plot_handles, loc="lower center") # replace with text
-ax2.text(0.15, 530, "Air")
-ax2.text(0.51, 530, "Concrete")
-ax2.text(1.15, 530, "Limestone")
+ax2.text(0.15, 760, "Air")
+ax2.text(0.51, 760, "Concrete")
+ax2.text(2.5, 760, "Limestone")
 ax2.add_artist(wear_legend2) # Bring back old legend, display both
 
 ax2.fill_between(np.arange(0.0, 0.6, 0.01), 0, 2000, color="white") # air
