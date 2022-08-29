@@ -13,11 +13,17 @@ import sys
 from scipy.interpolate import interp1d
 
 # Set figures
-fontsize = 22
+fontsize = 36
 plt.rc('font', size=fontsize, family='sans') 
 plt.rc('axes', titlesize=fontsize)
 plt.rc('axes', labelsize=fontsize)
 plt.rc('legend', fontsize=fontsize)
+
+material_rotation_text_deg = 65
+mater_color_text_color = 'silver'
+mater_color_text_color_air = 'darkgray'
+
+
 
 # Load Data
 wear_levels  = ["New", "Mod.", "Worn"]
@@ -78,7 +84,7 @@ cap_data_files = {"New": {"0.1 in.": { 0: base_path + "cap_data/cap_rec_20210727
                                          17: base_path + "cap_data/cap_rec_20210823-101802.txt"}}} 
 
 
-lcm_data_files = {"New": {"0.1 in.": { 0: base_path + "lcm_data/New 0.1inch/line_0.lvm",
+lcm_data_files = {"New": {"0.1 in.": { 0: base_path + "lcm_data/New 0.1inch/line_0 (edge).lvm",
                                        1: base_path + "lcm_data/New 0.1inch/line_1.lvm",
                                        2: base_path + "lcm_data/New 0.1inch/line_2.lvm",
                                        3: base_path + "lcm_data/New 0.1inch/line_3.lvm",
@@ -226,9 +232,9 @@ for color_material in colors_materials:
   material_plot_handles.append(ax1.fill_between(domains[color_material], -2000, 50000,
                                color=color_material[0], label=color_material[1]))
 ax1.set_ylim([-2, 27])
-ax1.text(0.15, 21, "Air")
-ax1.text(0.51, 21, "Concrete")
-ax1.text(2.5, 21, "Limestone")
+ax1.text(0.15, 5, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
+ax1.text(0.51, 5, "Concrete",color=mater_color_text_color,rotation  = material_rotation_text_deg)
+ax1.text(1.07, 5, "Limestone",  color=mater_color_text_color, rotation = material_rotation_text_deg)
 ax1.add_artist(wear_legend1) # Bring back old legend, display both
 
 # Cap data
@@ -265,12 +271,12 @@ for color_material in colors_materials:
 wear_legend2 = ax2.legend(handles=cap_plot_handles, loc="upper right", framealpha=0.5)
 ax2.set_ylabel("Capacitance (pF)")
 ax2.set_xlabel("Time (s)")
-ax2.set_title("Measured Cap. vs Time")
+ax2.set_title("Measured Cap. vs Time; 0.1 in. pen.")
 ax2.set_ylim([680, 780])
 #ax2.legend(handles=cap_material_plot_handles, loc="lower center") # replace with text
-ax2.text(0.15, 760, "Air")
-ax2.text(0.51, 760, "Concrete")
-ax2.text(2.5, 760, "Limestone")
+ax2.text(0.15, 700, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
+ax2.text(0.51, 700, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
+ax2.text(1.07, 700, "Limestone", color=mater_color_text_color, rotation = material_rotation_text_deg)
 ax2.add_artist(wear_legend2) # Bring back old legend, display both
 
 ax2.fill_between(np.arange(0.0, 0.6, 0.01), 0, 2000, color="white") # air
