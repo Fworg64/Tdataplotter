@@ -1,0 +1,544 @@
+(06/03/2021 09:05:14) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:04:31) Information [Basic TestWare Message Log] "
+'c:\tsiis\btw\ghommer\austino\capacitor_compression.log' saved to 'c:\tsiis\btw\ghommer\austino\capacitor_compression000.log'"
+(06/03/2021 09:05:14) Information [Stmgr] "Running test"
+(06/03/2021 09:05:15) Information [MPT Runtime] "Running"
+(06/03/2021 09:06:31) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:06:31) Information [Stmgr] "Stopped test"
+(06/03/2021 09:06:31) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:16 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:06:51) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:06:51) Information [Stmgr] "Running test"
+(06/03/2021 09:06:51) Information [MPT Runtime] "Running"
+(06/03/2021 09:08:08) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:08:08) Information [Stmgr] "Stopped test"
+(06/03/2021 09:08:08) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:16 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:08:26) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:08:26) Information [Stmgr] "Running test"
+(06/03/2021 09:08:26) Information [MPT Runtime] "Running"
+(06/03/2021 09:09:43) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:09:43) Information [Stmgr] "Stopped test"
+(06/03/2021 09:09:43) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:16 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:10:33) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:10:33) Information [Stmgr] "Running test"
+(06/03/2021 09:10:33) Information [MPT Runtime] "Running"
+(06/03/2021 09:11:46) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:11:46) Information [Stmgr] "Stopped test"
+(06/03/2021 09:11:46) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:12 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:12:11) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:12:11) Information [MPT Runtime] "Running"
+(06/03/2021 09:12:11) Information [Stmgr] "Running test"
+(06/03/2021 09:13:23) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:13:23) Information [Stmgr] "Stopped test"
+(06/03/2021 09:13:23) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:12 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:13:45) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:13:46) Information [Stmgr] "Running test"
+(06/03/2021 09:13:46) Information [MPT Runtime] "Running"
+(06/03/2021 09:14:58) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:14:58) Information [Stmgr] "Stopped test"
+(06/03/2021 09:14:58) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:12 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:15:31) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:15:31) Information [MPT Runtime] "Running"
+(06/03/2021 09:15:31) Information [Stmgr] "Running test"
+(06/03/2021 09:16:44) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:16:44) Information [Stmgr] "Stopped test"
+(06/03/2021 09:16:44) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:13 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:17:06) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:17:07) Information [Stmgr] "Running test"
+(06/03/2021 09:17:07) Information [MPT Runtime] "Running"
+(06/03/2021 09:18:19) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:18:19) Information [Stmgr] "Stopped test"
+(06/03/2021 09:18:19) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:13 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:19:23) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:19:24) Information [Stmgr] "Running test"
+(06/03/2021 09:19:24) Information [MPT Runtime] "Running"
+(06/03/2021 09:20:33) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:20:33) Information [Stmgr] "Stopped test"
+(06/03/2021 09:20:34) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:10 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:20:58) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:20:58) Information [Stmgr] "Running test"
+(06/03/2021 09:20:59) Information [MPT Runtime] "Running"
+(06/03/2021 09:22:08) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:22:08) Information [Stmgr] "Stopped test"
+(06/03/2021 09:22:08) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:10 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:22:38) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:22:38) Information [MPT Runtime] "Running"
+(06/03/2021 09:22:38) Information [Stmgr] "Running test"
+(06/03/2021 09:23:48) Information [Stmgr] "Stopped test"
+(06/03/2021 09:23:48) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:23:48) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:10 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:24:31) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:24:31) Information [Stmgr] "Running test"
+(06/03/2021 09:24:31) Information [MPT Runtime] "Running"
+(06/03/2021 09:25:41) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:25:41) Information [Stmgr] "Stopped test"
+(06/03/2021 09:25:41) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:10 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:26:02) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:26:03) Information [Stmgr] "Running test"
+(06/03/2021 09:26:03) Information [MPT Runtime] "Running"
+(06/03/2021 09:27:13) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:27:13) Information [Stmgr] "Stopped test"
+(06/03/2021 09:27:13) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:10 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:27:47) Information [MPT Runtime] "Procedure Beginning: ramp_hold.000"
+(06/03/2021 09:27:47) Information [Stmgr] "Running test"
+(06/03/2021 09:27:47) Information [MPT Runtime] "Running"
+(06/03/2021 09:28:57) Information [Stmgr] "Stopped test"
+(06/03/2021 09:28:58) Information [MPT Runtime] "Procedure Done"
+(06/03/2021 09:28:58) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:10 
+ Channel Counters:
+    Axial -          2  Cycles"
+(06/03/2021 09:34:05) Information [Stmgr] "Saved Parameter Set: 'stiff_PID'."
+(06/03/2021 09:34:10) Information [Stmgr] "HSM 1 -- Low Pressure."
+(06/03/2021 09:34:12) Information [Stmgr] "HSM 1 -- No Pressure."
+(06/03/2021 09:34:15) Information [Stmgr] "HPS 1 -- Low Pressure."
+(06/03/2021 09:34:21) Information [Stmgr] "HPS 1 -- No Pressure."
+(06/03/2021 09:34:26) Information [Stmgr] "Saved Views: 'Default Views'."
+(06/03/2021 09:34:26) Information [Stmgr] "Station Ryantensile.cfg is closed."
+(06/03/2021 09:34:31) Information [Stmgr] "Controlling Application -- Basic TestWare"
+(06/03/2021 09:34:31) Information [Stmgr] "'MPT' has disconnected from the station."
+(06/03/2021 09:34:35) Information [Basic TestWare] "Closed Test: capacitor_compression.tst"
+(06/03/2021 13:34:54) Information [Stmgr] "Controlling Application -- MPT"
+(06/03/2021 13:34:54) Information [Basic TestWare] "Successfully Initialized Test File: capacitor_compression.tst"
+(06/03/2021 13:34:55) Information [Basic TestWare] "Opened capacitor_compression.tst"
+(06/03/2021 13:34:55) Information [Stmgr] "Controlling Application -- Basic TestWare"
+(06/03/2021 13:35:05) Information [Stmgr] "Controlling Application -- MPT"
+(06/03/2021 13:41:10) Information [Stmgr] "Controlling Application -- Station Manager"
+(06/03/2021 13:41:45) Information [Stmgr] "Controlling Application -- MPT"
+(06/03/2021 13:42:29) Information [Stmgr] "HPS 1 -- Low Pressure."
+(06/03/2021 13:42:32) Information [Stmgr] "HPS 1 -- High Pressure."
+(06/03/2021 13:42:42) Information [Stmgr] "HSM 1 -- Low Pressure."
+(06/03/2021 13:42:49) Information [Stmgr] "HSM 1 -- High Pressure."
+(06/03/2021 13:43:15) Warning [Stmgr] "(cprintlk::interlock) Crosshead Unlocked - Program Stopped."
+(06/03/2021 13:49:42) Information [Stmgr] "HSM 1 -- Low Pressure."
+(06/03/2021 13:49:46) Information [Stmgr] "HSM 1 -- No Pressure."
+(06/03/2021 13:49:49) Information [Stmgr] "HPS 1 -- Low Pressure."
+(06/03/2021 13:49:55) Information [Stmgr] "HPS 1 -- No Pressure."
+(06/03/2021 13:50:29) Information [Stmgr] "Saved Parameter Set: 'Nan'."
+(06/03/2021 13:50:35) Information [Stmgr] "Saved Views: 'Default Views'."
+(06/03/2021 13:50:35) Information [Stmgr] "Station Ryantensile.cfg is closed."
+(06/03/2021 13:50:37) Information [Stmgr] "Controlling Application -- Basic TestWare"
+(06/17/2021 07:53:45) Information [Basic TestWare] "Successfully Initialized Test File: capacitor_compression.tst"
+(06/17/2021 07:53:45) Information [Basic TestWare] "Opened capacitor_compression.tst"
+(06/17/2021 07:53:45) Information [Stmgr] "Controlling Application -- Basic TestWare"
+(06/17/2021 07:53:47) Information [Stmgr] "Controlling Application -- MPT"
+(06/17/2021 07:53:57) Information [Stmgr] "HPS 1 -- Low Pressure."
+(06/17/2021 07:54:00) Information [Stmgr] "HPS 1 -- High Pressure."
+(06/17/2021 07:54:09) Information [Stmgr] "HSM 1 -- Low Pressure."
+(06/17/2021 07:54:15) Information [Stmgr] "HSM 1 -- High Pressure."
+(06/17/2021 07:54:43) Information [Stmgr] "Controlling Application -- Station Manager"
+(06/17/2021 07:54:54) Information [Stmgr] "Running test"
+(06/17/2021 07:54:55) Information [Stmgr] "Running FG: Axial Displacement"
+(06/17/2021 08:10:44) Information [Stmgr] "Stopped FG: Axial Displacement"
+(06/17/2021 08:10:44) Information [Stmgr] "Stopped test"
+(06/17/2021 08:10:48) Information [Stmgr] "Controlling Application -- MPT"
+(06/17/2021 08:12:10) Warning [Stmgr] "(cprintlk::interlock) Crosshead Unlocked - Program Stopped."
+(06/17/2021 08:20:27) Information [Stmgr] "Manual command enabled: Axial Force"
+(06/17/2021 08:20:33) Information [Stmgr] "Manual command disabled: Axial Force"
+(06/17/2021 08:26:56) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:26:56) Information [Stmgr] "Running test"
+(06/17/2021 08:26:56) Information [MPT Runtime] "Running"
+(06/17/2021 08:30:46) Information [Stmgr] "Stopped test"
+(06/17/2021 08:30:46) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:30:46) Information [MPT Runtime] "Stopped
+ Running Time:  00:03:49 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 08:32:13) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:32:13) Information [Stmgr] "Running test"
+(06/17/2021 08:32:14) Information [MPT Runtime] "Running"
+(06/17/2021 08:34:23) Information [Stmgr] "Stopped test"
+(06/17/2021 08:34:23) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:34:23) Information [MPT Runtime] "Stopped
+ Running Time:  00:02:10 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 08:35:34) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:35:35) Information [Stmgr] "Running test"
+(06/17/2021 08:35:35) Information [MPT Runtime] "Running"
+(06/17/2021 08:37:11) Information [Stmgr] "Stopped test"
+(06/17/2021 08:37:11) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:37:11) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:36 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 08:38:17) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:38:18) Information [MPT Runtime] "Running"
+(06/17/2021 08:38:18) Information [Stmgr] "Running test"
+(06/17/2021 08:39:38) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:39:38) Information [Stmgr] "Stopped test"
+(06/17/2021 08:39:38) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:20 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 08:40:42) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:40:43) Information [MPT Runtime] "Running"
+(06/17/2021 08:40:43) Information [Stmgr] "Running test"
+(06/17/2021 08:41:53) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:41:53) Information [Stmgr] "Stopped test"
+(06/17/2021 08:41:53) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:10 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 08:42:35) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(06/17/2021 08:42:36) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(06/17/2021 08:44:49) Information [Stmgr] "Manual command enabled: Axial Force"
+(06/17/2021 08:45:00) Information [Stmgr] "Manual command disabled: Axial Force"
+(06/17/2021 08:45:46) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:45:46) Information [MPT Runtime] "Running"
+(06/17/2021 08:45:46) Information [Stmgr] "Running test"
+(06/17/2021 08:49:36) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:49:36) Information [Stmgr] "Stopped test"
+(06/17/2021 08:49:36) Information [MPT Runtime] "Stopped
+ Running Time:  00:03:50 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 08:50:32) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:50:33) Information [Stmgr] "Running test"
+(06/17/2021 08:50:34) Information [MPT Runtime] "Running"
+(06/17/2021 08:52:43) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:52:43) Information [Stmgr] "Stopped test"
+(06/17/2021 08:52:44) Information [MPT Runtime] "Stopped
+ Running Time:  00:02:10 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 08:53:37) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:53:37) Information [Stmgr] "Running test"
+(06/17/2021 08:53:37) Information [MPT Runtime] "Running"
+(06/17/2021 08:55:13) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:55:13) Information [Stmgr] "Stopped test"
+(06/17/2021 08:55:14) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:36 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 08:55:47) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:55:47) Information [Stmgr] "Running test"
+(06/17/2021 08:55:47) Information [MPT Runtime] "Running"
+(06/17/2021 08:57:07) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:57:07) Information [Stmgr] "Stopped test"
+(06/17/2021 08:57:07) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:20 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 08:57:44) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 08:57:44) Information [Stmgr] "Running test"
+(06/17/2021 08:57:44) Information [MPT Runtime] "Running"
+(06/17/2021 08:58:54) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 08:58:54) Information [Stmgr] "Stopped test"
+(06/17/2021 08:58:54) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:10 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 08:59:40) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(06/17/2021 08:59:41) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(06/17/2021 09:01:13) Information [Stmgr] "Manual command enabled: Axial Force"
+(06/17/2021 09:01:19) Information [Stmgr] "Manual command disabled: Axial Force"
+(06/17/2021 09:01:50) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 09:01:50) Information [MPT Runtime] "Running"
+(06/17/2021 09:01:50) Information [Stmgr] "Running test"
+(06/17/2021 09:05:40) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 09:05:40) Information [Stmgr] "Stopped test"
+(06/17/2021 09:05:40) Information [MPT Runtime] "Stopped
+ Running Time:  00:03:49 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 09:06:34) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 09:06:34) Information [Stmgr] "Running test"
+(06/17/2021 09:06:34) Information [MPT Runtime] "Running"
+(06/17/2021 09:08:44) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 09:08:44) Information [Stmgr] "Stopped test"
+(06/17/2021 09:08:44) Information [MPT Runtime] "Stopped
+ Running Time:  00:02:10 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 09:09:18) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 09:09:18) Information [Stmgr] "Running test"
+(06/17/2021 09:09:18) Information [MPT Runtime] "Running"
+(06/17/2021 09:10:55) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 09:10:55) Information [Stmgr] "Stopped test"
+(06/17/2021 09:10:55) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:36 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 09:11:27) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 09:11:27) Information [MPT Runtime] "Running"
+(06/17/2021 09:11:27) Information [Stmgr] "Running test"
+(06/17/2021 09:12:47) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 09:12:47) Information [Stmgr] "Stopped test"
+(06/17/2021 09:12:47) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:20 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 09:13:37) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(06/17/2021 09:13:37) Information [Stmgr] "Running test"
+(06/17/2021 09:13:37) Information [MPT Runtime] "Running"
+(06/17/2021 09:14:47) Information [Stmgr] "Stopped test"
+(06/17/2021 09:14:47) Information [MPT Runtime] "Procedure Done"
+(06/17/2021 09:14:47) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:10 
+ Channel Counters:
+    Axial -          1  Cycles"
+(06/17/2021 09:15:23) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(06/17/2021 09:15:24) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(06/17/2021 09:16:08) Information [Stmgr] "HSM 1 -- Low Pressure."
+(06/17/2021 09:16:10) Information [Stmgr] "HSM 1 -- No Pressure."
+(06/17/2021 09:16:12) Information [Stmgr] "HPS 1 -- Low Pressure."
+(06/17/2021 09:16:16) Information [Stmgr] "HPS 1 -- No Pressure."
+(06/17/2021 09:16:24) Information [Stmgr] "Saved Parameter Set: 'stiff_PID'."
+(06/17/2021 09:16:24) Information [Stmgr] "Saved Views: 'Default Views'."
+(06/17/2021 09:16:24) Information [Stmgr] "Station Ryantensile.cfg is closed."
+(06/17/2021 09:16:27) Information [Stmgr] "Controlling Application -- Basic TestWare"
+(06/17/2021 09:16:27) Information [Stmgr] "'MPT' has disconnected from the station."
+(06/17/2021 09:16:27) Information [Basic TestWare] "Closed Test: capacitor_compression.tst"
+(07/12/2021 14:08:16) Information [Stmgr] "Controlling Application -- MPT"
+(07/12/2021 14:08:16) Information [Basic TestWare] "Successfully Initialized Test File: capacitor_compression.tst"
+(07/12/2021 14:08:16) Information [Basic TestWare] "Opened capacitor_compression.tst"
+(07/12/2021 14:08:16) Information [Stmgr] "Controlling Application -- Basic TestWare"
+(07/12/2021 14:16:15) Warning [Stmgr] "Axial Force -- Upper Limit Tripped."
+(07/12/2021 14:16:30) Warning [Stmgr] "Axial Force -- Upper Limit Tripped."
+(07/12/2021 14:16:30) Warning [Stmgr] "Interlock 1 -- Software Interlock."
+(07/12/2021 14:16:37) Warning [Stmgr] "Axial Force -- Upper Limit Tripped."
+(07/12/2021 14:16:37) Warning [Stmgr] "Interlock 1 -- Software Interlock."
+(07/12/2021 14:19:17) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(07/12/2021 14:20:06) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(07/12/2021 14:23:53) Information [Stmgr] "Controlling Application -- Station Manager"
+(07/12/2021 14:25:54) Information [Stmgr] "HPS 1 -- Low Pressure."
+(07/12/2021 14:26:19) Information [Stmgr] "HPS 1 -- High Pressure."
+(07/12/2021 14:27:06) Information [Stmgr] "HSM 1 -- Low Pressure."
+(07/12/2021 14:27:13) Information [Stmgr] "HSM 1 -- High Pressure."
+(07/12/2021 14:30:35) Information [Stmgr] "Running test"
+(07/12/2021 14:30:37) Information [Stmgr] "Running FG: Axial Displacement"
+(07/12/2021 14:34:38) Information [Stmgr] "Stopped FG: Axial Displacement"
+(07/12/2021 14:34:38) Information [Stmgr] "Stopped test"
+(07/12/2021 14:34:54) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(07/12/2021 14:35:09) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(07/12/2021 14:35:26) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(07/12/2021 14:35:31) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(07/12/2021 14:36:20) Information [Stmgr] "Controlling Application -- Basic TestWare"
+(05/17/2022 10:44:36) Information [Basic TestWare] "Successfully Initialized Test File: capacitor_compression.tst"
+(05/17/2022 10:44:36) Information [Basic TestWare] "Opened station ryantensile.cfg with test capacitor_compression.tst ."
+(05/17/2022 10:47:48) Information [Stmgr] "Controlling Application -- MPT"
+(05/17/2022 10:50:31) Warning [Stmgr] "(cprintlk::interlock) Crosshead Unlocked - Program Stopped."
+(05/17/2022 10:54:29) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(05/17/2022 10:55:10) Information [Stmgr] "Mode switched to: Axial Force"
+(05/17/2022 10:56:07) Warning [Stmgr] "Axial Force -- Lower Limit Tripped."
+(05/17/2022 10:56:07) Warning [Stmgr] "Interlock 1 -- Software Interlock."
+(05/17/2022 10:56:07) Information [Stmgr] "HPS 1 -- No Pressure."
+(05/17/2022 10:56:07) Information [Stmgr] "HSM 1 -- No Pressure."
+(05/17/2022 10:56:15) Information [Stmgr] "Manual command disabled: Axial Force"
+(05/17/2022 10:56:22) Information [Stmgr] "HPS 1 -- Low Pressure."
+(05/17/2022 10:56:23) Information [Stmgr] "HPS 1 -- High Pressure."
+(05/17/2022 10:56:32) Information [Stmgr] "HSM 1 -- Low Pressure."
+(05/17/2022 10:56:40) Information [Stmgr] "HSM 1 -- High Pressure."
+(05/17/2022 10:56:48) Information [Stmgr] "Manual command enabled: Axial Force"
+(05/17/2022 10:57:36) Information [Stmgr] "Manual command disabled: Axial Force"
+(05/17/2022 11:02:58) Information [Stmgr] "Manual command enabled: Axial Force"
+(05/17/2022 11:03:05) Information [Stmgr] "Manual command disabled: Axial Force"
+(05/17/2022 11:03:46) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:03:46) Information [MPT Runtime] "Running"
+(05/17/2022 11:03:46) Information [Stmgr] "Running test"
+(05/17/2022 11:07:11) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:07:11) Information [MPT Runtime] "Stopped
+ Running Time:  00:03:24 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:07:11) Information [Stmgr] "Stopped test"
+(05/17/2022 11:08:19) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:08:20) Information [Stmgr] "Running test"
+(05/17/2022 11:08:20) Information [MPT Runtime] "Running"
+(05/17/2022 11:10:04) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:10:04) Information [Stmgr] "Stopped test"
+(05/17/2022 11:10:05) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:45 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:10:55) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:10:55) Information [MPT Runtime] "Running"
+(05/17/2022 11:10:55) Information [Stmgr] "Running test"
+(05/17/2022 11:12:07) Information [Stmgr] "Stopped test"
+(05/17/2022 11:12:07) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:12:07) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:12 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:12:51) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:12:52) Information [MPT Runtime] "Running"
+(05/17/2022 11:12:52) Information [Stmgr] "Running test"
+(05/17/2022 11:13:47) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:13:47) Information [Stmgr] "Stopped test"
+(05/17/2022 11:13:47) Information [MPT Runtime] "Stopped
+ Running Time:  00:00:55 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:14:28) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:14:28) Information [Stmgr] "Running test"
+(05/17/2022 11:14:29) Information [MPT Runtime] "Running"
+(05/17/2022 11:15:13) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:15:13) Information [Stmgr] "Stopped test"
+(05/17/2022 11:15:14) Information [MPT Runtime] "Stopped
+ Running Time:  00:00:45 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:15:55) Information [Stmgr] "Enable manual command failed: Axial Displacement"
+(05/17/2022 11:16:00) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(05/17/2022 11:16:02) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(05/17/2022 11:19:33) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(05/17/2022 11:19:46) Information [Stmgr] "Mode switched to: Axial Force"
+(05/17/2022 11:19:55) Information [Stmgr] "Manual command disabled: Axial Force"
+(05/17/2022 11:22:31) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:22:31) Information [Stmgr] "Running test"
+(05/17/2022 11:22:31) Information [MPT Runtime] "Running"
+(05/17/2022 11:25:56) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:25:56) Information [MPT Runtime] "Stopped
+ Running Time:  00:03:24 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:25:56) Information [Stmgr] "Stopped test"
+(05/17/2022 11:26:45) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:26:45) Information [Stmgr] "Running test"
+(05/17/2022 11:26:45) Information [MPT Runtime] "Running"
+(05/17/2022 11:28:30) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:28:30) Information [Stmgr] "Stopped test"
+(05/17/2022 11:28:30) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:45 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:29:13) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:29:13) Information [Stmgr] "Running test"
+(05/17/2022 11:29:13) Information [MPT Runtime] "Running"
+(05/17/2022 11:30:25) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:30:25) Information [Stmgr] "Stopped test"
+(05/17/2022 11:30:25) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:11 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:31:09) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:31:09) Information [MPT Runtime] "Running"
+(05/17/2022 11:31:10) Information [Stmgr] "Running test"
+(05/17/2022 11:32:04) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:32:04) Information [Stmgr] "Stopped test"
+(05/17/2022 11:32:04) Information [MPT Runtime] "Stopped
+ Running Time:  00:00:55 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:32:43) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:32:43) Information [MPT Runtime] "Running"
+(05/17/2022 11:32:44) Information [Stmgr] "Running test"
+(05/17/2022 11:33:28) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:33:28) Information [Stmgr] "Stopped test"
+(05/17/2022 11:33:28) Information [MPT Runtime] "Stopped
+ Running Time:  00:00:45 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:33:47) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(05/17/2022 11:34:23) Information [Stmgr] "Mode switched to: Axial Force"
+(05/17/2022 11:34:37) Information [Stmgr] "Manual command disabled: Axial Force"
+(05/17/2022 11:35:41) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:35:41) Information [Stmgr] "Running test"
+(05/17/2022 11:35:41) Information [MPT Runtime] "Running"
+(05/17/2022 11:39:06) Information [Stmgr] "Stopped test"
+(05/17/2022 11:39:06) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:39:06) Information [MPT Runtime] "Stopped
+ Running Time:  00:03:25 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:39:47) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:39:48) Information [Stmgr] "Running test"
+(05/17/2022 11:39:48) Information [MPT Runtime] "Running"
+(05/17/2022 11:41:33) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:41:33) Information [Stmgr] "Stopped test"
+(05/17/2022 11:41:33) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:45 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:42:05) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:42:05) Information [Stmgr] "Running test"
+(05/17/2022 11:42:05) Information [MPT Runtime] "Running"
+(05/17/2022 11:43:17) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:43:17) Information [Stmgr] "Stopped test"
+(05/17/2022 11:43:17) Information [MPT Runtime] "Stopped
+ Running Time:  00:01:11 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:44:01) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:44:01) Information [Stmgr] "Running test"
+(05/17/2022 11:44:01) Information [MPT Runtime] "Running"
+(05/17/2022 11:44:56) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:44:56) Information [Stmgr] "Stopped test"
+(05/17/2022 11:44:56) Information [MPT Runtime] "Stopped
+ Running Time:  00:00:55 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:45:35) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:45:35) Information [Stmgr] "Running test"
+(05/17/2022 11:45:36) Information [MPT Runtime] "Running"
+(05/17/2022 11:46:20) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:46:20) Information [Stmgr] "Stopped test"
+(05/17/2022 11:46:21) Information [MPT Runtime] "Stopped
+ Running Time:  00:00:45 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:47:08) Information [Stmgr] "Enable manual command failed: Axial Displacement"
+(05/17/2022 11:47:14) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(05/17/2022 11:47:44) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(05/17/2022 11:50:24) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(05/17/2022 11:50:25) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(05/17/2022 11:51:02) Information [Stmgr] "Manual command enabled: Axial Displacement"
+(05/17/2022 11:58:12) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(05/17/2022 11:59:21) Information [MPT Runtime] "Procedure Beginning: disp_platen_separation.000"
+(05/17/2022 11:59:21) Information [Stmgr] "Running test"
+(05/17/2022 11:59:21) Information [MPT Runtime] "Running"
+(05/17/2022 12:06:06) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 12:06:06) Information [Stmgr] "Stopped test"
+(05/17/2022 12:06:06) Information [MPT Runtime] "Stopped
+ Running Time:  00:06:45 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 12:13:23) Information [Stmgr] "HSM 1 -- Low Pressure."
+(05/17/2022 12:13:26) Information [Stmgr] "HSM 1 -- No Pressure."
+(05/17/2022 12:13:28) Information [Stmgr] "HPS 1 -- Low Pressure."
+(05/17/2022 12:13:32) Information [Stmgr] "HPS 1 -- No Pressure."
+(05/17/2022 12:14:12) Information [Stmgr] "Saved Parameter Set: 'Sana'."
+(05/17/2022 12:14:15) Information [Stmgr] "Saved Views: 'Default Views'."
+(05/17/2022 12:14:15) Information [Stmgr] "Station Ryantensile.cfg is closed."
+(05/17/2022 12:14:17) Information [Stmgr] "Controlling Application -- Basic TestWare"
+(05/17/2022 12:14:17) Information [Stmgr] "'MPT' has disconnected from the station."
+(05/17/2022 12:14:19) Information [Basic TestWare] "Closed Test: capacitor_compression.tst"

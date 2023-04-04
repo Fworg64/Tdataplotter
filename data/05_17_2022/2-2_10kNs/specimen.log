@@ -1,0 +1,10 @@
+(05/17/2022 11:45:35) Information [MPT Runtime] "Procedure Beginning: ramp_hold_end.000"
+(05/17/2022 11:45:35) Information [Stmgr] "Running test"
+(05/17/2022 11:45:36) Information [MPT Runtime] "Running"
+(05/17/2022 11:46:20) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 11:46:20) Information [Stmgr] "Stopped test"
+(05/17/2022 11:46:21) Information [MPT Runtime] "Stopped
+ Running Time:  00:00:45 
+ Channel Counters:
+    Axial -          1  Cycles"
+(05/17/2022 11:47:08) Information [Stmgr] "Enable manual command failed: Axial Displacement"

@@ -1,0 +1,10 @@
+(05/17/2022 11:58:12) Information [Stmgr] "Manual command disabled: Axial Displacement"
+(05/17/2022 11:59:21) Information [MPT Runtime] "Procedure Beginning: disp_platen_separation.000"
+(05/17/2022 11:59:21) Information [Stmgr] "Running test"
+(05/17/2022 11:59:21) Information [MPT Runtime] "Running"
+(05/17/2022 12:06:06) Information [MPT Runtime] "Procedure Done"
+(05/17/2022 12:06:06) Information [Stmgr] "Stopped test"
+(05/17/2022 12:06:06) Information [MPT Runtime] "Stopped
+ Running Time:  00:06:45 
+ Channel Counters:
+    Axial -          1  Cycles"
