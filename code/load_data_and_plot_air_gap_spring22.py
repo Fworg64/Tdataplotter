@@ -18,7 +18,7 @@ plt.rc('axes', labelsize=fontsize)
 plt.rc('legend', fontsize=fontsize)
 
 # load data
-samples = [1,2]
+samples = [2] #,2,3]
 rates = [2,4,6,8,10]
 cap_data_files = {1: {2: "/home/austinlocal/phd/Tdataplotter/data/cap_files_5_17_22/cap_rec_20220517-110644.txt",
                       4: "/home/austinlocal/phd/Tdataplotter/data/cap_files_5_17_22/cap_rec_20220517-110938.txt",
@@ -51,6 +51,11 @@ load_frame_files   = {1: {2: "/home/austinlocal/phd/Tdataplotter/data/05_17_2022
                           8: "/home/austinlocal/phd/Tdataplotter/data/05_17_2022/2-2_8kNs/specimen.dat",
                          10: "/home/austinlocal/phd/Tdataplotter/data/05_17_2022/2-2_10kNs/specimen.dat"}}
 
+cap_time_offsets_s = {1: {2: 3.0, 4: 1.75, 6: 2.5, 8: 1.0, 10: 2.5},
+                      2: {2: 8.5, 4: 8.5, 6: 3.5, 8: 5.75, 10: 2.5},
+                      3: {2: 2.5, 4: 5.5, 6: 2.5, 8: 5.5, 10: 2.5}}
+
+sample_shape_dict = {1: 'o', 2: '1', 3: 's'}
 
 print("Loading Data...")
 this_time = time.time()
@@ -69,7 +74,7 @@ print("Data loaded in {0} sec".format(that_time - this_time))
 
 print("Filtering Data...")
 # generate timebase for cap data
-cap_dt = 1/400.0 #1.0/700.0
+cap_dt = 1/404.85 #1.0/700.0
 
 for sample in samples:
   for rate in rates:
@@ -130,8 +135,10 @@ for sample in samples:
   for rate in rates: # plot median filtered data
     pf_cap = [c/1.0e-12 for c in cap_meas[sample][rate][15:-15:100]] 
     times  = [point["Sec"] for point in cap_data[sample][rate][15:-15:100]]
+    # Adjust times to register with load frame
+    times = [t - cap_time_offsets_s[sample][rate] for t in times]
     rate_plot_handle_, = ax2.plot(times, pf_cap, 
-                              label="{0} kN/s".format(rate), color=rate_colors[rate])
+                              label="{0} kN/s".format(rate), color=rate_colors[rate], marker=sample_shape_dict[sample])
     rate_plot_handle.append(rate_plot_handle_)
 
   # Split legend
@@ -156,8 +163,10 @@ for sample in samples:
     interp_func = interp1d(force_times, forces,  bounds_error=False, fill_value=0.0)
     pf_cap = [c/1.0e-12 for c in cap_meas[sample][rate][15:-15:100]] 
     cap_times  = [point["Sec"] for point in cap_data[sample][rate][15:-15:100]]
+    # Adjust times to register with load frame
+    cap_times = [t - cap_time_offsets_s[sample][rate] for t in cap_times]
     interp_forces = interp_func(cap_times)
-    plt.plot(pf_cap, interp_forces, color=rate_colors[rate])
+    plt.plot(pf_cap, interp_forces, color=rate_colors[rate], marker=sample_shape_dict[sample])
 plt.legend(["{0} kN/s".format(rate) for rate in rates])
 plt.xlabel('Capacitance (pF)')
 plt.ylabel("Force (kN)")
