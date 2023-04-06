@@ -18,7 +18,7 @@ plt.rc('axes', labelsize=fontsize)
 plt.rc('legend', fontsize=fontsize)
 
 # load data
-samples = [2] #,2,3]
+samples = [1,2,3]
 rates = [2,4,6,8,10]
 cap_data_files = {1: {2: "/home/austinlocal/phd/Tdataplotter/data/cap_files_5_17_22/cap_rec_20220517-110644.txt",
                       4: "/home/austinlocal/phd/Tdataplotter/data/cap_files_5_17_22/cap_rec_20220517-110938.txt",
@@ -51,9 +51,9 @@ load_frame_files   = {1: {2: "/home/austinlocal/phd/Tdataplotter/data/05_17_2022
                           8: "/home/austinlocal/phd/Tdataplotter/data/05_17_2022/2-2_8kNs/specimen.dat",
                          10: "/home/austinlocal/phd/Tdataplotter/data/05_17_2022/2-2_10kNs/specimen.dat"}}
 
-cap_time_offsets_s = {1: {2: 3.0, 4: 1.75, 6: 2.5, 8: 1.0, 10: 2.5},
-                      2: {2: 8.5, 4: 8.5, 6: 3.5, 8: 5.75, 10: 2.5},
-                      3: {2: 2.5, 4: 5.5, 6: 2.5, 8: 5.5, 10: 2.5}}
+cap_time_offsets_s = {1: {2: 1.0, 4: 4.0, 6: 3.5, 8: 3.0, 10: 5.5},
+                      2: {2: 6.0, 4: 8.5, 6: 3.5, 8: 5.75, 10: 2.5},
+                      3: {2: 3.0, 4: 3.0, 6: 4.25, 8: 2.5, 10: 2.75}}
 
 sample_shape_dict = {1: 'o', 2: '1', 3: 's'}
 
@@ -163,6 +163,10 @@ for sample in samples:
     interp_func = interp1d(force_times, forces,  bounds_error=False, fill_value=0.0)
     pf_cap = [c/1.0e-12 for c in cap_meas[sample][rate][15:-15:100]] 
     cap_times  = [point["Sec"] for point in cap_data[sample][rate][15:-15:100]]
+    # Attempt to reset bias at start
+    #minval = min([c if c >= 0 else 1e9 for c in cap_times])
+    #mindex = cap_times.index(minval)
+    #pf_cap = [c - pf_cap[mindex] for c in pf_cap] 
     # Adjust times to register with load frame
     cap_times = [t - cap_time_offsets_s[sample][rate] for t in cap_times]
     interp_forces = interp_func(cap_times)
