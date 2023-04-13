@@ -11,3 +11,9 @@ def calculate_drag_force(v1, v2, v3, v4):
   drag = 15695275 * X + 9088 # lbf
   drag_kn = 4.44822 * drag
   return drag_kn
+
+def calculate_drag_force_coal(v1, v2, v3, v4):
+  X = -v1 -v2 +v3 +v4
+  drag = 18422974 * X + 10290 # lbf
+  drag_kn = 4.44822 * drag
+  return drag_kn

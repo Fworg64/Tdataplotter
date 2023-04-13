@@ -160,7 +160,7 @@ def first_index_greater_than(input_iterable, item):
 # Force data
 force_plot_handles = []
 for idx,wear in enumerate(wear_levels):
-  force_values = [conversions.calculate_drag_force(
+  force_values = [conversions.calculate_drag_force_coal(
                     point["v1"], point["v2"], point["v3"], point["v4"])/1000.0
                   for point in lcm_data[wear][rep_pen][rep_line]]
   force_times = [point["Sec"]-force_time_offsets[wear] 
