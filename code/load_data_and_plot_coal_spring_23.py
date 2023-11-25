@@ -13,7 +13,7 @@ from scipy.interpolate import interp1d
 
 
 # Set figures
-fontsize = 36
+fontsize = 18 
 plt.rc('font', size=fontsize, family='sans') 
 plt.rc('axes', titlesize=fontsize)
 plt.rc('axes', labelsize=fontsize)
@@ -129,25 +129,25 @@ cap_dt = 0.002475
 force_time_offsets = {
     "New_4thPass": { 
         1: 1.2,
-        2: 0.8,
+        2: 1.02,
         3: 1.2,
         4: 1.3,
         5: 1.2},
     "New_5thPass": { 
         1: 1.2,
-        2: 0.8,
+        2: 1.07,
         3: 1.2,
         4: 0.9,
         5: 1.2},
     "New_6thPass": { 
         1: 1.2,
-        2: 0.8,
+        2: 1.14,
         3: 1.2,
         4: 1.3,
         5: 0.7},
     "New_7thPass": { 
         1: 1.2,
-        2: 1.2,
+        2: 1.64,
         3: 1.5,
         4: 1.1,
         5: 1.4}
@@ -156,25 +156,25 @@ force_time_offsets = {
 cap_time_offsets = {
     "New_4thPass": { 
         1: 18.0,
-        2: 20.3,
+        2: 20.41,
         3: 18.6,
         4: 0.0, # bad
         5: 20.5},
     "New_5thPass": { 
         1: 11.4,
-        2: 13.9,
+        2: 13.86,
         3: 15.7,
         4: 15.8,
         5: 12.1},
     "New_6thPass": { 
         1: 4.7,
-        2: 9.6,
+        2: 9.74,
         3: 0.0, # bad
         4: 0.0, # bad
         5: 7.3},
     "New_7thPass": { 
         1: 0.0, # bad
-        2: 8.7,
+        2: 9.12,
         3: 5.8,
         4: 5.1,
         5: 5.8}
@@ -220,7 +220,7 @@ rep_pen = penetrations[0]
 # Lines #0 and #6 are edge lines, do not have cap data for these
 rep_line = plot_spec
 
-pass_no_color_list = [(0.2, 0.3, 0.8), 'springgreen', 'darkred', "blue"]
+pass_no_color_list = [(0.05, 0.07, 0.05), 'springgreen', 'darkred', "blue"]
 pass_no_colors = {pass_no:pass_no_color_list[idx] for idx, pass_no in enumerate(passes)}
 
 def first_index_greater_than(input_iterable, item):
@@ -253,6 +253,7 @@ for idx,pass_no in enumerate(passes):
 ax1.set_ylabel("Force (kN)")
 #ax1.set_xlabel("Time (s)")
 ax1.set_title("Applied Force vs Time; 1.0 in. pen.")
+ax1.legend()
 
 # Force data bg fill
 #material_plot_handles = []
@@ -274,7 +275,7 @@ ax1.set_ylim([-2, 127])
 #ax1.add_artist(pass_no_legend1) # Bring back old legend, display both
 ax1.text(0.2, 50, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
 ax1.text(0.6, 50, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax1.text(2.3, 50, "Coal", color=mater_color_text_color, rotation = material_rotation_text_deg)
+ax1.text(1.3, 50, "Coal", color=mater_color_text_color, rotation = material_rotation_text_deg)
 ax1.text(4.0, 50, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
 ax1.text(5.1, 50, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
 
@@ -325,12 +326,12 @@ for idx,pass_no in enumerate(passes):
 ax2.set_ylabel("Resonant Freq (MHz)")
 ax2.set_xlabel("Time (s)")
 ax2.set_title("Sensor Measurements vs Time; 1.0 in. pen.")
-ax2.set_ylim([1.72, 1.82])
+ax2.set_ylim([1.62, 1.85])
 ax2.invert_yaxis()
 #ax2.legend(handles=cap_material_plot_handles, loc="lower center") # replace with text
 ax2.text(0.2, 1.8, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
 ax2.text(0.6, 1.8, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax2.text(2.3, 1.8, "Coal", color=mater_color_text_color, rotation = material_rotation_text_deg)
+ax2.text(1.3, 1.8, "Coal", color=mater_color_text_color, rotation = material_rotation_text_deg)
 ax2.text(4.0, 1.8, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
 ax2.text(5.1, 1.8, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
 #ax2.add_artist(pass_no_legend2) # Bring back old legend, display both
@@ -345,6 +346,7 @@ ax2.fill_between(np.arange(3.85, 5.0, 0.01), 1.5, 2.0, color="slategrey")
 #                               color=color_material[0], label=color_material[1]))
 # Set shared x axis
 ax2.set_xlim([0,plot_duration ])
+ax2.legend()
 
 that_time = time.time()
 print("Data plotted in {0} sec".format(that_time - this_time))
