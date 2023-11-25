@@ -106,7 +106,7 @@ for sample in samples:
   cap_sample  = {}
   for rate in rates:
     freq_sample[rate], cap_sample[rate] = \
-      conversions.calculate_freq_and_cap(filtered_cap_data[sample][rate], 18.0e-6, 33.0e-12)
+      conversions.calculate_freq_and_cap(filtered_cap_data[sample][rate], 18.0e-6, 33.0e-12, 2)
   freq_meas[sample] = freq_sample
   cap_meas[sample]  = cap_sample
 
@@ -143,7 +143,7 @@ for sample in samples:
 #    plt.plot(caps[::100])
   rate_plot_handle = []
   for rate in rates: # plot median filtered data
-    freq_plot = [f/1e3 for f in freq_meas[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]] 
+    freq_plot = [f/1e6 for f in freq_meas[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]] 
     times  = [point["Sec"] for point in cap_data[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]]
     # Adjust times to register with load frame
     times = [t - cap_time_offsets_s[sample][rate] for t in times]
@@ -158,7 +158,7 @@ for sample in samples:
   # Create another legend for the second set
   ax2.legend(handles=rate_legend_artists[2:], loc='lower right')
 
-  ax2.set_ylabel("Resonant Freq. (KHz)")
+  ax2.set_ylabel("Resonant Freq. (MHz)")
   ax2.set_xlabel("Time (s)")
   ax2.set_title("Sensor Resonant Freq. vs Time")
   ax2.invert_yaxis()
@@ -172,7 +172,7 @@ for sample in samples:
     forces = [-point["kN"] for point in force_data[sample][rate]]
     force_times = [point["Sec"] for point in force_data[sample][rate]]
     interp_func = interp1d(force_times, forces,  bounds_error=False, fill_value=0.0)
-    freq_plot = [f/1e3 for f in freq_meas[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]] 
+    freq_plot = [f/1e6 for f in freq_meas[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]] 
     cap_times  = [point["Sec"] for point in cap_data[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]]
     # Attempt to reset bias at start
     #minval = min([c if c >= 0 else 1e9 for c in cap_times])
@@ -183,9 +183,9 @@ for sample in samples:
     interp_forces = interp_func(cap_times)
     plt.plot(freq_plot, interp_forces, color=rate_colors[rate], marker=sample_shape_dict[sample], markersize=PLOT_MARKER_SIZE)
 plt.legend(handles=rate_legend_artists)
-plt.xlabel('Resonant Freq (KHz)')
+plt.xlabel('Resonant Freq. (MHz)')
 plt.ylabel("Force (kN)")
-plt.title("Force vs Capacitance")
+plt.title("Force vs Resonant Frequency")
 fig2.axes[0].invert_xaxis()
 
 # plot device strain

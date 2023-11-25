@@ -240,14 +240,14 @@ for idx,wear in enumerate(wear_levels):
 ax2.set_ylabel("Resonant Freq (MHz)")
 ax2.set_xlabel("Time (s)")
 ax2.set_title("Sensor Measurements vs Time; 1.0 in. pen.")
-ax2.set_ylim([1.5, 1.9])
+ax2.set_ylim([1.72, 1.82])
 ax2.invert_yaxis()
 #ax2.legend(handles=cap_material_plot_handles, loc="lower center") # replace with text
-ax2.text(0.2, 1.72, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
-ax2.text(0.6, 1.72, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax2.text(2.3, 1.72, "Coal", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax2.text(4.0, 1.72, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax2.text(5.1, 1.72, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
+ax2.text(0.2, 1.8, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
+ax2.text(0.6, 1.8, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
+ax2.text(2.3, 1.8, "Coal", color=mater_color_text_color, rotation = material_rotation_text_deg)
+ax2.text(4.0, 1.8, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
+ax2.text(5.1, 1.8, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
 #ax2.add_artist(wear_legend2) # Bring back old legend, display both
 
 ax2.fill_between(np.arange(0.0, 0.75, 0.01), 1.5, 2.0, color="white") # air
@@ -264,5 +264,8 @@ ax2.set_xlim([0,plot_duration ])
 that_time = time.time()
 print("Data plotted in {0} sec".format(that_time - this_time))
 
-plt.show(block=True)
+plt.show(block=False)
+
+input("Press Enter to close")
+
 
