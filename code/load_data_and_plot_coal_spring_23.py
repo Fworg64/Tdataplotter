@@ -57,7 +57,7 @@ cap_passes_dict = {
         "cap_rec_20230209-134853.txt", # line 1
 #        "cap_rec_20230209-135358.txt",
         "cap_rec_20230209-135436.txt", # line 2
-        "cap_rec_20230209-135609.txt", # line 3
+        "cap_rec_20230209-135609.txt", # line 3 (sad)
         "cap_rec_20230209-135744.txt", # line 4
         "cap_rec_20230209-142337.txt", # line 5
         "cap_rec_20230209-142629.txt"], # line 6 (edge)
@@ -126,11 +126,61 @@ lcm_data = {}
 cap_dt = 0.002475
 
 
-force_offset_list = [0, 0, 0,0]
-cap_offset_list = [0,0,0,0]
-force_time_offsets = {pass_no:force_offset_list[idx] for idx, pass_no in enumerate(passes)} 
-cap_time_offsets =  {pass_no:cap_offset_list[idx] for idx, pass_no in enumerate(passes)} 
-plot_duration = 45.5 # seconds
+force_time_offsets = {
+    "New_4thPass": { 
+        1: 1.2,
+        2: 0.8,
+        3: 1.2,
+        4: 1.3,
+        5: 1.2},
+    "New_5thPass": { 
+        1: 1.2,
+        2: 0.8,
+        3: 1.2,
+        4: 0.9,
+        5: 1.2},
+    "New_6thPass": { 
+        1: 1.2,
+        2: 0.8,
+        3: 1.2,
+        4: 1.3,
+        5: 0.7},
+    "New_7thPass": { 
+        1: 1.2,
+        2: 1.2,
+        3: 1.5,
+        4: 1.1,
+        5: 1.4}
+}
+
+cap_time_offsets = {
+    "New_4thPass": { 
+        1: 18.0,
+        2: 20.3,
+        3: 18.6,
+        4: 0.0, # bad
+        5: 20.5},
+    "New_5thPass": { 
+        1: 11.4,
+        2: 13.9,
+        3: 15.7,
+        4: 15.8,
+        5: 12.1},
+    "New_6thPass": { 
+        1: 4.7,
+        2: 9.6,
+        3: 0.0, # bad
+        4: 0.0, # bad
+        5: 7.3},
+    "New_7thPass": { 
+        1: 0.0, # bad
+        2: 8.7,
+        3: 5.8,
+        4: 5.1,
+        5: 5.8}
+}
+           
+plot_duration = 5.5 # seconds
 
 for pass_no in passes:
   cap_data[pass_no] = {}
@@ -186,7 +236,7 @@ for idx,pass_no in enumerate(passes):
   force_values = [conversions.calculate_drag_force_coal(
                     point["v1"], point["v2"], point["v3"], point["v4"])/1000.0
                   for point in lcm_data[pass_no][rep_pen][rep_line]]
-  force_times = [point["Sec"]-force_time_offsets[pass_no] 
+  force_times = [point["Sec"]-force_time_offsets[pass_no][rep_line] 
                   for point in lcm_data[pass_no][rep_pen][rep_line]]
   plot_start = first_index_greater_than(force_times, 0.0)
   plot_end   = first_index_greater_than(force_times, plot_duration)
@@ -245,7 +295,7 @@ for idx,pass_no in enumerate(passes):
 
   cap_times = [0.0] * 100
   try:
-    cap_times   = [point["Sec"]-cap_time_offsets[pass_no] 
+    cap_times   = [point["Sec"]-cap_time_offsets[pass_no][rep_line] 
                   for point in cap_data[pass_no][rep_pen][rep_line]]
   except KeyError as e:
     print(pass_no + " has no line #" + str(rep_line))
