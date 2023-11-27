@@ -1,0 +1,7 @@
+1.5 penet and 4.0 spacing
+pass 0: Cond 1
+pass 1:moderate
+pass 2:moderate
+Pass 3: cond 2 (dop:1.0)
+pass 4: worn
+pass 5: worn( only 1,2,3,4,5 lines, did not cut the 0 and 7)

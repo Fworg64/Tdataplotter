@@ -26,16 +26,27 @@ mater_color_text_color_air = 'darkgray'
 
 
 # Load Data
-passes  = ["New_4thPass", "New_5thPass", "New_6thPass", "New_7thPass"]
-penetrations = ["1.0 in."]
+passes  = ["Coal2_New_4thPass_1_0in", "Coal2_New_5thPass_1_0in", 
+           "Coal2_New_6thPass_1_5in", "Coal2_New_7thPass_1_0in",
+           "Coal4_Worn_1stPass_1_5in", "Coal4_Worn_4thPass_1_5in",
+           "Coal5_Mod_1stPass_1_5in", "Coal5_Mod_2ndPass_1_5in"]
 lines        = list(range(0,18))
 
 base_path = "/home/austinlocal/phd/Tdataplotter/data/"
-cap_base_path = base_path + "cap_files_2_10_23/Niosh-reDAQ/"
+cap_base_path_passes_dict = {
+    passes[0]: base_path + "cap_files_2_10_23/Niosh-reDAQ/",
+    passes[1]: base_path + "cap_files_2_10_23/Niosh-reDAQ/",
+    passes[2]: base_path + "cap_files_2_10_23/Niosh-reDAQ/",
+    passes[3]: base_path + "cap_files_2_10_23/Niosh-reDAQ/",
+    passes[4]: base_path + "cap_files_sept_23/",
+    passes[5]: base_path + "cap_files_sept_23/",
+    passes[6]: base_path + "cap_files_sept_23/",
+    passes[7]: base_path + "cap_files_sept_23/",
+}
 lcm_base_path = base_path + "coal/"
 
 cap_passes_dict = { 
-    "New_4thPass": [
+    "Coal2_New_4thPass_1_0in": [
 #        "cap_rec_20230207-181446.txt",
         "cap_rec_20230207-182009.txt", # line 1
         "cap_rec_20230207-182359.txt", # line 2
@@ -43,13 +54,13 @@ cap_passes_dict = {
         "cap_rec_20230207-183003.txt", # line 4 (sad)
         "cap_rec_20230207-183439.txt", # line 5
         "cap_rec_20230207-183819.txt"], # line 6 (edge)
-    "New_5thPass": [
+    "Coal2_New_5thPass_1_0in": [
         "cap_rec_20230208-150938.txt", # line 1
         "cap_rec_20230208-161101.txt", # line 2
         "cap_rec_20230208-161400.txt", # line 3
         "cap_rec_20230208-161612.txt", # line 4
         "cap_rec_20230208-161801.txt"], # line 5
-    "New_6thPass": [
+    "Coal2_New_6thPass_1_5in": [
 #        "cap_rec_20230209-132835.txt",
 #        "cap_rec_20230209-134325.txt",
 #        "cap_rec_20230209-134454.txt", # line 0 (edge)
@@ -61,7 +72,7 @@ cap_passes_dict = {
         "cap_rec_20230209-135744.txt", # line 4
         "cap_rec_20230209-142337.txt", # line 5
         "cap_rec_20230209-142629.txt"], # line 6 (edge)
-    "New_7thPass": [
+    "Coal2_New_7thPass_1_0in": [
 #        "cap_rec_20230209-162217.txt", # line 0 (edge)
 #        "cap_rec_20230209-162514.txt",
 #        "cap_rec_20230209-162531.txt",
@@ -72,53 +83,107 @@ cap_passes_dict = {
         "cap_rec_20230209-163002.txt", # line 3
         "cap_rec_20230209-163152.txt", # line 4
         "cap_rec_20230209-163313.txt", # line 5
-        "cap_rec_20230209-163554.txt"] # line 6 (edge)
+        "cap_rec_20230209-163554.txt"], # line 6 (edge)
+    "Coal4_Worn_1stPass_1_5in": [
+        "cap_rec_20230911-120253.txt", # line 1
+        "cap_rec_20230911-120423.txt", # line 2
+        "cap_rec_20230911-120522.txt", # line 3
+        "cap_rec_20230911-122823.txt", # line 4
+        "cap_rec_20230911-122912.txt", # line 5
+        "cap_rec_20230911-123011.txt", # line 6
+        "cap_rec_20230911-123119.txt"], # line 7
+    "Coal4_Worn_4thPass_1_5in": [
+        "cap_rec_20230913-152542.txt", # line 1
+        "cap_rec_20230913-152756.txt", # line 2
+        "cap_rec_20230913-152901.txt", # line 3
+        "cap_rec_20230913-152954.txt", # line 4
+        "cap_rec_20230913-153038.txt", # line 5
+        "cap_rec_20230913-153124.txt", # line 6
+        "cap_rec_20230913-153249.txt"], # line 7]
+    "Coal5_Mod_1stPass_1_5in": [
+        "cap_rec_20230927-144103.txt", # line 1
+        "cap_rec_20230927-144619.txt", # line 2
+        "cap_rec_20230927-144839.txt", # line 3
+        "cap_rec_20230927-145025.txt", # line 4
+        "cap_rec_20230927-145218.txt", # line 5
+        "cap_rec_20230927-145218.txt", # line 6
+        "cap_rec_20230927-145726.txt"], # line 7]
+    "Coal5_Mod_2ndPass_1_5in": [
+        "cap_rec_20230927-161937.txt", # line 1
+        "cap_rec_20230927-162400.txt", # line 2
+        "cap_rec_20230927-162623.txt", # line 3
+        "cap_rec_20230927-162816.txt", # line 4
+        "cap_rec_20230927-163026.txt", # line 5
+        "cap_rec_20230927-163213.txt", # line 6
+        "cap_rec_20230927-163450.txt"] # line 7]
 }
 
 
 cap_data_files = {
-    "New_4thPass": {"1.0 in.": { 
-        inx: cap_base_path + cap_passes_dict["New_4thPass"][inx-1] 
-        for inx in range(1, len(cap_passes_dict["New_4thPass"]) + 1)}},  
-    "New_5thPass": {"1.0 in.": { 
-        inx: cap_base_path + cap_passes_dict["New_5thPass"][inx-1] 
-        for inx in range(1, len(cap_passes_dict["New_5thPass"]) + 1)}},  
-    "New_6thPass": {"1.0 in.": { 
-        inx: cap_base_path + cap_passes_dict["New_6thPass"][inx-1] 
-        for inx in range(1, len(cap_passes_dict["New_6thPass"]) + 1)}},  
-    "New_7thPass": {"1.0 in.": { 
-        inx: cap_base_path + cap_passes_dict["New_7thPass"][inx-1] 
-        for inx in range(1, len(cap_passes_dict["New_7thPass"]) + 1)}}}  
+    pass_no: {
+        inx: cap_base_path_passes_dict[pass_no] + cap_passes_dict[pass_no][inx-1]
+        for inx in range(1, len(cap_passes_dict[pass_no]) + 1)}
+    for pass_no in passes
+}
 
+lcm_data_files = {"Coal2_New_4thPass_1_0in": { 0: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-00.lvm",
+                                       1: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-01.lvm",
+                                       2: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-02.lvm",
+                                       3: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-03.lvm",
+                                       4: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-04.lvm",
+                                       5: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-05.lvm",
+                                       6: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-06.lvm"},
+                "Coal2_New_5thPass_1_0in": {  
+                                       1: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-01.lvm",
+                                       2: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-02.lvm",
+                                       3: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-03.lvm",
+                                       4: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-04.lvm",
+                                       5: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-05.lvm",
+                                       6: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-09-2023-06.lvm"},
+                "Coal2_New_6thPass_1_5in": {  0: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-00.lvm",
+                                       1: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-01.lvm",
+                                       2: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-02.lvm",
+                                       3: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-03.lvm",
+                                       4: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-04.lvm",
+                                       5: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-05.lvm",
+                                       6: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-06.lvm"},
+                 "Coal2_New_7thPass_1_0in": { 0: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-00.lvm", 
+                                        1: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-01.lvm",
+                                        2: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-02.lvm",
+                                        3: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-03.lvm",
+                                        4: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-04.lvm",
+                                        5: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-05.lvm",
+                                        6: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-06.lvm"},
+                 "Coal4_Worn_1stPass_1_5in": { 0: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-0.lvm",
+                                        1: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-1.lvm",
+                                        2: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-2.lvm",
+                                        3: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-3.lvm",
+                                        4: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-4.lvm",
+                                        5: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-5.lvm",
+                                        6: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-6.lvm",
+                                        7: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-7.lvm"},
+                 "Coal4_Worn_4thPass_1_5in": { 0: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-0.lvm",
+                                        1: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-1.lvm",
+                                        2: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-2.lvm",
+                                        3: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-3.lvm",
+                                        4: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-4.lvm",
+                                        5: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-5.lvm",
+                                        6: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-6.lvm"},
+                 "Coal5_Mod_1stPass_1_5in": { 0: lcm_base_path + "Coal_5/Pass 1/Coal5-M-0.lvm",
+                                        1: lcm_base_path + "Coal_5/Pass 1/Coal5-M-1.lvm",
+                                        2: lcm_base_path + "Coal_5/Pass 1/Coal5-M-2.lvm",
+                                        3: lcm_base_path + "Coal_5/Pass 1/Coal5-M-3.lvm",
+                                        4: lcm_base_path + "Coal_5/Pass 1/Coal5-M-4.lvm",
+                                        5: lcm_base_path + "Coal_5/Pass 1/Coal5-M-5.lvm",
+                                        6: lcm_base_path + "Coal_5/Pass 1/Coal5-M-6.lvm"},
+                 "Coal5_Mod_2ndPass_1_5in": { 0: lcm_base_path + "Coal_5/Pass 1/Coal5-M-0.lvm",
+                                        1: lcm_base_path + "Coal_5/Pass 2/Coal5-M-1.lvm",
+                                        2: lcm_base_path + "Coal_5/Pass 2/Coal5-M-2.lvm",
+                                        3: lcm_base_path + "Coal_5/Pass 2/Coal5-M-3.lvm",
+                                        4: lcm_base_path + "Coal_5/Pass 2/Coal5-M-4.lvm",
+                                        5: lcm_base_path + "Coal_5/Pass 2/Coal5-M-5.lvm",
+                                        6: lcm_base_path + "Coal_5/Pass 2/Coal5-M-6.lvm"}}
 
-lcm_data_files = {"New_4thPass": {"1.0 in.": { 0: lcm_base_path + "4th pass/NIOSH-coal-02-07-2023-00.lvm",
-                                       1: lcm_base_path + "4th pass/NIOSH-coal-02-07-2023-01.lvm",
-                                       2: lcm_base_path + "4th pass/NIOSH-coal-02-07-2023-02.lvm",
-                                       3: lcm_base_path + "4th pass/NIOSH-coal-02-07-2023-03.lvm",
-                                       4: lcm_base_path + "4th pass/NIOSH-coal-02-07-2023-04.lvm",
-                                       5: lcm_base_path + "4th pass/NIOSH-coal-02-07-2023-05.lvm",
-                                       6: lcm_base_path + "4th pass/NIOSH-coal-02-07-2023-06.lvm"}},
-                "New_5thPass": {"1.0 in.": {  
-                                       1: lcm_base_path + "5th pass/NIOSH-coal-02-08-2023-01.lvm",
-                                       2: lcm_base_path + "5th pass/NIOSH-coal-02-08-2023-02.lvm",
-                                       3: lcm_base_path + "5th pass/NIOSH-coal-02-08-2023-03.lvm",
-                                       4: lcm_base_path + "5th pass/NIOSH-coal-02-08-2023-04.lvm",
-                                       5: lcm_base_path + "5th pass/NIOSH-coal-02-08-2023-05.lvm",
-                                       6: lcm_base_path + "5th pass/NIOSH-coal-02-09-2023-06.lvm"}},
-                "New_6thPass": {"1.0 in.": {  0: lcm_base_path + "6th pass/NIOSH-coal-02-09-2023-00.lvm",
-                                       1: lcm_base_path + "6th pass/NIOSH-coal-02-09-2023-01.lvm",
-                                       2: lcm_base_path + "6th pass/NIOSH-coal-02-09-2023-02.lvm",
-                                       3: lcm_base_path + "6th pass/NIOSH-coal-02-09-2023-03.lvm",
-                                       4: lcm_base_path + "6th pass/NIOSH-coal-02-09-2023-04.lvm",
-                                       5: lcm_base_path + "6th pass/NIOSH-coal-02-09-2023-05.lvm",
-                                       6: lcm_base_path + "6th pass/NIOSH-coal-02-09-2023-06.lvm"}},
-                 "New_7thPass": {"1.0 in.": { 0: lcm_base_path + "7th pass/NIOSH-coal-02-09-2023-00.lvm", 
-                                        1: lcm_base_path + "7th pass/NIOSH-coal-02-09-2023-01.lvm",
-                                        2: lcm_base_path + "7th pass/NIOSH-coal-02-09-2023-02.lvm",
-                                        3: lcm_base_path + "7th pass/NIOSH-coal-02-09-2023-03.lvm",
-                                        4: lcm_base_path + "7th pass/NIOSH-coal-02-09-2023-04.lvm",
-                                        5: lcm_base_path + "7th pass/NIOSH-coal-02-09-2023-05.lvm",
-                                        6: lcm_base_path + "7th pass/NIOSH-coal-02-09-2023-06.lvm"}}}
 print("Loading Data...")
 this_time = time.time()
 cap_data = {}
@@ -127,83 +192,143 @@ cap_dt = 0.002475
 
 
 force_time_offsets = {
-    "New_4thPass": { 
+    "Coal2_New_4thPass_1_0in": { 
         1: 1.2,
         2: 1.02,
         3: 1.2,
         4: 1.3,
         5: 1.2},
-    "New_5thPass": { 
+    "Coal2_New_5thPass_1_0in": { 
         1: 1.2,
         2: 1.07,
         3: 1.2,
         4: 0.9,
         5: 1.2},
-    "New_6thPass": { 
+    "Coal2_New_6thPass_1_5in": { 
         1: 1.2,
         2: 1.14,
         3: 1.2,
         4: 1.3,
         5: 0.7},
-    "New_7thPass": { 
+    "Coal2_New_7thPass_1_0in": { 
         1: 1.2,
         2: 1.64,
         3: 1.5,
         4: 1.1,
-        5: 1.4}
+        5: 1.4},
+    "Coal4_Worn_1stPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal4_Worn_4thPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal5_Mod_1stPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal5_Mod_2ndPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0}
 }
 
 cap_time_offsets = {
-    "New_4thPass": { 
+    "Coal2_New_4thPass_1_0in": { 
         1: 18.0,
         2: 20.41,
         3: 18.6,
         4: 0.0, # bad
         5: 20.5},
-    "New_5thPass": { 
+    "Coal2_New_5thPass_1_0in": { 
         1: 11.4,
         2: 13.86,
         3: 15.7,
         4: 15.8,
         5: 12.1},
-    "New_6thPass": { 
+    "Coal2_New_6thPass_1_5in": { 
         1: 4.7,
         2: 9.74,
         3: 0.0, # bad
         4: 0.0, # bad
         5: 7.3},
-    "New_7thPass": { 
+    "Coal2_New_7thPass_1_0in": { 
         1: 0.0, # bad
         2: 9.12,
         3: 5.8,
         4: 5.1,
-        5: 5.8}
+        5: 5.8},
+    "Coal4_Worn_1stPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal4_Worn_4thPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal5_Mod_1stPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal5_Mod_2ndPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0}
 }
            
-plot_duration = 5.5 # seconds
+plot_duration = 55 # seconds
 
 for pass_no in passes:
   cap_data[pass_no] = {}
   lcm_data[pass_no] = {}
-  for pen in penetrations:
-    cap_data[pass_no][pen] = {}
-    for line in cap_data_files[pass_no][pen].keys():
+  for line in cap_data_files[pass_no].keys():
       # load cap file returns list of dictionaries where each dict is a packet
-      cap_data[pass_no][pen][line] = loaders.load_cap_file(cap_data_files[pass_no][pen][line])
+      cap_data[pass_no][line] = loaders.load_cap_file(cap_data_files[pass_no][line])
       cap_time = 0.0
-      for packet in cap_data[pass_no][pen][line]:
+      for packet in cap_data[pass_no][line]:
         packet["Sec"] = cap_time
         cap_time+= cap_dt
       
-      # load lcm data here
-    lcm_data[pass_no][pen] = {}
-    for line in lcm_data_files[pass_no][pen].keys():
-      lcm_data[pass_no][pen][line] = loaders.load_lcm_file(lcm_data_files[pass_no][pen][line])
+  # load lcm data here
+  lcm_data[pass_no] = {}
+  for line in lcm_data_files[pass_no].keys():
+      lcm_data[pass_no][line] = loaders.load_lcm_file(lcm_data_files[pass_no][line])
 
 that_time = time.time()
 print("Data loaded in {0} sec".format(that_time - this_time))
-
-#print("Filtering Data...")
 
 print("Plotting Data...")
 # Plot all pass_no levels in same plot for one representative sample
@@ -211,148 +336,146 @@ print("Plotting Data...")
 plot_spec = int(sys.argv[1])
 
 this_time = time.time()
-fig, (ax1, ax2) = plt.subplots(2,1,sharex=True)
-if plot_spec > 0 :
-  fig2, my_axes = plt.subplots(4,2,sharex=True)
 
-# Just one penetration level for this data set
-rep_pen = penetrations[0]
-# Lines #0 and #6 are edge lines, do not have cap data for these
-rep_line = plot_spec
+sub_passes1 = passes[0:4]
+sub_passes2 = passes[4:]
 
-pass_no_color_list = [(0.05, 0.07, 0.05), 'springgreen', 'darkred', "blue"]
-pass_no_colors = {pass_no:pass_no_color_list[idx] for idx, pass_no in enumerate(passes)}
+for plot_passes in [sub_passes1, sub_passes2]:
 
-def first_index_greater_than(input_iterable, item):
-  try:
-    res = next(x for x, val in enumerate(input_iterable) if val > item)
-  except StopIteration:
-    res = len(input_iterable)
-  return res
+  fig, (ax1, ax2) = plt.subplots(2,1,sharex=True)
+  if plot_spec > 0 :
+    fig2, my_axes = plt.subplots(len(plot_passes),2,sharex=True)
 
-# Force data
-force_plot_handles = []
-for idx,pass_no in enumerate(passes):
-  force_values = [conversions.calculate_drag_force_coal(
-                    point["v1"], point["v2"], point["v3"], point["v4"])/1000.0
-                  for point in lcm_data[pass_no][rep_pen][rep_line]]
-  force_times = [point["Sec"]-force_time_offsets[pass_no][rep_line] 
-                  for point in lcm_data[pass_no][rep_pen][rep_line]]
-  plot_start = first_index_greater_than(force_times, 0.0)
-  plot_end   = first_index_greater_than(force_times, plot_duration)
-  force_plot_handles.append(ax1.plot(force_times[plot_start:plot_end],
-                            force_values[plot_start:plot_end],
-                            color=pass_no_colors[pass_no], alpha=0.5, 
-                            label="{0}".format(pass_no))[0])
-  if plot_spec > 0:
-    ff, ft, fSxx = signal.spectrogram(np.array(force_values[plot_start:plot_end]), 537.63)#, scaling='density', mode='magnitude')
-    my_axes[idx][0].pcolormesh(ft, ff,np.log10(fSxx), shading='gouraud')
-    my_axes[idx][0].set_title("Force spec. {0}".format(pass_no))
+  # Lines #0 and #6 are edge lines, do not have cap data for these
+  rep_line = plot_spec
 
-#pass_no_legend1 = ax1.legend(handles=force_plot_handles, loc="upper right", framealpha=0.5)
-ax1.set_ylabel("Force (kN)")
-#ax1.set_xlabel("Time (s)")
-ax1.set_title("Applied Force vs Time; 1.0 in. pen.")
-ax1.legend()
+  pass_no_color_list = [(0.05, 0.07, 0.05), 'springgreen', 'darkred', "blue"]
+  pass_no_colors = {pass_no:pass_no_color_list[idx] for idx, pass_no in enumerate(plot_passes)}
 
-# Force data bg fill
-#material_plot_handles = []
-colors_materials = [("white", "Air"), ("slategrey", "Concrete"), ("dimgrey", "Coal")]
-#domains = {colors_materials[0] : np.arange(0.0, 0.75, 0.01), 
-#           colors_materials[1] : np.arange(0.55, 1.5, 0.01),
-#           colors_materials[2] : np.arange(1.3, 4.0, 0.01),
-#           colors_materials[1] : np.arange(3.85, 5.0, 0.01),
-#           };
-#for color_material in colors_materials:
-#  material_plot_handles.append(ax1.fill_between(domains[color_material], -2000, 50000,
-#                               color=color_material[0], label=color_material[1]))
-ax1.fill_between(np.arange(0.0, 0.75, 0.01), -2000, 200000, color="white") # air
-ax1.fill_between(np.arange(0.55, 1.5, 0.01), -2000, 200000, color="slategrey")
-ax1.fill_between(np.arange(1.3, 4, 0.01), -2000, 200000, color="dimgrey")
-ax1.fill_between(np.arange(3.85, 5.0, 0.01), -2000, 200000, color="slategrey")
+  def first_index_greater_than(input_iterable, item):
+    try:
+      res = next(x for x, val in enumerate(input_iterable) if val > item)
+    except StopIteration:
+      res = len(input_iterable)
+    return res
 
-ax1.set_ylim([-2, 127])
-#ax1.add_artist(pass_no_legend1) # Bring back old legend, display both
-ax1.text(0.2, 50, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
-ax1.text(0.6, 50, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax1.text(1.3, 50, "Coal", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax1.text(4.0, 50, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax1.text(5.1, 50, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
+  # Force data
+  force_plot_handles = []
+  for idx,pass_no in enumerate(plot_passes):
+    force_values = [conversions.calculate_drag_force_coal(
+                      point["v1"], point["v2"], point["v3"], point["v4"])/1000.0
+                    for point in lcm_data[pass_no][rep_line]]
+    force_times = [point["Sec"]-force_time_offsets[pass_no][rep_line] 
+                    for point in lcm_data[pass_no][rep_line]]
+    plot_start = first_index_greater_than(force_times, 0.0)
+    plot_end   = first_index_greater_than(force_times, plot_duration)
+    force_plot_handles.append(ax1.plot(force_times[plot_start:plot_end],
+                              force_values[plot_start:plot_end],
+                              color=pass_no_colors[pass_no], alpha=0.5, 
+                              label="{0}".format(pass_no))[0])
+    if plot_spec > 0:
+      ff, ft, fSxx = signal.spectrogram(np.array(force_values[plot_start:plot_end]), 537.63)#, scaling='density', mode='magnitude')
+      my_axes[idx][0].pcolormesh(ft, ff,np.log10(fSxx), shading='gouraud')
+      my_axes[idx][0].set_title("Force spec. {0}".format(pass_no))
 
-# Cap data
-cap_plot_handles = []
-for idx,pass_no in enumerate(passes):
-  had_cap = True
-  raw_cap_values = [0.0] * 100
-  try:
-    raw_cap_values  = [point["chan_b"] 
-                  for point in cap_data[pass_no][rep_pen][rep_line]] # these are the encoder values
-  except KeyError as e:
-    print(pass_no + " has no line #" + str(rep_line))
-    had_cap = False
-  cap_freqs, cap_values = conversions.calculate_freq_and_cap(raw_cap_values, 18.0e-6, 33.0e-12,2)
-  cap_values = np.multiply(cap_values,1.0e12) # convert to pF
-  cap_freqs = np.multiply(cap_freqs,1.0e-6) # convert to MHz
+  ax1.set_ylabel("Force (kN)")
+  #ax1.set_xlabel("Time (s)")
+  ax1.set_title("Applied Force vs Time; 1.0 in. pen.")
+  ax1.legend()
 
-  cap_times = [0.0] * 100
-  try:
-    cap_times   = [point["Sec"]-cap_time_offsets[pass_no][rep_line] 
-                  for point in cap_data[pass_no][rep_pen][rep_line]]
-  except KeyError as e:
-    print(pass_no + " has no line #" + str(rep_line))
-    had_cap = False
-  plot_start = first_index_greater_than(cap_times, 0.0)
-  plot_end   = first_index_greater_than(cap_times, plot_duration)
-  cap_plot_handles.append(ax2.plot(cap_times[plot_start:plot_end],
-                                   cap_freqs[plot_start:plot_end],
-                                   color=pass_no_colors[pass_no], alpha=0.5,
-                                   label=pass_no)[0])
-  # Plot Spectrograms
-  if plot_spec > 0 and had_cap:
-    cf, ct, cSxx = signal.spectrogram(np.array(
-                   cap_values[plot_start:plot_end]), 400.00)#, scaling='density', mode='magnitude')
-    my_axes[idx][1].pcolormesh(ct, cf, np.log10(cSxx), shading='gouraud')
-  my_axes[idx][1].set_title("Cap. spec. {0}".format(pass_no))
+  # Force data bg fill
+  #material_plot_handles = []
+  colors_materials = [("white", "Air"), ("slategrey", "Concrete"), ("dimgrey", "Coal")]
+  ax1.fill_between(np.arange(0.0, 0.75, 0.01), -2000, 200000, color="white") # air
+  ax1.fill_between(np.arange(0.55, 1.5, 0.01), -2000, 200000, color="slategrey")
+  ax1.fill_between(np.arange(1.3, 4, 0.01), -2000, 200000, color="dimgrey")
+  ax1.fill_between(np.arange(3.85, 5.0, 0.01), -2000, 200000, color="slategrey")
 
-#ax3.set_ylabel('Frequency (Hz)')
-#ax3.set_xlabel('Time (s)')
+  ax1.set_ylim([-2, 127])
+  #ax1.add_artist(pass_no_legend1) # Bring back old legend, display both
+  ax1.text(0.2, 50, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
+  ax1.text(0.6, 50, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
+  ax1.text(1.3, 50, "Coal", color=mater_color_text_color, rotation = material_rotation_text_deg)
+  ax1.text(4.0, 50, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
+  ax1.text(5.1, 50, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
 
-#cap_material_plot_handles = []
-#for color_material in colors_materials:
-#  cap_material_plot_handles.append(ax1.fill_between(domains[color_material], 0, 2000,
-#                               color=color_material[0], label=color_material[1]))
+  # Cap data
+  cap_plot_handles = []
+  for idx,pass_no in enumerate(plot_passes):
+    had_cap = True
+    raw_cap_values = [0.0] * 100
+    try:
+      raw_cap_values  = [point["chan_b"] 
+                    for point in cap_data[pass_no][rep_line]] # these are the encoder values
+    except KeyError as e:
+      print(pass_no + " has no line #" + str(rep_line))
+      had_cap = False
+    cap_freqs, cap_values = conversions.calculate_freq_and_cap(raw_cap_values, 18.0e-6, 33.0e-12,2)
+    cap_values = np.multiply(cap_values,1.0e12) # convert to pF
+    cap_freqs = np.multiply(cap_freqs,1.0e-6) # convert to MHz
 
-#pass_no_legend2 = ax2.legend(handles=cap_plot_handles, loc="upper right", framealpha=0.5)
-ax2.set_ylabel("Resonant Freq (MHz)")
-ax2.set_xlabel("Time (s)")
-ax2.set_title("Sensor Measurements vs Time; 1.0 in. pen.")
-ax2.set_ylim([1.62, 1.85])
-ax2.invert_yaxis()
-#ax2.legend(handles=cap_material_plot_handles, loc="lower center") # replace with text
-ax2.text(0.2, 1.8, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
-ax2.text(0.6, 1.8, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax2.text(1.3, 1.8, "Coal", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax2.text(4.0, 1.8, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
-ax2.text(5.1, 1.8, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
-#ax2.add_artist(pass_no_legend2) # Bring back old legend, display both
+    cap_times = [0.0] * 100
+    try:
+      cap_times   = [point["Sec"]-cap_time_offsets[pass_no][rep_line] 
+                    for point in cap_data[pass_no][rep_line]]
+    except KeyError as e:
+      print(pass_no + " has no line #" + str(rep_line))
+      had_cap = False
+    plot_start = first_index_greater_than(cap_times, 0.0)
+    plot_end   = first_index_greater_than(cap_times, plot_duration)
+    cap_plot_handles.append(ax2.plot(cap_times[plot_start:plot_end],
+                                     cap_freqs[plot_start:plot_end],
+                                     color=pass_no_colors[pass_no], alpha=0.5,
+                                     label=pass_no)[0])
+    # Plot Spectrograms
+    if plot_spec > 0 and had_cap:
+      cf, ct, cSxx = signal.spectrogram(np.array(
+                     cap_values[plot_start:plot_end]), 400.00)#, scaling='density', mode='magnitude')
+      my_axes[idx][1].pcolormesh(ct, cf, np.log10(cSxx), shading='gouraud')
+    my_axes[idx][1].set_title("Cap. spec. {0}".format(pass_no))
 
-ax2.fill_between(np.arange(0.0, 0.75, 0.01), 1.5, 2.0, color="white") # air
-ax2.fill_between(np.arange(0.55, 1.5, 0.01), 1.5, 2.0, color="slategrey")
-ax2.fill_between(np.arange(1.3, 4, 0.01), 1.5, 2.0, color="dimgrey")
-ax2.fill_between(np.arange(3.85, 5.0, 0.01), 1.5, 2.0, color="slategrey")
+  #ax3.set_ylabel('Frequency (Hz)')
+  #ax3.set_xlabel('Time (s)')
 
-#for color_material in colors_materials:
-#  material_plot_handles.append(ax1.fill_between(domains[color_material], -2000, 10000,
-#                               color=color_material[0], label=color_material[1]))
-# Set shared x axis
-ax2.set_xlim([0,plot_duration ])
-ax2.legend()
+  #cap_material_plot_handles = []
+  #for color_material in colors_materials:
+  #  cap_material_plot_handles.append(ax1.fill_between(domains[color_material], 0, 2000,
+  #                               color=color_material[0], label=color_material[1]))
 
-that_time = time.time()
-print("Data plotted in {0} sec".format(that_time - this_time))
+  #pass_no_legend2 = ax2.legend(handles=cap_plot_handles, loc="upper right", framealpha=0.5)
+  ax2.set_ylabel("Resonant Freq (MHz)")
+  ax2.set_xlabel("Time (s)")
+  ax2.set_title("Sensor Measurements vs Time; 1.0 in. pen.")
+  ax2.set_ylim([1.62, 1.85])
+  ax2.invert_yaxis()
+  #ax2.legend(handles=cap_material_plot_handles, loc="lower center") # replace with text
+  ax2.text(0.2, 1.8, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
+  ax2.text(0.6, 1.8, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
+  ax2.text(1.3, 1.8, "Coal", color=mater_color_text_color, rotation = material_rotation_text_deg)
+  ax2.text(4.0, 1.8, "Concrete", color=mater_color_text_color, rotation = material_rotation_text_deg)
+  ax2.text(5.1, 1.8, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
+  #ax2.add_artist(pass_no_legend2) # Bring back old legend, display both
 
-plt.show(block=False)
+  ax2.fill_between(np.arange(0.0, 0.75, 0.01), 1.5, 2.0, color="white") # air
+  ax2.fill_between(np.arange(0.55, 1.5, 0.01), 1.5, 2.0, color="slategrey")
+  ax2.fill_between(np.arange(1.3, 4, 0.01), 1.5, 2.0, color="dimgrey")
+  ax2.fill_between(np.arange(3.85, 5.0, 0.01), 1.5, 2.0, color="slategrey")
+
+  #for color_material in colors_materials:
+  #  material_plot_handles.append(ax1.fill_between(domains[color_material], -2000, 10000,
+  #                               color=color_material[0], label=color_material[1]))
+  # Set shared x axis
+  ax2.set_xlim([0,plot_duration ])
+  ax2.legend()
+
+  that_time = time.time()
+  print("Data plotted in {0} sec".format(that_time - this_time))
+
+
+  plt.show(block=False)
 
 input("Press Enter to close")
+
+
 
 
