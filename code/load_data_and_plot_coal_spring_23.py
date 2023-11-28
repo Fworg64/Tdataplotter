@@ -28,9 +28,10 @@ mater_color_text_color_air = 'darkgray'
 # Load Data
 passes  = ["Coal2_New_4thPass_1_0in", "Coal2_New_5thPass_1_0in", 
            "Coal2_New_6thPass_1_5in", "Coal2_New_7thPass_1_0in",
-           "Coal4_Worn_1stPass_1_5in", "Coal4_Worn_4thPass_1_5in",
-           "Coal5_Mod_1stPass_1_5in", "Coal5_Mod_2ndPass_1_5in"]
-lines        = list(range(0,18))
+           "Coal4_Worn_1stPass_1_5in","Coal4_Worn_2ndPass_1_5in", 
+           "Coal4_Worn_3rdPass_1_5in", "Coal4_Worn_4thPass_1_5in",
+           "Coal5_Mod_1stPass_1_5in", "Coal5_Mod_2ndPass_1_5in",
+           "Coal5_Worn_4thPass_1_5in"]#, "Coal5_Worn_5thPass_1_5in"]
 
 base_path = "/home/austinlocal/phd/Tdataplotter/data/"
 cap_base_path_passes_dict = {
@@ -39,23 +40,28 @@ cap_base_path_passes_dict = {
     passes[2]: base_path + "cap_files_2_10_23/Niosh-reDAQ/",
     passes[3]: base_path + "cap_files_2_10_23/Niosh-reDAQ/",
     passes[4]: base_path + "cap_files_sept_23/",
-    passes[5]: base_path + "cap_files_sept_23/",
-    passes[6]: base_path + "cap_files_sept_23/",
+    passes[5]: base_path + "September_tests(4and5th)/",
+    passes[6]: base_path + "September_tests(4and5th)/",
     passes[7]: base_path + "cap_files_sept_23/",
+    passes[8]: base_path + "cap_files_sept_23/",
+    passes[9]: base_path + "cap_files_sept_23/",
+    passes[10]: base_path + "September_tests(4and5th)/",
+    #passes[11]: base_path + "September_tests(4and5th)/",
 }
 lcm_base_path = base_path + "coal/"
 
 cap_passes_dict = { 
     "Coal2_New_4thPass_1_0in": [
-#        "cap_rec_20230207-181446.txt",
+#        "cap_rec_20230207-181446.txt", # line 0
         "cap_rec_20230207-182009.txt", # line 1
         "cap_rec_20230207-182359.txt", # line 2
         "cap_rec_20230207-182548.txt", # line 3
         "cap_rec_20230207-183003.txt", # line 4 (sad)
-        "cap_rec_20230207-183439.txt", # line 5
-        "cap_rec_20230207-183819.txt"], # line 6 (edge)
+        "cap_rec_20230207-183439.txt", # line 5 (not full line)
+        "cap_rec_20230207-183819.txt"], # line 6 (edge) (lost)
     "Coal2_New_5thPass_1_0in": [
-        "cap_rec_20230208-150938.txt", # line 1
+        #"cap_rec_20230208-150938.txt", # line 0, # line 1 is lost
+        "cap_rec_20230209-134853.txt", # repeat bad line file, # line 1 is lost
         "cap_rec_20230208-161101.txt", # line 2
         "cap_rec_20230208-161400.txt", # line 3
         "cap_rec_20230208-161612.txt", # line 4
@@ -65,11 +71,11 @@ cap_passes_dict = {
 #        "cap_rec_20230209-134325.txt",
 #        "cap_rec_20230209-134454.txt", # line 0 (edge)
 #        "cap_rec_20230209-134743.txt",
-        "cap_rec_20230209-134853.txt", # line 1
+        "cap_rec_20230209-134853.txt", # line 1 (sad)
 #        "cap_rec_20230209-135358.txt",
         "cap_rec_20230209-135436.txt", # line 2
         "cap_rec_20230209-135609.txt", # line 3 (sad)
-        "cap_rec_20230209-135744.txt", # line 4
+        "cap_rec_20230209-135744.txt", # line 4 (sad)
         "cap_rec_20230209-142337.txt", # line 5
         "cap_rec_20230209-142629.txt"], # line 6 (edge)
     "Coal2_New_7thPass_1_0in": [
@@ -77,45 +83,74 @@ cap_passes_dict = {
 #        "cap_rec_20230209-162514.txt",
 #        "cap_rec_20230209-162531.txt",
 #        "cap_rec_20230209-162621.txt",
-#        "cap_rec_20230209-162639.txt",
-        "cap_rec_20230209-162752.txt", # line 1
+        "cap_rec_20230209-162639.txt", # line 1 (sad)
         "cap_rec_20230209-162829.txt", # line 2
         "cap_rec_20230209-163002.txt", # line 3
         "cap_rec_20230209-163152.txt", # line 4
         "cap_rec_20230209-163313.txt", # line 5
         "cap_rec_20230209-163554.txt"], # line 6 (edge)
     "Coal4_Worn_1stPass_1_5in": [
-        "cap_rec_20230911-120253.txt", # line 1
-        "cap_rec_20230911-120423.txt", # line 2
-        "cap_rec_20230911-120522.txt", # line 3
-        "cap_rec_20230911-122823.txt", # line 4
-        "cap_rec_20230911-122912.txt", # line 5
-        "cap_rec_20230911-123011.txt", # line 6
-        "cap_rec_20230911-123119.txt"], # line 7
+        #"cap_rec_20230911-120253.txt", # line 0 (edge)
+        "cap_rec_20230911-120423.txt", # line 1
+        "cap_rec_20230911-120522.txt", # line 2
+        "cap_rec_20230911-122823.txt", # line 3
+        "cap_rec_20230911-122912.txt", # line 4
+        "cap_rec_20230911-123011.txt", # line 5
+        "cap_rec_20230911-123119.txt"], # line 6
+    "Coal4_Worn_2ndPass_1_5in": [
+        #"cap_rec_20230913-112139.txt", # line 0 (edge)
+        "cap_rec_20230913-112655.txt", # line 1
+        "cap_rec_20230913-112800.txt", # line 2
+        "cap_rec_20230913-112858.txt", # line 3
+        "cap_rec_20230913-113250.txt", # line 4
+        "cap_rec_20230913-113339.txt", # line 5
+        "cap_rec_20230913-113423.txt"], # line 6 (edge)
+    "Coal4_Worn_3rdPass_1_5in": [
+        #"cap_rec_20230913-115145.txt", # line 0 (edge)
+        "cap_rec_20230913-115256.txt", # line 1
+        "cap_rec_20230913-115348.txt", # line 2
+        "cap_rec_20230913-115454.txt", # line 3
+        "cap_rec_20230913-115540.txt", # line 4
+        "cap_rec_20230913-115636.txt", # line 5
+        "cap_rec_20230913-115743.txt"], # line 6 (edge)
     "Coal4_Worn_4thPass_1_5in": [
-        "cap_rec_20230913-152542.txt", # line 1
-        "cap_rec_20230913-152756.txt", # line 2
-        "cap_rec_20230913-152901.txt", # line 3
-        "cap_rec_20230913-152954.txt", # line 4
-        "cap_rec_20230913-153038.txt", # line 5
-        "cap_rec_20230913-153124.txt", # line 6
-        "cap_rec_20230913-153249.txt"], # line 7]
+        #"cap_rec_20230913-152542.txt", # line 0 (edge)
+        "cap_rec_20230913-152756.txt", # line 1
+        "cap_rec_20230913-152901.txt", # line 2
+        "cap_rec_20230913-152954.txt", # line 3
+        "cap_rec_20230913-153038.txt", # line 4
+        "cap_rec_20230913-153124.txt", # line 5
+        "cap_rec_20230913-153249.txt"], # line 6 (edge)
     "Coal5_Mod_1stPass_1_5in": [
-        "cap_rec_20230927-144103.txt", # line 1
-        "cap_rec_20230927-144619.txt", # line 2
-        "cap_rec_20230927-144839.txt", # line 3
-        "cap_rec_20230927-145025.txt", # line 4
+        #"cap_rec_20230927-144103.txt", # line 0 (edge)
+        "cap_rec_20230927-144619.txt", # line 1
+        "cap_rec_20230927-144839.txt", # line 2
+        "cap_rec_20230927-145025.txt", # line 3
+        "cap_rec_20230927-145218.txt", # line 4
         "cap_rec_20230927-145218.txt", # line 5
-        "cap_rec_20230927-145218.txt", # line 6
-        "cap_rec_20230927-145726.txt"], # line 7]
+        "cap_rec_20230927-145726.txt"], # line 6 (edge)
     "Coal5_Mod_2ndPass_1_5in": [
-        "cap_rec_20230927-161937.txt", # line 1
-        "cap_rec_20230927-162400.txt", # line 2
-        "cap_rec_20230927-162623.txt", # line 3
-        "cap_rec_20230927-162816.txt", # line 4
-        "cap_rec_20230927-163026.txt", # line 5
-        "cap_rec_20230927-163213.txt", # line 6
-        "cap_rec_20230927-163450.txt"] # line 7]
+        #"cap_rec_20230927-161937.txt", # line 0 (edge)
+        "cap_rec_20230927-162400.txt", # line 1
+        "cap_rec_20230927-162623.txt", # line 2
+        "cap_rec_20230927-162816.txt", # line 3
+        "cap_rec_20230927-163026.txt", # line 4
+        "cap_rec_20230927-163213.txt", # line 5
+        "cap_rec_20230927-163450.txt"], # line 6 (edge)
+    "Coal5_Worn_4thPass_1_5in": [
+        #"cap_rec_20230929-111957.txt", # line 0 (edge)
+        "cap_rec_20230929-112223.txt", # line 1
+        "cap_rec_20230929-112411.txt", # line 2
+        "cap_rec_20230929-112548.txt", # line 3
+        "cap_rec_20230929-112722.txt", # line 4
+        "cap_rec_20230929-112905.txt", # line 5
+        "cap_rec_20230929-113150.txt"], # line 6 (edge)
+    #"Coal5_Worn_5thPass_1_5in": [ # Missing files
+    #    "cap_rec_20230929-161222.txt", # line 1
+    #    "cap_rec_20230929-161415.txt", # line 2
+    #    "cap_rec_20230929-161558.txt", # line 3
+    #    "cap_rec_20230929-161758.txt", # line 4
+    #    "cap_rec_20230929-161934.txt"], # line 5
 }
 
 
@@ -126,63 +161,92 @@ cap_data_files = {
     for pass_no in passes
 }
 
-lcm_data_files = {"Coal2_New_4thPass_1_0in": { 0: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-00.lvm",
-                                       1: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-01.lvm",
-                                       2: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-02.lvm",
-                                       3: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-03.lvm",
-                                       4: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-04.lvm",
-                                       5: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-05.lvm",
-                                       6: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-06.lvm"},
-                "Coal2_New_5thPass_1_0in": {  
-                                       1: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-01.lvm",
-                                       2: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-02.lvm",
-                                       3: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-03.lvm",
-                                       4: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-04.lvm",
-                                       5: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-05.lvm",
-                                       6: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-09-2023-06.lvm"},
-                "Coal2_New_6thPass_1_5in": {  0: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-00.lvm",
-                                       1: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-01.lvm",
-                                       2: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-02.lvm",
-                                       3: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-03.lvm",
-                                       4: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-04.lvm",
-                                       5: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-05.lvm",
-                                       6: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-06.lvm"},
-                 "Coal2_New_7thPass_1_0in": { 0: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-00.lvm", 
-                                        1: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-01.lvm",
-                                        2: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-02.lvm",
-                                        3: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-03.lvm",
-                                        4: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-04.lvm",
-                                        5: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-05.lvm",
-                                        6: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-06.lvm"},
-                 "Coal4_Worn_1stPass_1_5in": { 0: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-0.lvm",
-                                        1: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-1.lvm",
-                                        2: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-2.lvm",
-                                        3: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-3.lvm",
-                                        4: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-4.lvm",
-                                        5: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-5.lvm",
-                                        6: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-6.lvm",
-                                        7: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-7.lvm"},
-                 "Coal4_Worn_4thPass_1_5in": { 0: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-0.lvm",
-                                        1: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-1.lvm",
-                                        2: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-2.lvm",
-                                        3: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-3.lvm",
-                                        4: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-4.lvm",
-                                        5: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-5.lvm",
-                                        6: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-6.lvm"},
-                 "Coal5_Mod_1stPass_1_5in": { 0: lcm_base_path + "Coal_5/Pass 1/Coal5-M-0.lvm",
-                                        1: lcm_base_path + "Coal_5/Pass 1/Coal5-M-1.lvm",
-                                        2: lcm_base_path + "Coal_5/Pass 1/Coal5-M-2.lvm",
-                                        3: lcm_base_path + "Coal_5/Pass 1/Coal5-M-3.lvm",
-                                        4: lcm_base_path + "Coal_5/Pass 1/Coal5-M-4.lvm",
-                                        5: lcm_base_path + "Coal_5/Pass 1/Coal5-M-5.lvm",
-                                        6: lcm_base_path + "Coal_5/Pass 1/Coal5-M-6.lvm"},
-                 "Coal5_Mod_2ndPass_1_5in": { 0: lcm_base_path + "Coal_5/Pass 1/Coal5-M-0.lvm",
-                                        1: lcm_base_path + "Coal_5/Pass 2/Coal5-M-1.lvm",
-                                        2: lcm_base_path + "Coal_5/Pass 2/Coal5-M-2.lvm",
-                                        3: lcm_base_path + "Coal_5/Pass 2/Coal5-M-3.lvm",
-                                        4: lcm_base_path + "Coal_5/Pass 2/Coal5-M-4.lvm",
-                                        5: lcm_base_path + "Coal_5/Pass 2/Coal5-M-5.lvm",
-                                        6: lcm_base_path + "Coal_5/Pass 2/Coal5-M-6.lvm"}}
+lcm_data_files = {
+    "Coal2_New_4thPass_1_0in": { 0: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-00.lvm",
+        1: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-01.lvm",
+        2: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-02.lvm",
+        3: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-03.lvm",
+        4: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-04.lvm",
+        5: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-05.lvm",
+        6: lcm_base_path + "Coal_2/4th pass/NIOSH-coal-02-07-2023-06.lvm"},
+    "Coal2_New_5thPass_1_0in": {  
+        1: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-01.lvm",
+        2: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-02.lvm",
+        3: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-03.lvm",
+        4: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-04.lvm",
+        5: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-08-2023-05.lvm",
+        6: lcm_base_path + "Coal_2/5th pass/NIOSH-coal-02-09-2023-06.lvm"},
+    "Coal2_New_6thPass_1_5in": {  0: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-00.lvm",
+        1: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-01.lvm",
+        2: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-02.lvm",
+        3: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-03.lvm",
+        4: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-04.lvm",
+        5: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-05.lvm",
+        6: lcm_base_path + "Coal_2/6th pass/NIOSH-coal-02-09-2023-06.lvm"},
+    "Coal2_New_7thPass_1_0in": { 0: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-00.lvm", 
+        1: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-01.lvm",
+        2: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-02.lvm",
+        3: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-03.lvm",
+        4: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-04.lvm",
+        5: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-05.lvm",
+        6: lcm_base_path + "Coal_2/7th pass/NIOSH-coal-02-09-2023-06.lvm"},
+    "Coal4_Worn_1stPass_1_5in": { 0: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-0.lvm",
+        1: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-1.lvm",
+        2: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-2.lvm",
+        3: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-3.lvm",
+        4: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-4.lvm",
+        5: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-5.lvm",
+        6: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-6.lvm",
+        7: lcm_base_path + "Coal_4/pass 1/Coal4-w-1-7.lvm"},
+    "Coal4_Worn_2ndPass_1_5in": { 0: lcm_base_path + "Coal_4/pass 2/Coal4-w-2-0.lvm",
+        1: lcm_base_path + "Coal_4/pass 2/Coal4-w-2-1.lvm",
+        2: lcm_base_path + "Coal_4/pass 2/Coal4-w-2-2.lvm",
+        3: lcm_base_path + "Coal_4/pass 2/Coal4-w-2-3.lvm",
+        4: lcm_base_path + "Coal_4/pass 2/Coal4-w-2-4.lvm",
+        5: lcm_base_path + "Coal_4/pass 2/Coal4-w-2-5.lvm",
+        6: lcm_base_path + "Coal_4/pass 2/Coal4-w-2-6.lvm"},
+    "Coal4_Worn_3rdPass_1_5in": { 0: lcm_base_path + "Coal_4/pass 3/Coal4-w-3-0.lvm",
+        1: lcm_base_path + "Coal_4/pass 3/Coal4-w-3-1.lvm",
+        2: lcm_base_path + "Coal_4/pass 3/Coal4-w-3-2.lvm",
+        3: lcm_base_path + "Coal_4/pass 3/Coal4-w-3-3.lvm",
+        4: lcm_base_path + "Coal_4/pass 3/Coal4-w-3-4.lvm",
+        5: lcm_base_path + "Coal_4/pass 3/Coal4-w-3-5.lvm",
+        6: lcm_base_path + "Coal_4/pass 3/Coal4-w-3-6.lvm"},
+    "Coal4_Worn_4thPass_1_5in": { 0: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-0.lvm",
+        1: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-1.lvm",
+        2: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-2.lvm",
+        3: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-3.lvm",
+        4: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-4.lvm",
+        5: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-5.lvm",
+        6: lcm_base_path + "Coal_4/pass 4/Coal4-w-4-6.lvm"},
+    "Coal5_Mod_1stPass_1_5in": { 0: lcm_base_path + "Coal_5/Pass 1/Coal5-M-0.lvm",
+        1: lcm_base_path + "Coal_5/Pass 1/Coal5-M-1.lvm",
+        2: lcm_base_path + "Coal_5/Pass 1/Coal5-M-2.lvm",
+        3: lcm_base_path + "Coal_5/Pass 1/Coal5-M-3.lvm",
+        4: lcm_base_path + "Coal_5/Pass 1/Coal5-M-4.lvm",
+        5: lcm_base_path + "Coal_5/Pass 1/Coal5-M-5.lvm",
+        6: lcm_base_path + "Coal_5/Pass 1/Coal5-M-6.lvm"},
+    "Coal5_Mod_2ndPass_1_5in": { 0: lcm_base_path + "Coal_5/Pass 1/Coal5-M-0.lvm",
+        1: lcm_base_path + "Coal_5/Pass 2/Coal5-M-1.lvm",
+        2: lcm_base_path + "Coal_5/Pass 2/Coal5-M-2.lvm",
+        3: lcm_base_path + "Coal_5/Pass 2/Coal5-M-3.lvm",
+        4: lcm_base_path + "Coal_5/Pass 2/Coal5-M-4.lvm",
+        5: lcm_base_path + "Coal_5/Pass 2/Coal5-M-5.lvm",
+        6: lcm_base_path + "Coal_5/Pass 2/Coal5-M-6.lvm"},
+    "Coal5_Worn_4thPass_1_5in": { 0: lcm_base_path + "Coal_5/Pass 4/Coal5-M-0.lvm",
+        1: lcm_base_path + "Coal_5/Pass 4/Coal5-M-1.lvm",
+        2: lcm_base_path + "Coal_5/Pass 4/Coal5-M-2.lvm",
+        3: lcm_base_path + "Coal_5/Pass 4/Coal5-M-3.lvm",
+        4: lcm_base_path + "Coal_5/Pass 4/Coal5-M-4.lvm",
+        5: lcm_base_path + "Coal_5/Pass 4/Coal5-M-5.lvm",
+        6: lcm_base_path + "Coal_5/Pass 4/Coal5-M-6.lvm"},
+    "Coal5_Worn_5thPass_1_5in": { 
+        1: lcm_base_path + "Coal_5/Pass 5/Coal5-M-1.lvm",
+        2: lcm_base_path + "Coal_5/Pass 5/Coal5-M-2.lvm",
+        3: lcm_base_path + "Coal_5/Pass 5/Coal5-M-3.lvm",
+        4: lcm_base_path + "Coal_5/Pass 5/Coal5-M-4.lvm",
+        5: lcm_base_path + "Coal_5/Pass 5/Coal5-M-5.lvm"}
+}
 
 print("Loading Data...")
 this_time = time.time()
@@ -224,6 +288,22 @@ force_time_offsets = {
         5: 0.0,
         6: 0.0,
         7: 0.0},
+    "Coal4_Worn_2ndPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal4_Worn_3rdPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
     "Coal4_Worn_4thPass_1_5in": {
         1: 0.0,
         2: 0.0,
@@ -241,6 +321,22 @@ force_time_offsets = {
         6: 0.0,
         7: 0.0},
     "Coal5_Mod_2ndPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal5_Worn_4thPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal5_Worn_5thPass_1_5in": {
         1: 0.0,
         2: 0.0,
         3: 0.0,
@@ -283,6 +379,22 @@ cap_time_offsets = {
         5: 0.0,
         6: 0.0,
         7: 0.0},
+    "Coal4_Worn_2ndPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal4_Worn_3rdPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
     "Coal4_Worn_4thPass_1_5in": {
         1: 0.0,
         2: 0.0,
@@ -300,6 +412,22 @@ cap_time_offsets = {
         6: 0.0,
         7: 0.0},
     "Coal5_Mod_2ndPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal5_Worn_4thPass_1_5in": {
+        1: 0.0,
+        2: 0.0,
+        3: 0.0,
+        4: 0.0,
+        5: 0.0,
+        6: 0.0,
+        7: 0.0},
+    "Coal5_Worn_5thPass_1_5in": {
         1: 0.0,
         2: 0.0,
         3: 0.0,
@@ -338,9 +466,10 @@ plot_spec = int(sys.argv[1])
 this_time = time.time()
 
 sub_passes1 = passes[0:4]
-sub_passes2 = passes[4:]
+sub_passes2 = passes[4:8]
+sub_passes3 = passes[8:]
 
-for plot_passes in [sub_passes1, sub_passes2]:
+for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
 
   fig, (ax1, ax2) = plt.subplots(2,1,sharex=True)
   if plot_spec > 0 :
