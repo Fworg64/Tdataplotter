@@ -437,7 +437,7 @@ cap_time_offsets = {
         7: 0.0}
 }
            
-plot_duration = 45 # seconds
+plot_duration = 5.5 # seconds
 
 for pass_no in passes:
   cap_data[pass_no] = {}
