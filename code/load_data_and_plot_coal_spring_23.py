@@ -31,7 +31,7 @@ passes  = ["Coal2_New_4thPass_1_0in", "Coal2_New_5thPass_1_0in",
            "Coal4_Worn_1stPass_1_5in","Coal4_Worn_2ndPass_1_5in", 
            "Coal4_Worn_3rdPass_1_5in", "Coal4_Worn_4thPass_1_5in",
            "Coal5_Mod_1stPass_1_5in", "Coal5_Mod_2ndPass_1_5in",
-           "Coal5_Worn_4thPass_1_5in"]#, "Coal5_Worn_5thPass_1_5in"]
+           "Coal5_Worn_4thPass_1_5in", "Coal5_Worn_5thPass_1_5in"]
 
 base_path = "/home/austinlocal/phd/Tdataplotter/data/"
 cap_base_path_passes_dict = {
@@ -46,7 +46,7 @@ cap_base_path_passes_dict = {
     passes[8]: base_path + "cap_files_sept_23/",
     passes[9]: base_path + "cap_files_sept_23/",
     passes[10]: base_path + "September_tests(4and5th)/",
-    #passes[11]: base_path + "September_tests(4and5th)/",
+    passes[11]: base_path + "September_tests(4and5th)/",
 }
 lcm_base_path = base_path + "coal/"
 
@@ -83,7 +83,7 @@ cap_passes_dict = {
 #        "cap_rec_20230209-162514.txt",
 #        "cap_rec_20230209-162531.txt",
 #        "cap_rec_20230209-162621.txt",
-        "cap_rec_20230209-162639.txt", # line 1 (sad)
+        "cap_rec_20230209-162639.txt", # line 1 
         "cap_rec_20230209-162829.txt", # line 2
         "cap_rec_20230209-163002.txt", # line 3
         "cap_rec_20230209-163152.txt", # line 4
@@ -145,12 +145,12 @@ cap_passes_dict = {
         "cap_rec_20230929-112722.txt", # line 4
         "cap_rec_20230929-112905.txt", # line 5
         "cap_rec_20230929-113150.txt"], # line 6 (edge)
-    #"Coal5_Worn_5thPass_1_5in": [ # Missing files
-    #    "cap_rec_20230929-161222.txt", # line 1
-    #    "cap_rec_20230929-161415.txt", # line 2
-    #    "cap_rec_20230929-161558.txt", # line 3
-    #    "cap_rec_20230929-161758.txt", # line 4
-    #    "cap_rec_20230929-161934.txt"], # line 5
+    "Coal5_Worn_5thPass_1_5in": [ # Missing files
+        "cap_rec_20230929-161222.txt", # line 1
+        "cap_rec_20230929-161415.txt", # line 2
+        "cap_rec_20230929-161558.txt", # line 3
+        "cap_rec_20230929-161758.txt", # line 4
+        "cap_rec_20230929-161934.txt"], # line 5
 }
 
 
@@ -259,86 +259,86 @@ force_time_offsets = {
     "Coal2_New_4thPass_1_0in": { 
         1: 1.2,
         2: 1.02,
-        3: 1.2,
-        4: 1.3,
-        5: 1.2},
+        3: 1.45,
+        4: 0.0, # bad
+        5: 1.33},
     "Coal2_New_5thPass_1_0in": { 
         1: 1.2,
         2: 1.07,
-        3: 1.2,
-        4: 0.9,
-        5: 1.2},
+        3: 1.7,
+        4: 0.83,
+        5: 1.25},
     "Coal2_New_6thPass_1_5in": { 
         1: 1.2,
         2: 1.14,
-        3: 1.2,
-        4: 1.3,
-        5: 0.7},
+        3: 1.82,
+        4: 0.0, # bad
+        5: 0.94},
     "Coal2_New_7thPass_1_0in": { 
-        1: 1.2,
-        2: 1.64,
-        3: 1.5,
-        4: 1.1,
-        5: 1.4},
+        1: 1.14,
+        2: 1.417,
+        3: 1.59,
+        4: 1.30,
+        5: 1.40},
     "Coal4_Worn_1stPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 0.0, # bad
+        2: 0.0, # bad
+        3: 2.05,
+        4: 2.05,
+        5: 2.43,
         6: 0.0,
         7: 0.0},
     "Coal4_Worn_2ndPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 2.00,
+        2: 2.16,
+        3: 1.75,
+        4: 3.08,
+        5: 1.54,
         6: 0.0,
         7: 0.0},
     "Coal4_Worn_3rdPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 1.57,
+        2: 1.66,
+        3: 2.35,
+        4: 1.60,
+        5: 1.57,
         6: 0.0,
         7: 0.0},
     "Coal4_Worn_4thPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 1.57,
+        2: 1.12,
+        3: 0.9,
+        4: 1.08,
+        5: 0.93,
         6: 0.0,
         7: 0.0},
     "Coal5_Mod_1stPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
+        1: 1.83,
+        2: 0.0, # bad
+        3: 0.0, # bad
         4: 0.0,
         5: 0.0,
         6: 0.0,
         7: 0.0},
     "Coal5_Mod_2ndPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 1.24,
+        2: 1.80 - 0.55,
+        3: 2.0,
+        4: 1.43,
+        5: 1.85,
         6: 0.0,
         7: 0.0},
     "Coal5_Worn_4thPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 0.0, # bad
+        2: 2.96 - 0.55,
+        3: 2.23,
+        4: 1.93,
+        5: 1.54,
         6: 0.0,
         7: 0.0},
     "Coal5_Worn_5thPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
+        1: 1.57,
+        2: 1.54,
         3: 0.0,
         4: 0.0,
         5: 0.0,
@@ -350,94 +350,94 @@ cap_time_offsets = {
     "Coal2_New_4thPass_1_0in": { 
         1: 18.0,
         2: 20.41,
-        3: 18.6,
+        3: 18.42,
         4: 0.0, # bad
-        5: 20.5},
+        5: 20.41},
     "Coal2_New_5thPass_1_0in": { 
         1: 11.4,
         2: 13.86,
-        3: 15.7,
-        4: 15.8,
-        5: 12.1},
+        3: 15.53,
+        4: 15.78,
+        5: 12.06},
     "Coal2_New_6thPass_1_5in": { 
         1: 4.7,
         2: 9.74,
         3: 0.0, # bad
         4: 0.0, # bad
-        5: 7.3},
+        5: 7.34},
     "Coal2_New_7thPass_1_0in": { 
-        1: 0.0, # bad
-        2: 9.12,
+        1: 2.26, 
+        2: 8.85,
         3: 5.8,
-        4: 5.1,
+        4: 5.06, 
         5: 5.8},
     "Coal4_Worn_1stPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 0.0, # bad
+        2: 0.0, # bad
+        3: 36.28,
+        4: 9.22,
+        5: 17.34,
         6: 0.0,
         7: 0.0},
     "Coal4_Worn_2ndPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 11.14,
+        2: 9.45,
+        3: 12.36,
+        4: 27.06,
+        5: 10.10,
         6: 0.0,
         7: 0.0},
     "Coal4_Worn_3rdPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 9.72,
+        2: 9.68,
+        3: 8.86,
+        4: 9.49,
+        5: 11.0,
         6: 0.0,
         7: 0.0},
     "Coal4_Worn_4thPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 27.26,
+        2: 35.23,
+        3: 17.23,
+        4: 9.28,
+        5: 12.69,
         6: 0.0,
         7: 0.0},
     "Coal5_Mod_1stPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
+        1: 38.31,
+        2: 0.0, # bad
+        3: 0.0, # bad
+        4: 0.0, # bad
         5: 0.0,
         6: 0.0,
         7: 0.0},
     "Coal5_Mod_2ndPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 27.73,
+        2: 36.36 - 0.55,
+        3: 9.45,
+        4: 8.41,
+        5: 10.66,
         6: 0.0,
         7: 0.0},
     "Coal5_Worn_4thPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
-        5: 0.0,
+        1: 0.0, # bad
+        2: 6.82 - 0.55,
+        3: 10.28,
+        4: 7.34,
+        5: 4.94,
         6: 0.0,
         7: 0.0},
     "Coal5_Worn_5thPass_1_5in": {
-        1: 0.0,
-        2: 0.0,
-        3: 0.0,
-        4: 0.0,
+        1: 10.16,
+        2: 6.38,
+        3: 0.0, # bad
+        4: 0.0, # bad
         5: 0.0,
         6: 0.0,
         7: 0.0}
 }
            
-plot_duration = 55 # seconds
+plot_duration = 45 # seconds
 
 for pass_no in passes:
   cap_data[pass_no] = {}
@@ -575,7 +575,7 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
   ax2.set_ylabel("Resonant Freq (MHz)")
   ax2.set_xlabel("Time (s)")
   ax2.set_title("Sensor Measurements vs Time; 1.0 in. pen.")
-  ax2.set_ylim([1.62, 1.85])
+  ax2.set_ylim([1.62, 1.90])
   ax2.invert_yaxis()
   #ax2.legend(handles=cap_material_plot_handles, loc="lower center") # replace with text
   ax2.text(0.2, 1.8, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
