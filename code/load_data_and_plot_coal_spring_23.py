@@ -7,10 +7,11 @@ import time
 from scipy import signal
 import numpy as np
 
+import pandas as pd
+
 import sys
 
 from scipy.interpolate import interp1d
-
 
 # Set figures
 fontsize = 18 
@@ -469,6 +470,13 @@ sub_passes1 = passes[0:4]
 sub_passes2 = passes[4:8]
 sub_passes3 = passes[8:]
 
+def first_index_greater_than(input_iterable, item):
+  try:
+    res = next(x for x, val in enumerate(input_iterable) if val > item)
+  except StopIteration:
+    res = len(input_iterable)
+  return res
+
 for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
 
   fig, (ax1, ax2) = plt.subplots(2,1,sharex=True)
@@ -481,14 +489,9 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
   pass_no_color_list = [(0.05, 0.07, 0.05), 'springgreen', 'darkred', "blue"]
   pass_no_colors = {pass_no:pass_no_color_list[idx] for idx, pass_no in enumerate(plot_passes)}
 
-  def first_index_greater_than(input_iterable, item):
-    try:
-      res = next(x for x, val in enumerate(input_iterable) if val > item)
-    except StopIteration:
-      res = len(input_iterable)
-    return res
 
   # Force data
+  force_data_for_csvs = []
   force_plot_handles = []
   for idx,pass_no in enumerate(plot_passes):
     force_values = [conversions.calculate_drag_force_coal(
@@ -506,6 +509,10 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
       ff, ft, fSxx = signal.spectrogram(np.array(force_values[plot_start:plot_end]), 537.63)#, scaling='density', mode='magnitude')
       my_axes[idx][0].pcolormesh(ft, ff,np.log10(fSxx), shading='gouraud')
       my_axes[idx][0].set_title("Force spec. {0}".format(pass_no))
+
+    # Save data for csv and interp
+    force_data_for_csvs.append({"time": force_times[plot_start:plot_end],
+                                "values": force_values[plot_start:plot_end]})
 
   ax1.set_ylabel("Force (kN)")
   #ax1.set_xlabel("Time (s)")
@@ -529,6 +536,7 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
   ax1.text(5.1, 50, "Air", color=mater_color_text_color_air, rotation = material_rotation_text_deg)
 
   # Cap data
+  cap_data_for_csvs = []
   cap_plot_handles = []
   for idx,pass_no in enumerate(plot_passes):
     had_cap = True
@@ -562,6 +570,10 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
                      cap_values[plot_start:plot_end]), 400.00)#, scaling='density', mode='magnitude')
       my_axes[idx][1].pcolormesh(ct, cf, np.log10(cSxx), shading='gouraud')
     my_axes[idx][1].set_title("Cap. spec. {0}".format(pass_no))
+
+    # Save data for csv and interp
+    cap_data_for_csvs.append({"time": cap_times[plot_start:plot_end],
+                              "values": cap_freqs[plot_start:plot_end]})
 
   #ax3.set_ylabel('Frequency (Hz)')
   #ax3.set_xlabel('Time (s)')
@@ -602,6 +614,24 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
 
 
   plt.show(block=False)
+
+  # interp data and save to file
+  for idx,pass_no in enumerate(plot_passes):
+    # make interp function for force data using cap time base w/ zoh
+    force_in_cap_base_func = interp1d(
+                                 force_data_for_csvs[idx]["time"], 
+                                 force_data_for_csvs[idx]["values"], kind=0,
+                                 bounds_error=False,
+                                 fill_value=(force_data_for_csvs[idx]["values"][0],
+                                             force_data_for_csvs[idx]["values"][-1]))
+    file_time_base = cap_data_for_csvs[idx]["time"]
+    file_cap_freq_vals = cap_data_for_csvs[idx]["time"]
+    file_force_vals = force_in_cap_base_func(file_time_base)
+
+    out_np_array = np.array([file_time_base, file_cap_freq_vals, file_force_vals]).T
+    out_df = pd.DataFrame(out_np_array, columns=["Time (s)", "Freq. (MHz)", "Force (kN)"])
+    filepath = f"coal_csvs/{pass_no}_line_{rep_line}.csv"
+    out_df.to_csv(filepath, index=False)
 
 input("Press Enter to close")
 
