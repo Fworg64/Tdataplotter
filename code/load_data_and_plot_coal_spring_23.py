@@ -34,6 +34,32 @@ passes  = ["Coal2_New_4thPass_1_0in", "Coal2_New_5thPass_1_0in",
            "Coal5_Mod_1stPass_1_5in", "Coal5_Mod_2ndPass_1_5in",
            "Coal5_Worn_4thPass_1_5in", "Coal5_Worn_5thPass_1_5in"]
 
+lines = [1, 2, 3, 4, 5]
+
+good_file_dict = {pass_no: {line_no: True for line_no in lines}
+		    for pass_no in passes}
+
+# Note which files are bad
+good_file_dict["Coal2_New_4thPass_1_0in"][1] = False
+good_file_dict["Coal2_New_5thPass_1_0in"][1] = False
+good_file_dict["Coal2_New_6thPass_1_5in"][1] = False
+good_file_dict["Coal4_Worn_1stPass_1_5in"][1] = False
+good_file_dict["Coal5_Worn_4thPass_1_5in"][1] = False
+
+good_file_dict["Coal4_Worn_1stPass_1_5in"][2] = False
+good_file_dict["Coal5_Mod_1stPass_1_5in"][2] = False
+
+good_file_dict["Coal2_New_6thPass_1_5in"][3] = False
+good_file_dict["Coal5_Mod_1stPass_1_5in"][3] = False
+good_file_dict["Coal5_Worn_5thPass_1_5in"][3] = False
+
+good_file_dict["Coal2_New_4thPass_1_0in"][4] = False
+good_file_dict["Coal5_Mod_1stPass_1_5in"][4] = False
+good_file_dict["Coal5_Worn_5thPass_1_5in"][4] = False
+
+good_file_dict["Coal5_Mod_1stPass_1_5in"][5] = False
+good_file_dict["Coal5_Worn_5thPass_1_5in"][5] = False
+
 base_path = "/home/austinlocal/phd/Tdataplotter/data/"
 cap_base_path_passes_dict = {
     passes[0]: base_path + "cap_files_2_10_23/Niosh-reDAQ/",
@@ -625,13 +651,25 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
                                  fill_value=(force_data_for_csvs[idx]["values"][0],
                                              force_data_for_csvs[idx]["values"][-1]))
     file_time_base = cap_data_for_csvs[idx]["time"]
-    file_cap_freq_vals = cap_data_for_csvs[idx]["time"]
+    file_cap_freq_vals = cap_data_for_csvs[idx]["values"]
     file_force_vals = force_in_cap_base_func(file_time_base)
 
     out_np_array = np.array([file_time_base, file_cap_freq_vals, file_force_vals]).T
     out_df = pd.DataFrame(out_np_array, columns=["Time (s)", "Freq. (MHz)", "Force (kN)"])
     filepath = f"coal_csvs/{pass_no}_line_{rep_line}.csv"
     out_df.to_csv(filepath, index=False)
+
+# Save data index file for all files too, not just plotted ones
+filenames = []
+goodnesses = []
+for pass_no in passes:
+    for line_no in lines:
+        filenames.append(f"{pass_no}_line_{line_no}.csv")
+        goodnesses.append(good_file_dict[pass_no][line_no])
+
+index_out_array = np.array([filenames, goodnesses]).T
+index_out_df = pd.DataFrame(index_out_array, columns=["Filename", "Data is good"])
+index_out_df.to_csv("coal_csvs/index.csv", index=False)
 
 input("Press Enter to close")
 
