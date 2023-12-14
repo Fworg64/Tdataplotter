@@ -13,6 +13,8 @@ import sys
 
 from scipy.interpolate import interp1d
 
+import pdb
+
 # Set figures
 fontsize = 18 
 plt.rc('font', size=fontsize, family='sans') 
@@ -36,29 +38,38 @@ passes  = ["Coal2_New_4thPass_1_0in", "Coal2_New_5thPass_1_0in",
 
 lines = [1, 2, 3, 4, 5]
 
-good_file_dict = {pass_no: {line_no: True for line_no in lines}
+chan_name = "chan_b"
+
+good_file_dict = {pass_no: {line_no: False for line_no in lines}
 		    for pass_no in passes}
 
-# Note which files are bad
-good_file_dict["Coal2_New_4thPass_1_0in"][1] = False
-good_file_dict["Coal2_New_5thPass_1_0in"][1] = False
-good_file_dict["Coal2_New_6thPass_1_5in"][1] = False
-good_file_dict["Coal4_Worn_1stPass_1_5in"][1] = False
-good_file_dict["Coal5_Worn_4thPass_1_5in"][1] = False
+# Note which files are good
+good_file_dict["Coal2_New_4thPass_1_0in"][2] = True
 
-good_file_dict["Coal4_Worn_1stPass_1_5in"][2] = False
-good_file_dict["Coal5_Mod_1stPass_1_5in"][2] = False
+good_file_dict["Coal2_New_5thPass_1_0in"][3] = True
+good_file_dict["Coal2_New_5thPass_1_0in"][4] = True
+good_file_dict["Coal2_New_5thPass_1_0in"][5] = True
 
-good_file_dict["Coal2_New_6thPass_1_5in"][3] = False
-good_file_dict["Coal5_Mod_1stPass_1_5in"][3] = False
-good_file_dict["Coal5_Worn_5thPass_1_5in"][3] = False
+good_file_dict["Coal2_New_6thPass_1_5in"][2] = True
+good_file_dict["Coal2_New_6thPass_1_5in"][5] = True
 
-good_file_dict["Coal2_New_4thPass_1_0in"][4] = False
-good_file_dict["Coal5_Mod_1stPass_1_5in"][4] = False
-good_file_dict["Coal5_Worn_5thPass_1_5in"][4] = False
+good_file_dict["Coal2_New_7thPass_1_0in"][1] = True
+good_file_dict["Coal2_New_7thPass_1_0in"][2] = True
+good_file_dict["Coal2_New_7thPass_1_0in"][3] = True
+good_file_dict["Coal2_New_7thPass_1_0in"][4] = True
+good_file_dict["Coal2_New_7thPass_1_0in"][5] = True
 
-good_file_dict["Coal5_Mod_1stPass_1_5in"][5] = False
-good_file_dict["Coal5_Worn_5thPass_1_5in"][5] = False
+good_file_dict["Coal5_Mod_2ndPass_1_5in"][2] = True
+good_file_dict["Coal5_Mod_2ndPass_1_5in"][3] = True
+good_file_dict["Coal5_Mod_2ndPass_1_5in"][4] = True
+good_file_dict["Coal5_Mod_2ndPass_1_5in"][5] = True
+
+good_file_dict["Coal5_Worn_4thPass_1_5in"][2] = True
+good_file_dict["Coal5_Worn_4thPass_1_5in"][3] = True
+good_file_dict["Coal5_Worn_4thPass_1_5in"][4] = True
+good_file_dict["Coal5_Worn_4thPass_1_5in"][5] = True
+
+good_file_dict["Coal5_Worn_5thPass_1_5in"][2] = True
 
 base_path = "/home/austinlocal/phd/Tdataplotter/data/"
 cap_base_path_passes_dict = {
@@ -488,7 +499,13 @@ print("Data loaded in {0} sec".format(that_time - this_time))
 print("Plotting Data...")
 # Plot all pass_no levels in same plot for one representative sample
 # Plot spectrograms if arguments
-plot_spec = int(sys.argv[1])
+plot_spec = 1
+try:
+  plot_spec = int(sys.argv[1])
+except IndexError:
+  print("Specify the line as the first argument. 1-5")
+  print("e.g. $> python3 load_data_and_plot_coal_spring_23.py 1")
+  quit()
 
 this_time = time.time()
 
@@ -567,15 +584,25 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
   for idx,pass_no in enumerate(plot_passes):
     had_cap = True
     raw_cap_values = [0.0] * 100
+    all_chan_values = {}
     try:
-      raw_cap_values  = [point["chan_b"] 
+      raw_cap_values  = [point[chan_name]
                     for point in cap_data[pass_no][rep_line]] # these are the encoder values
+      
+      for cname in ["chan_a", "chan_b", "chan_c", "chan_d"]:
+        all_chan_values[cname] = [point[cname]
+                  for point in cap_data[pass_no][rep_line]]
+          
     except KeyError as e:
       print(pass_no + " has no line #" + str(rep_line))
       had_cap = False
     cap_freqs, cap_values = conversions.calculate_freq_and_cap(raw_cap_values, 18.0e-6, 33.0e-12,2)
     cap_values = np.multiply(cap_values,1.0e12) # convert to pF
     cap_freqs = np.multiply(cap_freqs,1.0e-6) # convert to MHz
+
+    for cname in ["chan_a", "chan_b", "chan_c", "chan_d"]:
+        all_chan_values[cname], _ = conversions.calculate_freq_and_cap(all_chan_values[cname], 18.0e-6, 33.0e-12,2)
+        all_chan_values[cname] = np.multiply(all_chan_values[cname],1.0e-6) # convert to MHz
 
     cap_times = [0.0] * 100
     try:
@@ -599,7 +626,11 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
 
     # Save data for csv and interp
     cap_data_for_csvs.append({"time": cap_times[plot_start:plot_end],
-                              "values": cap_freqs[plot_start:plot_end]})
+                              "chan_a": all_chan_values["chan_a"][plot_start:plot_end],
+                              "chan_b": all_chan_values["chan_b"][plot_start:plot_end],
+                              "chan_c": all_chan_values["chan_c"][plot_start:plot_end],
+                              "chan_d": all_chan_values["chan_d"][plot_start:plot_end]
+                              })
 
   #ax3.set_ylabel('Frequency (Hz)')
   #ax3.set_xlabel('Time (s)')
@@ -651,11 +682,25 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
                                  fill_value=(force_data_for_csvs[idx]["values"][0],
                                              force_data_for_csvs[idx]["values"][-1]))
     file_time_base = cap_data_for_csvs[idx]["time"]
-    file_cap_freq_vals = cap_data_for_csvs[idx]["values"]
+    file_cap_freq_chan_a_vals = cap_data_for_csvs[idx]["chan_a"]
+    file_cap_freq_chan_b_vals = cap_data_for_csvs[idx]["chan_b"]
+    file_cap_freq_chan_c_vals = cap_data_for_csvs[idx]["chan_c"]
+    file_cap_freq_chan_d_vals = cap_data_for_csvs[idx]["chan_d"]
     file_force_vals = force_in_cap_base_func(file_time_base)
 
-    out_np_array = np.array([file_time_base, file_cap_freq_vals, file_force_vals]).T
-    out_df = pd.DataFrame(out_np_array, columns=["Time (s)", "Freq. (MHz)", "Force (kN)"])
+    out_np_array = np.array([file_time_base, 
+        file_cap_freq_chan_a_vals, 
+        file_cap_freq_chan_b_vals, 
+        file_cap_freq_chan_c_vals, 
+        file_cap_freq_chan_d_vals, 
+        file_force_vals]).T
+
+    out_df = pd.DataFrame(out_np_array, columns=["Time (s)", 
+             "Freq. A (MHz)", 
+             "Freq. B (MHz)", 
+             "Freq. C (MHz)", 
+             "Freq. D (MHz)", 
+             "Force (kN)"])
     filepath = f"coal_csvs/{pass_no}_line_{rep_line}.csv"
     out_df.to_csv(filepath, index=False)
 
@@ -669,7 +714,7 @@ for pass_no in passes:
 
 index_out_array = np.array([filenames, goodnesses]).T
 index_out_df = pd.DataFrame(index_out_array, columns=["Filename", "Data is good"])
-index_out_df.to_csv("coal_csvs/index.csv", index=False)
+index_out_df.to_csv(f"coal_csvs/index.csv", index=False)
 
 input("Press Enter to close")
 
