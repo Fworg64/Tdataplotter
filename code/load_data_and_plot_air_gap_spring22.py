@@ -6,20 +6,20 @@ import matplotlib.patches as mpatches
 import matplotlib # checked for version
 import time
 import pdb
-from scipy import signal
+from scipy import signal, stats
 import numpy as np
 
 from scipy.interpolate import interp1d
 
 # Set figures
-fontsize = 22
+fontsize = 26
 plt.rc('font', size=fontsize, family='sans')
 plt.rc('axes', titlesize=fontsize)
 plt.rc('axes', labelsize=fontsize)
 plt.rc('legend', fontsize=fontsize)
 
 PLOT_DOWNSAMPLE_FACTOR = 300
-PLOT_MARKER_SIZE = 4
+PLOT_MARKER_SIZE = 7
 
 # load data
 samples = [1, 2, 3]
@@ -59,7 +59,7 @@ cap_time_offsets_s = {1: {2: 1.0, 4: 4.0, 6: 3.5, 8: 3.0, 10: 5.5},
                       2: {2: 6.0, 4: 8.5, 6: 3.5, 8: 5.75, 10: 2.5},
                       3: {2: 3.0, 4: 3.0, 6: 4.25, 8: 2.5, 10: 2.75}}
 
-sample_shape_dict = {1: 'o', 2: '1', 3: 's'}
+sample_shape_dict = {1: 'x', 2: '1', 3: '*'}
 
 print("Loading Data...")
 this_time = time.time()
@@ -115,7 +115,6 @@ for sample in samples:
 # plot cap v time and force v time
 print("Plotting Data...")
 print('matplotlib: {}'. format(matplotlib. __version__))
-#pdb.set_trace()
 this_time = time.time()
 
 rate_colors = {2: (0.2, 0.3, 0.8), 4: (0.4, 0.7, 0.6),
@@ -138,6 +137,7 @@ for sample in samples:
   ax1.set_ylabel("Force (kN)")
   #plt.xlabel("Time (s)")
   ax1.set_title("Applied Force vs Time")
+  ax1.grid(True)
 #  for rate in rates: # (dont) plot cap raw data
 #    caps = [point["chan_c"] for point in cap_data[sample][rate]]
 #    plt.plot(caps[::100])
@@ -148,44 +148,79 @@ for sample in samples:
     # Adjust times to register with load frame
     times = [t - cap_time_offsets_s[sample][rate] for t in times]
     rate_plot_handle_, = ax2.plot(times, freq_plot, 
-                              label="{0} kN/s".format(rate), color=rate_colors[rate], marker=sample_shape_dict[sample], markersize=PLOT_MARKER_SIZE)
+                              label="{0} kN/s".format(rate), color=rate_colors[rate], 
+                              marker=sample_shape_dict[sample], markersize=PLOT_MARKER_SIZE)
     rate_plot_handle.append(rate_plot_handle_)
 
   # Split legend
-  first_legend = ax2.legend(handles=rate_legend_artists[:2], loc='lower center')
+  #first_legend = ax2.legend(handles=rate_legend_artists[:2], loc='lower center')
   # Add the legend manually to the current Axes.
-  plt.gca().add_artist(first_legend)
+  #plt.gca().add_artist(first_legend)
   # Create another legend for the second set
-  ax2.legend(handles=rate_legend_artists[2:], loc='lower right')
+  ax2.legend(handles=rate_legend_artists, loc='lower right')
 
   ax2.set_ylabel("Resonant Freq. (MHz)")
   ax2.set_xlabel("Time (s)")
-  ax2.set_title("Sensor Resonant Freq. vs Time")
+  ax2.set_title("Unfiltered Single Channel Sensor Resonant Freq. vs Time")
   ax2.invert_yaxis()
+  ax2.grid(True)
 #  plt.ylim([2500,2700])
 
 # plot force v cap
 # interpolate force
+# accumulate force and time series for regression
+all_forces = []
+all_freqs = []
 fig2 = plt.figure()
 for sample in samples:
-  for rate in rates:
+  for rate in rates[1:]:
     forces = [-point["kN"] for point in force_data[sample][rate]]
     force_times = [point["Sec"] for point in force_data[sample][rate]]
     interp_func = interp1d(force_times, forces,  bounds_error=False, fill_value=0.0)
-    freq_plot = [f/1e6 for f in freq_meas[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]] 
+    freq_plot = [f/1e3 for f in freq_meas[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]] 
     cap_times  = [point["Sec"] for point in cap_data[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]]
     # Attempt to reset bias at start
+    max_freq= max(freq_plot)
+    freq_plot = [f - max_freq for f in freq_plot]
+    if sample==1:
+      freq_plot = [f + 14.65 for f in freq_plot]
     #minval = min([c if c >= 0 else 1e9 for c in cap_times])
     #mindex = cap_times.index(minval)
     #pf_cap = [c - pf_cap[mindex] for c in pf_cap] 
     # Adjust times to register with load frame
     cap_times = [t - cap_time_offsets_s[sample][rate] for t in cap_times]
     interp_forces = interp_func(cap_times)
-    plt.plot(freq_plot, interp_forces, color=rate_colors[rate], marker=sample_shape_dict[sample], markersize=PLOT_MARKER_SIZE)
-plt.legend(handles=rate_legend_artists)
-plt.xlabel('Resonant Freq. (MHz)')
+    for freq, force in zip(freq_plot, list(interp_forces)):
+        if freq <= 0 and freq >=-20:
+          all_freqs.append(freq)
+          all_forces.append(force)
+    plt.plot(freq_plot, interp_forces, 
+        color=rate_colors[rate], 
+        marker=sample_shape_dict[sample], 
+        markersize=PLOT_MARKER_SIZE,
+        linewidth=0)
+# Make regression and plot
+reg_results = stats.linregress(all_freqs, all_forces)
+print("Found linear regression with ")
+print(reg_results)
+lin_domain = np.unique(all_freqs)
+plt_vals = [reg_results.slope * x + reg_results.intercept 
+            for x in lin_domain]
+plt.plot(lin_domain, plt_vals, 
+         color='red',
+         linestyle='--',
+         marker='*',
+         markersize=2*PLOT_MARKER_SIZE,
+         linewidth=1.8)
+
+plt.legend(handles=rate_legend_artists[1:])
+plt.xlabel(r'$\Delta$ Resonant Freq. (KHz)')
 plt.ylabel("Force (kN)")
-plt.title("Force vs Resonant Frequency")
+plt.title("Force vs Resonant Frequency for Single Channel, No Filter")
+plt.grid(True, which="minor", axis="both")
+plt.minorticks_on()
+plt.tick_params(which="minor", bottom=False, left=False)
+plt.grid(True, which="major", axis='both', linewidth=1, color='k')
 fig2.axes[0].invert_xaxis()
 
 # plot device strain
@@ -201,6 +236,10 @@ plt.legend(handles=rate_legend_artists)
 plt.xlabel('Time (s)')
 plt.ylabel(r'Strain $(\Delta \ell / \ell_0)$')
 plt.title("Device Strain vs Time")
+plt.grid(True, which="minor", axis="both")
+plt.minorticks_on()
+plt.tick_params(which="minor", bottom=False, left=False)
+plt.grid(True, which="major", axis='both', linewidth=1, color='k')
 
 
 that_time = time.time()
