@@ -45,6 +45,7 @@ good_file_dict = {pass_no: {line_no: False for line_no in lines}
 
 # Note which files are good
 good_file_dict["Coal2_New_4thPass_1_0in"][2] = True
+good_file_dict["Coal2_New_4thPass_1_0in"][5] = True
 
 good_file_dict["Coal2_New_5thPass_1_0in"][3] = True
 good_file_dict["Coal2_New_5thPass_1_0in"][4] = True
@@ -390,25 +391,25 @@ cap_time_offsets = {
         2: 20.615,
         3: 18.42,
         4: 0.0, # bad
-        5: 20.41},
+        5: 20.637},
     "Coal2_New_5thPass_1_0in": { 
         1: 11.4,
         2: 13.86,
         3: 15.70,
         4: 15.951,
-        5: 12.06},
+        5: 12.220},
     "Coal2_New_6thPass_1_5in": { 
         1: 4.7,
         2: 9.868,
         3: 0.0, # bad
         4: 0.0, # bad
-        5: 7.34},
+        5: 7.386},
     "Coal2_New_7thPass_1_0in": { 
         1: 2.31, 
         2: 8.935,
         3: 5.868,
         4: 5.119,
-        5: 5.8},
+        5: 5.8195},
     "Coal4_Worn_1stPass_1_5in": {
         1: 0.0, # bad
         2: 0.0, # bad
@@ -454,7 +455,7 @@ cap_time_offsets = {
         2: 36.180,
         3: 9.551,
         4: 8.505,
-        5: 10.66,
+        5: 10.773,
         6: 0.0,
         7: 0.0},
     "Coal5_Worn_4thPass_1_5in": {
@@ -462,7 +463,7 @@ cap_time_offsets = {
         2: 6.343,
         3: 10.384,
         4: 7.411,
-        5: 4.94,
+        5: 4.998,
         6: 0.0,
         7: 0.0},
     "Coal5_Worn_5thPass_1_5in": {
