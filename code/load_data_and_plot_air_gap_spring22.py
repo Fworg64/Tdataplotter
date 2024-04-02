@@ -59,7 +59,8 @@ cap_time_offsets_s = {1: {2: 1.0, 4: 4.0, 6: 3.5, 8: 3.0, 10: 5.5},
                       2: {2: 6.0, 4: 8.5, 6: 3.5, 8: 5.75, 10: 2.5},
                       3: {2: 3.0, 4: 3.0, 6: 4.25, 8: 2.5, 10: 2.75}}
 
-sample_shape_dict = {1: 'x', 2: '1', 3: '*'}
+sample_shape_dict = {1: '*', 2: 'x', 3: '.'}
+sample_shape_sizes = {1: 3, 2: 2, 3: 1.5}
 
 print("Loading Data...")
 this_time = time.time()
@@ -197,7 +198,7 @@ for sample in samples:
     plt.plot(freq_plot, interp_forces, 
         color=rate_colors[rate], 
         marker=sample_shape_dict[sample], 
-        markersize=PLOT_MARKER_SIZE,
+        markersize=PLOT_MARKER_SIZE * sample_shape_sizes[sample],
         linewidth=0)
 # Make regression and plot
 reg_results = stats.linregress(all_freqs, all_forces)
@@ -206,17 +207,26 @@ print(reg_results)
 lin_domain = np.unique(all_freqs)
 plt_vals = [reg_results.slope * x + reg_results.intercept 
             for x in lin_domain]
-plt.plot(lin_domain, plt_vals, 
+linreg_artist  = plt.plot(lin_domain, plt_vals, 
          color='red',
          linestyle='--',
-         marker='*',
+         marker='o',
          markersize=2*PLOT_MARKER_SIZE,
-         linewidth=1.8)
+         linewidth=1.8, label="Linear Reg.")
 
-plt.legend(handles=rate_legend_artists[1:])
+plt.text(15, 111, r"Linear Regression $x$ in 0 to 20 kHz:",
+    color="red")
+plt.text(15, 91, f"F = {reg_results.slope:.3f} x {reg_results.intercept:-2.3f}",
+    color="red")
+plt.text(15, 71, r"$R^2$ Score: ",
+    color="red")
+plt.text(15, 51, f"{reg_results.rvalue**2:.5f}",
+    color="red")
+fig_legend_artists = rate_legend_artists[1:] + linreg_artist
+plt.legend(handles=fig_legend_artists)
 plt.xlabel(r'$\Delta$ Resonant Freq. (KHz)')
-plt.ylabel("Force (kN)")
-plt.title("Force vs Resonant Frequency for Single Channel, No Filter")
+plt.ylabel("Normal Force (kN)")
+plt.title("Air Gap Configuration, Force vs Resonant Frequency for Single Channel, No Filter")
 plt.grid(True, which="minor", axis="both")
 plt.minorticks_on()
 plt.tick_params(which="minor", bottom=False, left=False)
