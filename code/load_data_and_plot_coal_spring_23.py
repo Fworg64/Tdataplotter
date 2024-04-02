@@ -538,9 +538,21 @@ for plot_passes in [sub_passes1, sub_passes2, sub_passes3]:
   force_data_for_csvs = []
   force_plot_handles = []
   for idx,pass_no in enumerate(plot_passes):
-    force_values = [conversions.calculate_drag_force_coal(
-                      point["v1"], point["v2"], point["v3"], point["v4"])/1000.0
-                    for point in lcm_data[pass_no][rep_line]]
+    if "Coal2" in pass_no:
+        force_values = [conversions.calculate_normal_force_coal_2(
+            point["v1"], point["v2"], point["v3"], point["v4"])/1000.0
+            for point in lcm_data[pass_no][rep_line]]
+        print(f"Using Coal2 for {pass_no}.")
+    elif "Coal5" in pass_no:
+        force_values = [conversions.calculate_normal_force_coal_5(
+            point["v1"], point["v2"], point["v3"], point["v4"])/1000.0
+            for point in lcm_data[pass_no][rep_line]]
+        print(f"Using Coal5 for {pass_no}.")
+    else:
+        force_values = [conversions.calculate_drag_force_coal(
+            point["v1"], point["v2"], point["v3"], point["v4"])/1000.0
+            for point in lcm_data[pass_no][rep_line]]
+        print(f"Using default for {pass_no}.")
     force_times = [point["Sec"]-force_time_offsets[pass_no][rep_line] 
                     for point in lcm_data[pass_no][rep_line]]
     plot_start = first_index_greater_than(force_times, 0.0)
