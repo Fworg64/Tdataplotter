@@ -290,13 +290,13 @@ print("Loading Data...")
 this_time = time.time()
 cap_data = {}
 lcm_data = {}
-cap_dt = 0.002475
+cap_dt = 0.002500
 
 
 force_time_offsets = {
     "Coal2_New_4thPass_1_0in": { 
         1: 1.2,
-        2: 1.02,
+        2: 1.01,
         3: 1.45,
         4: 0.0, # bad
         5: 1.33},
@@ -387,7 +387,7 @@ force_time_offsets = {
 cap_time_offsets = {
     "Coal2_New_4thPass_1_0in": { 
         1: 18.0,
-        2: 20.41,
+        2: 20.615,
         3: 18.42,
         4: 0.0, # bad
         5: 20.41},
@@ -399,13 +399,13 @@ cap_time_offsets = {
         5: 12.06},
     "Coal2_New_6thPass_1_5in": { 
         1: 4.7,
-        2: 9.74,
+        2: 9.868,
         3: 0.0, # bad
         4: 0.0, # bad
         5: 7.34},
     "Coal2_New_7thPass_1_0in": { 
-        1: 2.26, 
-        2: 8.85,
+        1: 2.31, 
+        2: 8.935,
         3: 5.8,
         4: 5.06, 
         5: 5.8},
@@ -451,7 +451,7 @@ cap_time_offsets = {
         7: 0.0},
     "Coal5_Mod_2ndPass_1_5in": {
         1: 27.73,
-        2: 36.36 - 0.55,
+        2: 36.180,
         3: 9.45,
         4: 8.41,
         5: 10.66,
@@ -459,7 +459,7 @@ cap_time_offsets = {
         7: 0.0},
     "Coal5_Worn_4thPass_1_5in": {
         1: 0.0, # bad
-        2: 6.82 - 0.55,
+        2: 6.343,
         3: 10.28,
         4: 7.34,
         5: 4.94,
@@ -467,7 +467,7 @@ cap_time_offsets = {
         7: 0.0},
     "Coal5_Worn_5thPass_1_5in": {
         1: 10.16,
-        2: 6.38,
+        2: 6.471,
         3: 0.0, # bad
         4: 0.0, # bad
         5: 0.0,
