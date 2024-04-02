@@ -303,7 +303,7 @@ force_time_offsets = {
     "Coal2_New_5thPass_1_0in": { 
         1: 1.2,
         2: 1.07,
-        3: 1.7,
+        3: 1.699,
         4: 0.83,
         5: 1.25},
     "Coal2_New_6thPass_1_5in": { 
@@ -315,7 +315,7 @@ force_time_offsets = {
     "Coal2_New_7thPass_1_0in": { 
         1: 1.14,
         2: 1.417,
-        3: 1.59,
+        3: 1.595,
         4: 1.30,
         5: 1.40},
     "Coal4_Worn_1stPass_1_5in": {
@@ -361,7 +361,7 @@ force_time_offsets = {
     "Coal5_Mod_2ndPass_1_5in": {
         1: 1.24,
         2: 1.80 - 0.55,
-        3: 2.0,
+        3: 1.9875,
         4: 1.43,
         5: 1.85,
         6: 0.0,
@@ -394,7 +394,7 @@ cap_time_offsets = {
     "Coal2_New_5thPass_1_0in": { 
         1: 11.4,
         2: 13.86,
-        3: 15.53,
+        3: 15.70,
         4: 15.78,
         5: 12.06},
     "Coal2_New_6thPass_1_5in": { 
@@ -406,7 +406,7 @@ cap_time_offsets = {
     "Coal2_New_7thPass_1_0in": { 
         1: 2.31, 
         2: 8.935,
-        3: 5.8,
+        3: 5.868,
         4: 5.06, 
         5: 5.8},
     "Coal4_Worn_1stPass_1_5in": {
@@ -452,7 +452,7 @@ cap_time_offsets = {
     "Coal5_Mod_2ndPass_1_5in": {
         1: 27.73,
         2: 36.180,
-        3: 9.45,
+        3: 9.551,
         4: 8.41,
         5: 10.66,
         6: 0.0,
@@ -460,7 +460,7 @@ cap_time_offsets = {
     "Coal5_Worn_4thPass_1_5in": {
         1: 0.0, # bad
         2: 6.343,
-        3: 10.28,
+        3: 10.384,
         4: 7.34,
         5: 4.94,
         6: 0.0,
