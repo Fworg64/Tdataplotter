@@ -55,9 +55,9 @@ load_frame_files   = {1: {2: "/home/austinlocal/phd/Tdataplotter/data/05_17_2022
                           8: "/home/austinlocal/phd/Tdataplotter/data/05_17_2022/2-2_8kNs/specimen.dat",
                          10: "/home/austinlocal/phd/Tdataplotter/data/05_17_2022/2-2_10kNs/specimen.dat"}}
 
-cap_time_offsets_s = {1: {2: 1.0, 4: 4.0, 6: 3.5, 8: 3.0, 10: 5.5},
-                      2: {2: 6.0, 4: 8.5, 6: 3.5, 8: 5.75, 10: 2.5},
-                      3: {2: 3.0, 4: 3.0, 6: 4.25, 8: 2.5, 10: 2.75}}
+cap_time_offsets_s = {1: {2: -0.24, 4: 2.2, 6: 2.07, 8: 1.78, 10: 4.78},
+                      2: {2: 5.4, 4: 0.0, 6: 0.1, 8: 1.74, 10: 2.2},
+                      3: {2: 0.8, 4: 2.3, 6: 2.05, 8: 1.73, 10: 2.01}}
 
 sample_shape_dict = {1: '*', 2: 'x', 3: '.'}
 sample_shape_sizes = {1: 3, 2: 2, 3: 1.5}
@@ -180,8 +180,9 @@ for sample in samples:
     interp_func = interp1d(force_times, forces,  bounds_error=False, fill_value=0.0)
     freq_plot = [f/1e3 for f in freq_meas[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]] 
     cap_times  = [point["Sec"] for point in cap_data[sample][rate][15:-15:PLOT_DOWNSAMPLE_FACTOR]]
-    # Attempt to reset bias at start
-    max_freq= max(freq_plot)
+    # Attempt to reset bias at start, grab value closest to t=0
+    zero_index = np.argmin(np.abs(cap_times))
+    max_freq= freq_plot[zero_index]
     freq_plot = [f - max_freq for f in freq_plot]
     if sample==1:
       freq_plot = [f + 14.65 for f in freq_plot]
@@ -216,7 +217,7 @@ linreg_artist  = plt.plot(lin_domain, plt_vals,
 
 plt.text(15, 111, r"Linear Regression $x$ in 0 to 20 kHz:",
     color="red")
-plt.text(15, 91, f"F = {reg_results.slope:.3f} x {reg_results.intercept:-2.3f}",
+plt.text(15, 91, f"F = {reg_results.slope:.3f} x  + {reg_results.intercept:-2.3f}",
     color="red")
 plt.text(15, 71, r"$R^2$ Score: ",
     color="red")
