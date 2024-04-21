@@ -12,7 +12,7 @@ from scipy.interpolate import interp1d
 
 # Set figures
 fontsize = 22
-plt.rc('font', size=fontsize, family='sans')
+plt.rc('font', size=fontsize, family='serif')
 plt.rc('axes', titlesize=fontsize)
 plt.rc('axes', labelsize=fontsize)
 plt.rc('legend', fontsize=fontsize)
@@ -162,6 +162,33 @@ plt.legend(["{0} kN/s".format(rate) for rate in rates])
 plt.xlabel('Capacitance (pF)')
 plt.ylabel("Force (kN)")
 plt.title("Force vs Capacitance")
+
+# plot delta freq in kHz
+# interpolate force
+fig2a = plt.figure()
+for sample in samples:
+  for rate in rates:
+    forces = [-point["kN"] for point in force_data[sample][rate]]
+    force_times = [point["Sec"] for point in force_data[sample][rate]]
+    interp_func = interp1d(force_times, forces,  bounds_error=False, fill_value=0.0)
+    cap_times  = [point["Sec"] for point in cap_data[sample][rate][15:-15:100]]
+    khz_freq = [f/1.0e3 for f in freq_meas[sample][rate][15:-15:100]] 
+    zero_index = np.argmin(np.abs(cap_times))
+    bias_reset_value = khz_freq[zero_index]
+    pf_cap = [c/1.0e-12 for c in cap_meas[sample][rate][15:-15:100]] 
+    khz_freq = [f - bias_reset_value for f in khz_freq]
+    interp_forces = interp_func(cap_times)
+    plt.plot(khz_freq, interp_forces, color=rate_colors[rate])
+plt.legend(["{0} kN/s".format(rate) for rate in rates])
+plt.xlabel(r'$\Delta$ Resonant Freq. (KHz)')
+plt.ylabel("Normal Force (kN)")
+plt.title("Dynamic Flex Configuration")
+plt.grid(True, which="minor", axis="both")
+plt.minorticks_on()
+plt.tick_params(which="minor", bottom=False, left=False)
+plt.grid(True, which="major", axis='both', linewidth=1, color='k')
+fig2a.axes[0].set_xlim(-50, 25)
+fig2a.axes[0].invert_xaxis()
 
 # plot device strain
 fig3 = plt.figure()

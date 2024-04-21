@@ -12,8 +12,8 @@ import numpy as np
 from scipy.interpolate import interp1d
 
 # Set figures
-fontsize = 26
-plt.rc('font', size=fontsize, family='sans')
+fontsize = 22
+plt.rc('font', size=fontsize, family='serif')
 plt.rc('axes', titlesize=fontsize)
 plt.rc('axes', labelsize=fontsize)
 plt.rc('legend', fontsize=fontsize)
@@ -121,7 +121,6 @@ this_time = time.time()
 rate_colors = {2: (0.2, 0.3, 0.8), 4: (0.4, 0.7, 0.6),
                6: (0.6, 0.3, 0.4), 8: (0.8, 0.7, 0.2), 10: (1.0, 0.3, 0.0)}
 
-red_patch = mpatches.Patch(color='red', label='The red data')
 rate_legend_artists = [mpatches.Patch(color=rate_colors[rate], label=f'{rate} kN/s') 
                         for rate in rates]
 
@@ -173,8 +172,9 @@ for sample in samples:
 all_forces = []
 all_freqs = []
 fig2 = plt.figure()
+plot_lin_reg = False
 for sample in samples:
-  for rate in rates[1:]:
+  for rate in rates[:]: # remember to include rates
     forces = [-point["kN"] for point in force_data[sample][rate]]
     force_times = [point["Sec"] for point in force_data[sample][rate]]
     interp_func = interp1d(force_times, forces,  bounds_error=False, fill_value=0.0)
@@ -184,7 +184,7 @@ for sample in samples:
     zero_index = np.argmin(np.abs(cap_times))
     max_freq= freq_plot[zero_index]
     freq_plot = [f - max_freq for f in freq_plot]
-    if sample==1:
+    if sample==1 and plot_lin_reg:
       freq_plot = [f + 14.65 for f in freq_plot]
     #minval = min([c if c >= 0 else 1e9 for c in cap_times])
     #mindex = cap_times.index(minval)
@@ -199,8 +199,9 @@ for sample in samples:
     plt.plot(freq_plot, interp_forces, 
         color=rate_colors[rate], 
         marker=sample_shape_dict[sample], 
-        markersize=PLOT_MARKER_SIZE * sample_shape_sizes[sample],
-        linewidth=0)
+        #markersize=PLOT_MARKER_SIZE * sample_shape_sizes[sample],
+        #linewidth=0,
+        markersize=0)
 # Make regression and plot
 reg_results = stats.linregress(all_freqs, all_forces)
 print("Found linear regression with ")
@@ -208,30 +209,31 @@ print(reg_results)
 lin_domain = np.unique(all_freqs)
 plt_vals = [reg_results.slope * x + reg_results.intercept 
             for x in lin_domain]
-linreg_artist  = plt.plot(lin_domain, plt_vals, 
-         color='red',
-         linestyle='--',
-         marker='o',
+if plot_lin_reg:
+  linreg_artist  = plt.plot(lin_domain, plt_vals, 
+         color='red', linestyle='--', marker='o',
          markersize=2*PLOT_MARKER_SIZE,
          linewidth=1.8, label="Linear Reg.")
 
-plt.text(15, 111, r"Linear Regression $x$ in 0 to 20 kHz:",
+  plt.text(15, 111, r"Linear Regression $x$ in 0 to 20 kHz:",
     color="red")
-plt.text(15, 91, f"F = {reg_results.slope:.3f} x  + {reg_results.intercept:-2.3f}",
+  plt.text(15, 91, f"F = {reg_results.slope:.3f} x  + {reg_results.intercept:-2.3f}",
     color="red")
-plt.text(15, 71, r"$R^2$ Score: ",
+  plt.text(15, 71, r"$R^2$ Score: ",
     color="red")
-plt.text(15, 51, f"{reg_results.rvalue**2:.5f}",
+  plt.text(15, 51, f"{reg_results.rvalue**2:.5f}",
     color="red")
-fig_legend_artists = rate_legend_artists[1:] + linreg_artist
-plt.legend(handles=fig_legend_artists)
+  fig_legend_artists = rate_legend_artists[1:] + linreg_artist
+else:
+  plt.legend(["{0} kN/s".format(rate) for rate in rates])
 plt.xlabel(r'$\Delta$ Resonant Freq. (KHz)')
 plt.ylabel("Normal Force (kN)")
-plt.title("Air Gap Configuration, Force vs Resonant Frequency for Single Channel, No Filter")
+plt.title("Air Gap Configuration")
 plt.grid(True, which="minor", axis="both")
 plt.minorticks_on()
 plt.tick_params(which="minor", bottom=False, left=False)
 plt.grid(True, which="major", axis='both', linewidth=1, color='k')
+fig2.axes[0].set_xlim(-50, 25)
 fig2.axes[0].invert_xaxis()
 
 # plot device strain
