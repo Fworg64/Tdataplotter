@@ -215,19 +215,27 @@ linreg_artist  = plt.plot(lin_domain, plt_vals,
          markersize=2*PLOT_MARKER_SIZE,
          linewidth=1.8, label="Linear Reg.")
 
-plt.text(15, 111, r"Linear Regression $x$ in 0 to 20 kHz:",
+plt_x = 18
+plt_y = 121
+plt_h = 17
+plt_i = 6
+plt.text(plt_x, plt_y - 0*plt_h, "Linear Reg." ,
     color="red")
-plt.text(15, 91, f"F = {reg_results.slope:.3f} x  + {reg_results.intercept:-2.3f}",
+plt.text(plt_x, plt_y - 1*plt_h, " $x$ in 0 to 20 kHz:",
     color="red")
-plt.text(15, 71, r"$R^2$ Score: ",
+plt.text(plt_x, plt_y - 2*plt_h - plt_i, f"F = {reg_results.slope:.3f} x ",
     color="red")
-plt.text(15, 51, f"{reg_results.rvalue**2:.5f}",
+plt.text(plt_x, plt_y - 3*plt_h - plt_i, f"   + {reg_results.intercept:-2.3f}",
+    color="red")
+plt.text(plt_x, plt_y - 4*plt_h - 2*plt_i, r"$R^2$ Score: ",
+    color="red")
+plt.text(plt_x, plt_y - 5*plt_h - 2*plt_i, f"{reg_results.rvalue**2:.5f}",
     color="red")
 fig_legend_artists = rate_legend_artists[1:] + linreg_artist
 plt.legend(handles=fig_legend_artists)
 plt.xlabel(r'$\Delta$ Resonant Freq. (KHz)')
 plt.ylabel("Normal Force (kN)")
-plt.title("Air Gap Configuration, Force vs Resonant Frequency for Single Channel, No Filter")
+plt.title(f"Force vs Resonant Frequency for Single Channel\nNo Filter, Air Gap Configuration")
 plt.grid(True, which="minor", axis="both")
 plt.minorticks_on()
 plt.tick_params(which="minor", bottom=False, left=False)
