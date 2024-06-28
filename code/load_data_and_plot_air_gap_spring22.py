@@ -17,6 +17,7 @@ plt.rc('font', size=fontsize, family='sans')
 plt.rc('axes', titlesize=fontsize)
 plt.rc('axes', labelsize=fontsize)
 plt.rc('legend', fontsize=fontsize)
+plt.rc('axes', unicode_minus=False)
 
 PLOT_DOWNSAMPLE_FACTOR = 300
 PLOT_MARKER_SIZE = 7
@@ -240,7 +241,8 @@ plt.grid(True, which="minor", axis="both")
 plt.minorticks_on()
 plt.tick_params(which="minor", bottom=False, left=False)
 plt.grid(True, which="major", axis='both', linewidth=1, color='k')
-fig2.axes[0].invert_xaxis()
+#fig2.axes[0].invert_xaxis()
+fig2.axes[0].set_xlim(19, -24)
 
 # plot device strain
 fig3 = plt.figure()
